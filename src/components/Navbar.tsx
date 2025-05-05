@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from 'react-router-dom';
@@ -23,12 +22,40 @@ const Navbar = () => {
     };
   }, [scrolled]);
 
+  // Function to handle smooth scroll to section
+  const scrollToSection = (sectionId: string) => {
+    setMobileMenuOpen(false);
+    
+    // If we're already on the homepage, scroll smoothly
+    if (isHomePage) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    // Otherwise, navigate to homepage with hash
+    // The hash will be handled after navigation
+  };
+
+  // Apply the scroll event handler when navigating from another page to homepage with hash
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.substring(1); // Remove the # character
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 0);
+    }
+  }, [location]);
+
   const navItems = [
-    { name: 'Home', href: '/' },
-    { name: 'Projects', href: isHomePage ? '#projects' : '/' },
-    { name: 'About', href: isHomePage ? '#about' : '/#about' },
-    { name: 'Skills', href: isHomePage ? '#skills' : '/#skills' },
-    { name: 'Contact', href: isHomePage ? '#contact' : '/#contact' },
+    { name: 'Home', href: '/', sectionId: '' },
+    { name: 'Projects', href: isHomePage ? '#projects' : '/#projects', sectionId: 'projects' },
+    { name: 'About', href: isHomePage ? '#about' : '/#about', sectionId: 'about' },
+    { name: 'Skills', href: isHomePage ? '#skills' : '/#skills', sectionId: 'skills' },
+    { name: 'Contact', href: isHomePage ? '#contact' : '/#contact', sectionId: 'contact' },
   ];
 
   return (
@@ -39,13 +66,29 @@ const Navbar = () => {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
           {navItems.map((item) => (
-            <Link 
-              key={item.name} 
-              to={item.href} 
-              className="nav-link font-medium"
-            >
-              {item.name}
-            </Link>
+            item.sectionId ? (
+              <a 
+                key={item.name}
+                href={item.href}
+                className="nav-link font-medium cursor-pointer"
+                onClick={(e) => {
+                  if (isHomePage) {
+                    e.preventDefault();
+                    scrollToSection(item.sectionId);
+                  }
+                }}
+              >
+                {item.name}
+              </a>
+            ) : (
+              <Link 
+                key={item.name}
+                to={item.href}
+                className="nav-link font-medium"
+              >
+                {item.name}
+              </Link>
+            )
           ))}
         </div>
 
@@ -86,14 +129,30 @@ const Navbar = () => {
         <div className="md:hidden bg-white shadow-lg absolute w-full py-4 animate-fade-in">
           <div className="container mx-auto flex flex-col space-y-4">
             {navItems.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className="py-2 px-4 hover:bg-gray-100 rounded transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {item.name}
-              </Link>
+              item.sectionId ? (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="py-2 px-4 hover:bg-gray-100 rounded transition-colors"
+                  onClick={(e) => {
+                    if (isHomePage) {
+                      e.preventDefault();
+                      scrollToSection(item.sectionId);
+                    }
+                  }}
+                >
+                  {item.name}
+                </a>
+              ) : (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className="py-2 px-4 hover:bg-gray-100 rounded transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              )
             ))}
           </div>
         </div>

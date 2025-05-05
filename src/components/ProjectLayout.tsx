@@ -1,10 +1,10 @@
 
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 interface ProjectLayoutProps {
   children: ReactNode;
@@ -13,6 +13,16 @@ interface ProjectLayoutProps {
 }
 
 const ProjectLayout = ({ children, title, category }: ProjectLayoutProps) => {
+  const location = useLocation();
+  
+  // Handle hash navigation when coming from another page
+  useEffect(() => {
+    if (location.hash) {
+      // We need to navigate back to the home page with the hash
+      window.location.href = location.hash;
+    }
+  }, [location.hash]);
+  
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
