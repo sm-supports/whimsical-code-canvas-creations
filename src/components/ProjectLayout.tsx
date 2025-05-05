@@ -17,7 +17,7 @@ const ProjectLayout = ({ children, title, category }: ProjectLayoutProps) => {
     <div className="min-h-screen bg-white">
       <Navbar />
       <div className="container mx-auto px-4 py-16">
-        <div className="mb-8">
+        <div className="mb-8 pt-16">
           <Link to="/">
             <Button variant="ghost" className="pl-0 mb-4 hover:bg-transparent">
               <ArrowLeft className="mr-2 h-4 w-4" />
