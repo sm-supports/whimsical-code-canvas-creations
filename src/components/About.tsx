@@ -1,5 +1,6 @@
 
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 const About = () => {
   return (
@@ -15,8 +16,8 @@ const About = () => {
                   style={{ backgroundImage: `url('https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?q=80&w=1170&auto=format&fit=crop')` }}
                 />
               </div>
-              <div className="absolute -bottom-5 -right-5 w-32 h-32 bg-portfolio-purple rounded-full flex items-center justify-center text-white font-bold text-xl">
-                5+ Years Experience
+              <div className="absolute -bottom-4 -right-4 md:-bottom-5 md:-right-5 w-24 md:w-32 h-24 md:h-32 bg-portfolio-purple rounded-full flex items-center justify-center text-white font-bold text-sm md:text-xl p-2 shadow-lg transform hover:scale-105 transition-transform">
+                <span className="text-center">5+ Years Experience</span>
               </div>
             </div>
           </div>
