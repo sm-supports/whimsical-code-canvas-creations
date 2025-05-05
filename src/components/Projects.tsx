@@ -1,7 +1,7 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import ProjectCard from "./ProjectCard";
+import { Link } from "react-router-dom";
 
 // Project data
 const projectsData = [
@@ -10,42 +10,42 @@ const projectsData = [
     title: "Children's Book Illustration",
     category: "Illustration",
     imageUrl: "https://images.unsplash.com/photo-1531685250784-7569952593d2?q=80&w=1074&auto=format&fit=crop",
-    link: "#"
+    link: "/projects/illustration"
   },
   {
     id: 2,
     title: "E-Commerce Website",
     category: "Web Development",
     imageUrl: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1172&auto=format&fit=crop",
-    link: "#"
+    link: "/projects/web-development"
   },
   {
     id: 3,
     title: "Brand Identity Design",
     category: "Graphic Design",
     imageUrl: "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=1064&auto=format&fit=crop",
-    link: "#"
+    link: "/projects/graphic-design"
   },
   {
     id: 4,
     title: "Task Management App",
     category: "React Development",
     imageUrl: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=1170&auto=format&fit=crop",
-    link: "#"
+    link: "/projects/react-development"
   },
   {
     id: 5,
     title: "Interactive Dashboard",
     category: "Full Stack Development",
     imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1170&auto=format&fit=crop",
-    link: "#"
+    link: "/projects/full-stack"
   },
   {
     id: 6,
     title: "Story Book Cover Design",
     category: "Illustration",
     imageUrl: "https://images.unsplash.com/photo-1589998059171-988d887df646?q=80&w=1176&auto=format&fit=crop",
-    link: "#"
+    link: "/projects/illustration"
   }
 ];
 
@@ -91,13 +91,14 @@ const Projects = () => {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects.map(project => (
-            <ProjectCard
-              key={project.id}
-              title={project.title}
-              category={project.category}
-              imageUrl={project.imageUrl}
-              link={project.link}
-            />
+            <Link to={project.link} key={project.id}>
+              <ProjectCard
+                title={project.title}
+                category={project.category}
+                imageUrl={project.imageUrl}
+                link={project.link}
+              />
+            </Link>
           ))}
         </div>
       </div>

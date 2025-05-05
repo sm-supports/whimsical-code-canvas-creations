@@ -8,14 +8,9 @@ interface ProjectCardProps {
   link: string;
 }
 
-const ProjectCard = ({ title, category, imageUrl, link }: ProjectCardProps) => {
+const ProjectCard = ({ title, category, imageUrl }: ProjectCardProps) => {
   return (
-    <a 
-      href={link} 
-      className="group block transition-transform hover:-translate-y-1 duration-300"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+    <div className="group block transition-transform hover:-translate-y-1 duration-300">
       <Card className="overflow-hidden border-none shadow-md h-full">
         <div className="relative overflow-hidden aspect-video">
           <div 
@@ -34,7 +29,7 @@ const ProjectCard = ({ title, category, imageUrl, link }: ProjectCardProps) => {
           <h3 className="font-medium text-lg">{title}</h3>
         </CardContent>
       </Card>
-    </a>
+    </div>
   );
 };
 
