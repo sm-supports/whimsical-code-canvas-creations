@@ -1,12 +1,13 @@
 
 import { Button } from "@/components/ui/button";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ChevronDown, Code, Palette, PenTool } from "lucide-react";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [typedText, setTypedText] = useState("");
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const logoRef = useRef<HTMLDivElement>(null);
   // Updated services list based on Fiverr profile
   const texts = ["Web Development", "WordPress Design", "Bug Fixing", "Custom Solutions"];
   const fullText = texts[currentTextIndex];
@@ -15,6 +16,25 @@ const Hero = () => {
   // Animation for fade-in
   useEffect(() => {
     setIsVisible(true);
+  }, []);
+
+  // Scroll effect for the logo
+  useEffect(() => {
+    const handleScroll = () => {
+      if (logoRef.current) {
+        const scrollY = window.scrollY;
+        // Create a floating effect based on scroll position
+        const translateY = Math.sin(scrollY * 0.01) * 20; // Adjust the multipliers to control movement
+        const rotate = Math.sin(scrollY * 0.005) * 5; // Slight rotation effect
+        
+        logoRef.current.style.transform = `translateY(${translateY}px) rotate(${rotate}deg)`;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   // Typing animation effect
@@ -87,6 +107,7 @@ const Hero = () => {
           <div 
             className={`lg:w-2/5 relative transition-all duration-1000 transform ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}
             style={{ transitionDelay: "0.3s" }}
+            ref={logoRef}
           >
             <div className="aspect-square bg-gradient-to-br from-portfolio-primary/20 to-portfolio-cream/30 rounded-full flex items-center justify-center hover:shadow-xl transition-all hover:scale-105">
               <img 

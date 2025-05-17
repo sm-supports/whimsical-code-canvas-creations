@@ -32,13 +32,18 @@ const Navbar = () => {
     
     // If we're already on the homepage, scroll smoothly
     if (isHomePage) {
-      const section = document.getElementById(sectionId);
-      if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
+      if (sectionId === '') {
+        // For the home section, scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
+        }
       }
     } else {
       // Navigate to homepage with hash and set a flag to scroll after navigation
-      navigate(`/#${sectionId}`);
+      navigate(sectionId ? `/#${sectionId}` : '/');
     }
   };
 
@@ -52,6 +57,9 @@ const Navbar = () => {
           element.scrollIntoView({ behavior: 'smooth' });
         }, 100); // Small delay to ensure DOM is ready
       }
+    } else if (isHomePage && !location.hash) {
+      // If on homepage with no hash, scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [location, isHomePage]);
 
@@ -66,7 +74,7 @@ const Navbar = () => {
   return (
     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 shadow-md backdrop-blur-sm py-3' : 'bg-transparent py-6'}`}>
       <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="flex items-center space-x-2">
+        <Link to="/" className="flex items-center space-x-2" onClick={(e) => handleNavigation('', e)}>
           <div className="h-10 w-10 relative">
             <img 
               src="/lovable-uploads/e36f8ce3-362f-422b-b487-bde1f6e31353.png" 
@@ -80,25 +88,14 @@ const Navbar = () => {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
           {navItems.map((item) => (
-            item.sectionId ? (
-              <a 
-                key={item.name}
-                href={item.href}
-                className="nav-link font-medium cursor-pointer"
-                onClick={(e) => handleNavigation(item.sectionId, e)}
-              >
-                {item.name}
-              </a>
-            ) : (
-              <Link 
-                key={item.name}
-                to={item.href}
-                className="nav-link font-medium"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {item.name}
-              </Link>
-            )
+            <a 
+              key={item.name}
+              href={item.href}
+              className="nav-link font-medium cursor-pointer"
+              onClick={(e) => handleNavigation(item.sectionId, e)}
+            >
+              {item.name}
+            </a>
           ))}
         </div>
 
@@ -139,25 +136,14 @@ const Navbar = () => {
         <div className="md:hidden bg-white shadow-lg absolute w-full py-4 animate-fade-in">
           <div className="container mx-auto flex flex-col space-y-4">
             {navItems.map((item) => (
-              item.sectionId ? (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="py-2 px-4 hover:bg-gray-100 rounded transition-colors"
-                  onClick={(e) => handleNavigation(item.sectionId, e)}
-                >
-                  {item.name}
-                </a>
-              ) : (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className="py-2 px-4 hover:bg-gray-100 rounded transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              )
+              <a
+                key={item.name}
+                href={item.href}
+                className="py-2 px-4 hover:bg-gray-100 rounded transition-colors"
+                onClick={(e) => handleNavigation(item.sectionId, e)}
+              >
+                {item.name}
+              </a>
             ))}
           </div>
         </div>
