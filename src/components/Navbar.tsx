@@ -1,13 +1,14 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Rocket } from 'lucide-react';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const isHomePage = location.pathname === '/';
 
   useEffect(() => {
@@ -24,8 +25,9 @@ const Navbar = () => {
     };
   }, [scrolled]);
 
-  // Function to handle smooth scroll to section
-  const scrollToSection = (sectionId: string) => {
+  // Function to handle navigation with smooth scrolling for same-page links
+  const handleNavigation = (sectionId: string, event: React.MouseEvent) => {
+    event.preventDefault();
     setMobileMenuOpen(false);
     
     // If we're already on the homepage, scroll smoothly
@@ -34,30 +36,18 @@ const Navbar = () => {
       if (section) {
         section.scrollIntoView({ behavior: 'smooth' });
       }
+    } else {
+      // Navigate to homepage with hash
+      navigate(`/#${sectionId}`);
     }
-    // Otherwise, navigate to homepage with hash
-    // The hash will be handled after navigation
   };
-
-  // Apply the scroll event handler when navigating from another page to homepage with hash
-  useEffect(() => {
-    if (location.hash) {
-      const id = location.hash.substring(1); // Remove the # character
-      setTimeout(() => {
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 0);
-    }
-  }, [location]);
 
   const navItems = [
     { name: 'Home', href: '/', sectionId: '' },
-    { name: 'Projects', href: isHomePage ? '#projects' : '/#projects', sectionId: 'projects' },
-    { name: 'About', href: isHomePage ? '#about' : '/#about', sectionId: 'about' },
-    { name: 'Skills', href: isHomePage ? '#skills' : '/#skills', sectionId: 'skills' },
-    { name: 'Contact', href: isHomePage ? '#contact' : '/#contact', sectionId: 'contact' },
+    { name: 'Projects', href: '/#projects', sectionId: 'projects' },
+    { name: 'About', href: '/#about', sectionId: 'about' },
+    { name: 'Skills', href: '/#skills', sectionId: 'skills' },
+    { name: 'Contact', href: '/#contact', sectionId: 'contact' },
   ];
 
   return (
@@ -82,12 +72,7 @@ const Navbar = () => {
                 key={item.name}
                 href={item.href}
                 className="nav-link font-medium cursor-pointer"
-                onClick={(e) => {
-                  if (isHomePage) {
-                    e.preventDefault();
-                    scrollToSection(item.sectionId);
-                  }
-                }}
+                onClick={(e) => handleNavigation(item.sectionId, e)}
               >
                 {item.name}
               </a>
@@ -145,12 +130,7 @@ const Navbar = () => {
                   key={item.name}
                   href={item.href}
                   className="py-2 px-4 hover:bg-gray-100 rounded transition-colors"
-                  onClick={(e) => {
-                    if (isHomePage) {
-                      e.preventDefault();
-                      scrollToSection(item.sectionId);
-                    }
-                  }}
+                  onClick={(e) => handleNavigation(item.sectionId, e)}
                 >
                   {item.name}
                 </a>
