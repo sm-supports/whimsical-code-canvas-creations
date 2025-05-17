@@ -1,6 +1,8 @@
+
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from 'react-router-dom';
+import { Rocket } from 'lucide-react';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -61,7 +63,16 @@ const Navbar = () => {
   return (
     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 shadow-md backdrop-blur-sm py-3' : 'bg-transparent py-6'}`}>
       <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="text-xl font-bold heading-gradient">Portfolio</Link>
+        <Link to="/" className="flex items-center space-x-2">
+          <div className="h-10 w-10 relative">
+            <img 
+              src="/lovable-uploads/e36f8ce3-362f-422b-b487-bde1f6e31353.png" 
+              alt="Logo" 
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <span className="text-xl font-bold heading-gradient hidden sm:inline">SpacePortfolio</span>
+        </Link>
         
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">

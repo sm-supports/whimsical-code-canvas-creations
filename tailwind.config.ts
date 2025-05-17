@@ -64,11 +64,11 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				portfolio: {
-					purple: '#9b87f5',
-					'dark-purple': '#6E59A5',
-					'light-purple': '#D6BCFA',
-					cream: '#FEF7CD',
-					peach: '#FDE1D3',
+					primary: '#40E0D0', // Turquoise color similar to the logo
+					'dark-primary': '#2CB5B5', // Darker shade of turquoise
+					'light-primary': '#A0F0E9', // Lighter shade of turquoise
+					secondary: '#F0F0F0', // Light gray
+					accent: '#333333', // Dark gray/near black
 				}
 			},
 			borderRadius: {

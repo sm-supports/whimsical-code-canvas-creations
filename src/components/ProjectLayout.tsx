@@ -34,7 +34,7 @@ const ProjectLayout = ({ children, title, category }: ProjectLayoutProps) => {
               Back to Home
             </Button>
           </Link>
-          <p className="text-portfolio-purple uppercase tracking-wider mb-2">{category}</p>
+          <p className="text-portfolio-primary uppercase tracking-wider mb-2">{category}</p>
           <h1 className="text-3xl md:text-4xl font-bold">{title}</h1>
         </div>
         {children}

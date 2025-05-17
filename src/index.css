@@ -14,7 +14,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 265 83% 74%;
+    --primary: 180 70% 56%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -31,7 +31,7 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 265 83% 74%;
+    --ring: 180 70% 56%;
 
     --radius: 0.5rem;
 
@@ -55,7 +55,7 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 265 83% 74%;
+    --primary: 180 70% 56%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -72,7 +72,7 @@
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 265 83% 74%;
+    --ring: 180 70% 56%;
   }
 }
 
@@ -93,11 +93,11 @@
 
 @layer components {
   .nav-link {
-    @apply relative hover:text-primary transition-colors duration-200;
+    @apply relative hover:text-portfolio-primary transition-colors duration-200;
   }
   
   .nav-link::after {
-    @apply content-[''] absolute bg-primary h-0.5 w-0 left-0 -bottom-1 transition-all duration-300;
+    @apply content-[''] absolute bg-portfolio-primary h-0.5 w-0 left-0 -bottom-1 transition-all duration-300;
   }
   
   .nav-link:hover::after {
@@ -105,11 +105,11 @@
   }
 
   .heading-gradient {
-    @apply bg-gradient-to-r from-portfolio-purple to-portfolio-dark-purple bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-portfolio-primary to-portfolio-dark-primary bg-clip-text text-transparent;
   }
   
   .button-gradient {
-    @apply bg-gradient-to-r from-portfolio-purple to-portfolio-dark-purple text-white hover:opacity-90 transition-opacity;
+    @apply bg-gradient-to-r from-portfolio-primary to-portfolio-dark-primary text-white hover:opacity-90 transition-opacity;
   }
   
   .section {
