@@ -1,13 +1,14 @@
 
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Code, Palette, PenTool } from "lucide-react";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [typedText, setTypedText] = useState("");
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
-  const texts = ["Illustrations", "Graphic Design", "Web Development", "Full-Stack Solutions"];
+  // Updated services list based on Fiverr profile
+  const texts = ["Web Development", "WordPress Design", "Bug Fixing", "Custom Solutions"];
   const fullText = texts[currentTextIndex];
   const [charIndex, setCharIndex] = useState(0);
 
@@ -44,21 +45,23 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center pt-16 bg-gradient-to-b from-white to-gray-50 relative">
+    <section 
+      id="home" 
+      className="min-h-screen flex items-center pt-16 bg-gradient-to-b from-white to-gray-50 relative"
+    >
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
           <div 
             className={`lg:w-1/2 transition-all duration-1000 transform ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}
           >
-            <p className="text-portfolio-purple font-medium mb-3">Hello, I'm</p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-              A Creative <span className="heading-gradient">Multi-disciplinary</span> Designer & Developer
+              Professional <span className="heading-gradient">Web Solutions</span> by SM Supports
             </h1>
             <p className="text-gray-600 text-lg mb-4 max-w-lg">
-              I create delightful experiences through <span className="text-portfolio-purple font-medium">{typedText}<span className="animate-pulse">|</span></span>
+              Delivering exceptional <span className="text-portfolio-purple font-medium">{typedText}<span className="animate-pulse">|</span></span>
             </p>
             <p className="text-gray-600 text-lg mb-8 max-w-lg">
-              with a focus on beautiful, functional solutions.
+              with a focus on responsive, functional, and user-friendly web experiences.
             </p>
             <div className="flex flex-wrap gap-4">
               <Button 
@@ -85,11 +88,12 @@ const Hero = () => {
             className={`lg:w-2/5 relative transition-all duration-1000 transform ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}
             style={{ transitionDelay: "0.3s" }}
           >
-            <div className="aspect-square bg-gradient-to-br from-portfolio-purple/20 to-portfolio-cream/30 rounded-full flex items-center justify-center hover:shadow-xl transition-all hover:scale-105 cursor-pointer">
-              <div className="w-4/5 h-4/5 rounded-full overflow-hidden bg-gradient-to-br from-portfolio-purple to-portfolio-dark-purple flex items-center justify-center text-white text-9xl font-bold transform hover:rotate-12 transition-all duration-500">
-                {/* Replace with your logo or profile image */}
-                <span>C</span>
-              </div>
+            <div className="aspect-square bg-gradient-to-br from-portfolio-primary/20 to-portfolio-cream/30 rounded-full flex items-center justify-center hover:shadow-xl transition-all hover:scale-105">
+              <img 
+                src="/lovable-uploads/e36f8ce3-362f-422b-b487-bde1f6e31353.png"
+                alt="SM Supports Logo" 
+                className="w-4/5 h-4/5 object-contain"
+              />
             </div>
           </div>
         </div>

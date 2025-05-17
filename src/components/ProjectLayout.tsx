@@ -16,6 +16,18 @@ const ProjectLayout = ({ children, title, category }: ProjectLayoutProps) => {
   const location = useLocation();
   const navigate = useNavigate();
   
+  // Meta tags for SEO
+  useEffect(() => {
+    // Update title
+    document.title = `${title} - SM Supports`;
+    
+    // Update meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', `${category} project by SM Supports - ${title}. Professional web development and design services.`);
+    }
+  }, [title, category]);
+  
   // Function to handle back navigation and preserve hash if present
   const handleBackToHome = () => {
     if (location.hash) {

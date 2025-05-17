@@ -37,10 +37,23 @@ const Navbar = () => {
         section.scrollIntoView({ behavior: 'smooth' });
       }
     } else {
-      // Navigate to homepage with hash
+      // Navigate to homepage with hash and set a flag to scroll after navigation
       navigate(`/#${sectionId}`);
     }
   };
+
+  // Check if there's a hash in URL after page load and scroll to it
+  useEffect(() => {
+    if (isHomePage && location.hash) {
+      const id = location.hash.substring(1); // Remove the # character
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100); // Small delay to ensure DOM is ready
+      }
+    }
+  }, [location, isHomePage]);
 
   const navItems = [
     { name: 'Home', href: '/', sectionId: '' },
@@ -57,11 +70,11 @@ const Navbar = () => {
           <div className="h-10 w-10 relative">
             <img 
               src="/lovable-uploads/e36f8ce3-362f-422b-b487-bde1f6e31353.png" 
-              alt="Logo" 
+              alt="SM Supports Logo" 
               className="w-full h-full object-contain"
             />
           </div>
-          <span className="text-xl font-bold heading-gradient hidden sm:inline">SpacePortfolio</span>
+          <span className="text-xl font-bold heading-gradient hidden sm:inline">SM Supports</span>
         </Link>
         
         {/* Desktop Navigation */}
@@ -81,6 +94,7 @@ const Navbar = () => {
                 key={item.name}
                 to={item.href}
                 className="nav-link font-medium"
+                onClick={() => setMobileMenuOpen(false)}
               >
                 {item.name}
               </Link>
