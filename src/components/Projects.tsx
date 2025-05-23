@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import ProjectCard from "./ProjectCard";
@@ -60,27 +59,27 @@ const Projects = () => {
     : projectsData.filter(project => project.category === activeFilter);
 
   return (
-    <section id="projects" className="section px-4">
-      <div className="container mx-auto max-w-7xl">
-        <div className="text-center mb-8 sm:mb-12">
-          <p className="text-portfolio-primary uppercase tracking-wider mb-2 text-sm">My Recent Work</p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">Featured Projects</h2>
-          <p className="text-gray-600 max-w-xl mx-auto text-sm sm:text-base px-4">
+    <section id="projects" className="section">
+      <div className="container mx-auto">
+        <div className="text-center mb-12">
+          <p className="text-portfolio-purple uppercase tracking-wider mb-2">My Recent Work</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Featured Projects</h2>
+          <p className="text-gray-600 max-w-xl mx-auto">
             Explore my recent projects spanning children's book illustrations, 
             graphic design, web development, and more.
           </p>
         </div>
         
         {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12 px-4">
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
           {categories.map(category => (
             <Button
               key={category}
               variant={activeFilter === category ? "default" : "outline"}
-              className={`rounded-full text-xs sm:text-sm px-3 sm:px-4 py-2 ${
+              className={`rounded-full ${
                 activeFilter === category 
-                  ? "bg-portfolio-primary hover:bg-portfolio-primary/90" 
-                  : "border-gray-200 hover:border-portfolio-primary hover:text-portfolio-primary"
+                  ? "bg-portfolio-purple hover:bg-portfolio-dark-purple" 
+                  : "border-gray-200 hover:border-portfolio-purple hover:text-portfolio-purple"
               }`}
               onClick={() => setActiveFilter(category)}
             >
@@ -90,7 +89,7 @@ const Projects = () => {
         </div>
         
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects.map(project => (
             <Link to={project.link} key={project.id}>
               <ProjectCard
