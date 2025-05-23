@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { toast } from "@/components/ui/use-toast";
+import { toast } from "@/hooks/use-toast";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -40,69 +40,69 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="section bg-gray-50">
-      <div className="container mx-auto">
-        <div className="text-center mb-12">
-          <p className="text-portfolio-purple uppercase tracking-wider mb-2">Get In Touch</p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Contact Me</h2>
-          <p className="text-gray-600 max-w-xl mx-auto">
+    <section id="contact" className="section bg-gray-50 px-4">
+      <div className="container mx-auto max-w-7xl">
+        <div className="text-center mb-8 sm:mb-12">
+          <p className="text-portfolio-primary uppercase tracking-wider mb-2 text-sm">Get In Touch</p>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">Contact Me</h2>
+          <p className="text-gray-600 max-w-xl mx-auto text-sm sm:text-base px-4">
             Have a project in mind or want to collaborate? Feel free to reach out!
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 max-w-4xl mx-auto">
           {/* Contact Info */}
-          <div className="flex flex-col justify-center">
-            <div className="mb-8">
-              <h3 className="text-xl font-bold mb-4">Let's talk about your project</h3>
-              <p className="text-gray-600 mb-6">
-                Whether you need illustrations for a children's book, a new website, or a full-stack application,
+          <div className="flex flex-col justify-center order-2 lg:order-1">
+            <div className="mb-6 sm:mb-8 text-center lg:text-left">
+              <h3 className="text-lg sm:text-xl font-bold mb-4">Let's talk about your project</h3>
+              <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">
+                Whether you need a WordPress website, bug fixes, or a custom web application,
                 I'm here to help turn your vision into reality.
               </p>
             </div>
             
             <div className="space-y-4">
-              <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-portfolio-purple/10 flex items-center justify-center mr-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-portfolio-purple" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="flex items-center justify-center lg:justify-start">
+                <div className="w-10 h-10 rounded-full bg-portfolio-primary/10 flex items-center justify-center mr-4 flex-shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-portfolio-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
-                <div>
-                  <h4 className="font-medium">Email</h4>
-                  <p className="text-gray-600">contact@yourportfolio.com</p>
+                <div className="text-center lg:text-left">
+                  <h4 className="font-medium text-sm sm:text-base">Email</h4>
+                  <p className="text-gray-600 text-sm sm:text-base">contact@smsupports.com</p>
                 </div>
               </div>
               
-              <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-portfolio-purple/10 flex items-center justify-center mr-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-portfolio-purple" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              <div className="flex items-center justify-center lg:justify-start">
+                <div className="w-10 h-10 rounded-full bg-portfolio-primary/10 flex items-center justify-center mr-4 flex-shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-portfolio-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9 3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
                   </svg>
                 </div>
-                <div>
-                  <h4 className="font-medium">Phone</h4>
-                  <p className="text-gray-600">+1 (123) 456-7890</p>
+                <div className="text-center lg:text-left">
+                  <h4 className="font-medium text-sm sm:text-base">Fiverr</h4>
+                  <p className="text-gray-600 text-sm sm:text-base">@sajjatmohammed</p>
                 </div>
               </div>
               
-              <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-portfolio-purple/10 flex items-center justify-center mr-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-portfolio-purple" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="flex items-center justify-center lg:justify-start">
+                <div className="w-10 h-10 rounded-full bg-portfolio-primary/10 flex items-center justify-center mr-4 flex-shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-portfolio-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                 </div>
-                <div>
-                  <h4 className="font-medium">Location</h4>
-                  <p className="text-gray-600">San Francisco, CA</p>
+                <div className="text-center lg:text-left">
+                  <h4 className="font-medium text-sm sm:text-base">Available</h4>
+                  <p className="text-gray-600 text-sm sm:text-base">Remote Worldwide</p>
                 </div>
               </div>
             </div>
           </div>
           
           {/* Contact Form */}
-          <div className="bg-white p-6 rounded-xl shadow-md">
+          <div className="bg-white p-4 sm:p-6 rounded-xl shadow-md order-1 lg:order-2">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
@@ -113,6 +113,7 @@ const Contact = () => {
                   onChange={handleChange}
                   placeholder="Your name"
                   required
+                  className="w-full"
                 />
               </div>
               
@@ -126,6 +127,7 @@ const Contact = () => {
                   onChange={handleChange}
                   placeholder="your.email@example.com"
                   required
+                  className="w-full"
                 />
               </div>
               
@@ -138,6 +140,7 @@ const Contact = () => {
                   onChange={handleChange}
                   placeholder="What's this regarding?"
                   required
+                  className="w-full"
                 />
               </div>
               
@@ -149,12 +152,12 @@ const Contact = () => {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Tell me about your project..."
-                  className="min-h-[120px]"
+                  className="min-h-[120px] w-full resize-none"
                   required
                 />
               </div>
               
-              <Button type="submit" className="w-full button-gradient">
+              <Button type="submit" className="w-full button-gradient py-3">
                 Send Message
               </Button>
             </form>
