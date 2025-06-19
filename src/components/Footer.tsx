@@ -1,14 +1,16 @@
 
+import { ThemeToggle } from "./ThemeToggle";
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="glass-card py-12 border-t border-white/10 rounded-none">
+    <footer className="glass-card py-12 border-t border-white/10 dark:border-white/10 rounded-none bg-white/5 dark:bg-black/20">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
-            <h3 className="text-2xl font-bold mb-2 text-white">Portfolio</h3>
-            <p className="text-gray-200 max-w-xs">
+            <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Portfolio</h3>
+            <p className="text-gray-700 dark:text-gray-200 max-w-xs">
               Creating beautiful illustrations, designs, and web experiences.
             </p>
           </div>
@@ -36,20 +38,26 @@ const Footer = () => {
               </svg>
             </a>
           </div>
+          
+          {/* Theme Toggle */}
+          <div className="flex items-center space-x-4">
+            <span className="text-sm text-gray-700 dark:text-gray-200">Theme:</span>
+            <ThemeToggle />
+          </div>
         </div>
         
-        <hr className="border-white/20 my-8" />
+        <hr className="border-gray-300 dark:border-white/20 my-8" />
         
         <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-200 text-sm mb-4 md:mb-0">
+          <p className="text-gray-700 dark:text-gray-200 text-sm mb-4 md:mb-0">
             &copy; {currentYear} Portfolio. All rights reserved.
           </p>
           
           <nav className="flex space-x-6 text-sm">
-            <a href="#home" className="text-gray-200 hover:text-white transition-colors">Home</a>
-            <a href="#projects" className="text-gray-200 hover:text-white transition-colors">Projects</a>
-            <a href="#about" className="text-gray-200 hover:text-white transition-colors">About</a>
-            <a href="#contact" className="text-gray-200 hover:text-white transition-colors">Contact</a>
+            <a href="#home" className="text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white transition-colors">Home</a>
+            <a href="#projects" className="text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white transition-colors">Projects</a>
+            <a href="#about" className="text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white transition-colors">About</a>
+            <a href="#contact" className="text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white transition-colors">Contact</a>
           </nav>
         </div>
       </div>
