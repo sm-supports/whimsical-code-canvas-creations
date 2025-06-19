@@ -4,9 +4,7 @@ import { ChevronDown, Code, Palette, PenTool, ArrowRight } from "lucide-react";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [typedText, setTypedText] = useState("");
-  const [currentTextIndex, setCurrentTextIndex] = useState(0);
-  const logoRef = useRef<HTMLDivElement>(null);
+  const [typedText, setTypedText] = useState("");  const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const texts = ["Web Development", "WordPress Design", "Bug Fixing", "Custom Solutions"];
   const fullText = texts[currentTextIndex];
   const [charIndex, setCharIndex] = useState(0);
@@ -15,22 +13,6 @@ const Hero = () => {
     setIsVisible(true);
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (logoRef.current) {
-        const scrollY = window.scrollY;
-        const translateY = Math.sin(scrollY * 0.01) * 20;
-        const rotate = Math.sin(scrollY * 0.005) * 5;
-        
-        logoRef.current.style.transform = `translateY(${translateY}px) rotate(${rotate}deg)`;
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   useEffect(() => {
     if (charIndex < fullText.length) {
@@ -117,22 +99,14 @@ const Hero = () => {
                 <span>Creative Solutions</span>
               </div>
             </div>
-          </div>
-
-          {/* Hero Image */}
-          <div className="flex-1 relative">
-            <div 
-              ref={logoRef}
-              className={`relative z-10 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-            >
-              <div className="relative w-full max-w-lg mx-auto">
-                <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-3xl blur-2xl" />
-                <img
-                  src="/uploads/e36f8ce3-362f-422b-b487-bde1f6e31353.png"
-                  alt="Hero Image"
-                  className="relative z-10 w-full h-auto rounded-3xl shadow-xl"
-                />
-              </div>
+          </div>          {/* Hero Image */}
+          <div className="flex-1">
+            <div className="w-full max-w-lg mx-auto">
+              <img
+                src="/uploads/e36f8ce3-362f-422b-b487-bde1f6e31353.png"
+                alt="Hero Image"
+                className="w-full h-auto rounded-3xl"
+              />
             </div>
           </div>
         </div>
