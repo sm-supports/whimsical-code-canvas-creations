@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -66,17 +65,29 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'glass-card py-3' : 'bg-transparent py-6'}`}>
+    <nav className={`fixed top-0 left-0 w-full z-50 backdrop-blur-md transition-all duration-300 ${
+      scrolled 
+        ? 'bg-background/80 dark:bg-background/80 border-b border-border/50 shadow-lg' 
+        : 'bg-transparent'
+      } py-4`}
+    >
       <div className="container mx-auto flex justify-between items-center px-4">
-        <Link to="/" className="flex items-center space-x-2 touch-feedback" onClick={(e) => handleNavigation('', e)}>
-          <div className="h-10 w-10 relative">
+        <Link 
+          to="/" 
+          className="flex items-center space-x-2 transition-transform duration-300 hover:scale-105" 
+          onClick={(e) => handleNavigation('', e)}
+        >
+          <div className="relative w-10 h-10">
+            <div className="absolute inset-0 bg-gradient-to-tr from-primary to-purple-500 rounded-xl blur-lg opacity-50" />
             <img 
-              src="/lovable-uploads/e36f8ce3-362f-422b-b487-bde1f6e31353.png" 
+              src="/uploads/e36f8ce3-362f-422b-b487-bde1f6e31353.png" 
               alt="SM Supports Logo" 
-              className="w-full h-full object-contain"
+              className="relative z-10 w-full h-full object-contain"
             />
           </div>
-          <span className="text-xl font-bold heading-gradient hidden sm:inline">SM Supports</span>
+          <span className="text-xl font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent hidden sm:inline">
+            SM Supports
+          </span>
         </Link>
         
         {/* Desktop Navigation */}
@@ -85,7 +96,9 @@ const Navbar = () => {
             <a 
               key={item.name}
               href={item.href}
-              className="nav-link font-medium cursor-pointer text-white hover:text-portfolio-primary transition-colors"
+              className={`relative font-medium text-foreground/80 hover:text-primary transition-colors duration-300
+                after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5
+                after:bg-primary after:transition-all after:duration-300 hover:after:w-full`}
               onClick={(e) => handleNavigation(item.sectionId, e)}
             >
               {item.name}
@@ -95,27 +108,27 @@ const Navbar = () => {
 
         {/* Mobile Navigation Toggle */}
         <button 
-          className="md:hidden glass-button p-3 rounded-full mobile-touch-target touch-feedback" 
+          className="md:hidden relative p-2 rounded-xl bg-background/50 backdrop-blur-sm border border-border/50 hover:bg-background/80 transition-all duration-300" 
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle Navigation Menu"
         >
           {mobileMenuOpen ? (
-            <X className="h-6 w-6 text-white" />
+            <X className="h-6 w-6 text-foreground" />
           ) : (
-            <Menu className="h-6 w-6 text-white" />
+            <Menu className="h-6 w-6 text-foreground" />
           )}
         </button>
       </div>
 
       {/* Mobile Navigation Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden mobile-nav absolute w-full py-6 animate-fade-in">
-          <div className="container mx-auto flex flex-col space-y-6 px-4">
+        <div className="md:hidden absolute w-full bg-background/95 backdrop-blur-lg border-b border-border/50 py-6 animate-in fade-in slide-in-from-top duration-300">
+          <div className="container mx-auto flex flex-col space-y-4 px-4">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="py-3 px-6 glass-button rounded-xl text-white hover:bg-white/20 transition-colors mobile-touch-target touch-feedback text-center font-medium"
+                className="p-4 rounded-xl bg-background/50 backdrop-blur-sm border border-border/50 hover:bg-background/80 hover:border-primary/50 text-foreground hover:text-primary transition-all duration-300 text-center font-medium"
                 onClick={(e) => handleNavigation(item.sectionId, e)}
               >
                 {item.name}

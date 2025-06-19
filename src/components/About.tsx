@@ -1,72 +1,125 @@
-
 import { Button } from "@/components/ui/button";
-import { Code, Globe, Server } from "lucide-react";
+import { Code, Globe, Server, ArrowUpRight } from "lucide-react";
+import { Card } from "@/components/ui/card";
 
 const About = () => {
+  const services = [
+    {
+      icon: <Globe className="h-6 w-6" />,
+      title: "Web Development",
+      description:
+        "Building responsive websites and custom WordPress solutions for businesses of all sizes.",
+    },
+    {
+      icon: <Code className="h-6 w-6" />,
+      title: "Bug Fixing",
+      description:
+        "Diagnosing and resolving website issues, errors, and functionality problems quickly.",
+    },
+    {
+      icon: <Server className="h-6 w-6" />,
+      title: "WordPress",
+      description:
+        "Creating and customizing WordPress websites, themes, and plugins to meet client needs.",
+    },
+  ];
+
   return (
-    <section id="about" className="section">
-      <div className="container mx-auto">
+    <section
+      id="about"
+      className="relative py-24 bg-gradient-to-b from-background via-background/95 to-background/90"
+    >
+      {/* Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 right-1/3 w-96 h-96 bg-primary/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob" />
+        <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-purple-500/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000" />
+      </div>
+
+      <div className="container relative z-10 mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-center gap-12">
-          {/* Image or Illustration */}
-          <div className="lg:w-1/2 mb-8 lg:mb-0">
+          {/* Image Section */}
+          <div className="lg:w-1/2">
             <div className="relative">
-              <div className="w-full aspect-square max-w-md mx-auto rounded-2xl overflow-hidden glass-card">
-                <img 
+              <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-purple-500/20 rounded-3xl blur-2xl transform rotate-3" />
+              <div className="relative bg-background/50 backdrop-blur-sm border border-border/50 rounded-3xl overflow-hidden shadow-xl">
+                <img
                   src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?q=80&w=1170&auto=format&fit=crop"
-                  alt="SM Supports - Web Development Services" 
-                  className="w-full h-full object-cover"
+                  alt="SM Supports - Web Development Services"
+                  className="w-full aspect-square object-cover"
                 />
               </div>
-              <div className="absolute -bottom-4 -right-4 md:-bottom-5 md:-right-5 w-32 md:w-36 h-32 md:h-36 glass-card rounded-full flex items-center justify-center text-white font-bold text-xl md:text-2xl p-2 transform rotate-12 hover:rotate-0 transition-transform border-2 border-white/30">
-                <span className="text-center">5+ Years Experience</span>
+              <div className="absolute -bottom-6 -right-6 w-36 h-36">
+                <div className="relative w-full h-full">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-primary to-purple-500 rounded-full blur-xl opacity-50" />
+                  <div className="relative w-full h-full bg-background/50 backdrop-blur-sm border border-border/50 rounded-full flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="font-bold text-2xl text-foreground">5+</div>
+                      <div className="text-sm text-muted-foreground">
+                        Years of Experience
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          
-          {/* Content */}
+
+          {/* Content Section */}
           <div className="lg:w-1/2">
-            <p className="text-portfolio-primary uppercase tracking-wider mb-2 font-medium">About Me</p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Web Developer & Digital Solutions Expert</h2>
-            
-            <p className="text-gray-200 mb-6">
-              I'm a skilled web developer at SM Supports with over 5 years of experience delivering high-quality 
-              digital solutions. I specialize in WordPress development, bug fixing, and creating custom 
-              web applications that help businesses thrive online.
+            <p className="text-primary font-semibold uppercase tracking-wider mb-2">
+              About Me
             </p>
-            
-            <p className="text-gray-200 mb-6">
-              My approach combines technical expertise with a keen eye for detail, allowing me to deliver 
-              solutions that are not only functional but also user-friendly and visually appealing.
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
+              Web Developer & Digital Solutions Expert
+            </h2>
+
+            <p className="text-muted-foreground text-lg mb-6">
+              I'm a skilled web developer at SM Supports with over 5 years of
+              experience delivering high-quality digital solutions. I specialize in
+              WordPress development, bug fixing, and creating custom web
+              applications that help businesses thrive online.
             </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              <div className="glass-card p-6 rounded-xl hover:bg-white/20 transition-all">
-                <div className="flex items-center mb-3">
-                  <Globe className="text-portfolio-primary mr-3 h-6 w-6" />
-                  <h3 className="font-bold text-lg text-white">Web Development</h3>
-                </div>
-                <p className="text-gray-200">Building responsive websites and custom WordPress solutions for businesses of all sizes.</p>
-              </div>
-              <div className="glass-card p-6 rounded-xl hover:bg-white/20 transition-all">
-                <div className="flex items-center mb-3">
-                  <Code className="text-portfolio-primary mr-3 h-6 w-6" />
-                  <h3 className="font-bold text-lg text-white">Bug Fixing</h3>
-                </div>
-                <p className="text-gray-200">Diagnosing and resolving website issues, errors, and functionality problems quickly.</p>
-              </div>
-              <div className="glass-card p-6 rounded-xl hover:bg-white/20 transition-all md:col-span-2">
-                <div className="flex items-center mb-3">
-                  <Server className="text-portfolio-primary mr-3 h-6 w-6" />
-                  <h3 className="font-bold text-lg text-white">WordPress</h3>
-                </div>
-                <p className="text-gray-200">Creating and customizing WordPress websites, themes, and plugins to meet client needs.</p>
-              </div>
+
+            <p className="text-muted-foreground text-lg mb-8">
+              My approach combines technical expertise with a keen eye for detail,
+              allowing me to deliver solutions that are not only functional but
+              also user-friendly and visually appealing.
+            </p>
+
+            <div className="grid gap-6 mb-8">
+              {services.map((service, index) => (
+                <Card
+                  key={index}
+                  className="group p-6 backdrop-blur-sm bg-background/50 border-border/50 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="rounded-xl bg-primary/10 p-3 text-primary group-hover:scale-110 transition-transform duration-300">
+                      {service.icon}
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg text-foreground mb-2">
+                        {service.title}
+                      </h3>
+                      <p className="text-muted-foreground">
+                        {service.description}
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              ))}
             </div>
-            
-            <Button className="glass-button rounded-full px-8 py-6 text-base text-white font-medium">
-              <a href="https://www.fiverr.com/users/sajjatmohammed/" target="_blank" rel="noopener noreferrer">
-                View My Fiverr Profile
-              </a>
+
+            <Button
+              className="group bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 rounded-xl flex items-center gap-2 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20"
+              onClick={() =>
+                window.open(
+                  "https://www.fiverr.com/users/sajjatmohammed/",
+                  "_blank"
+                )
+              }
+            >
+              View My Fiverr Profile
+              <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </Button>
           </div>
         </div>

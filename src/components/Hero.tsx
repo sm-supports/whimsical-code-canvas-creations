@@ -1,7 +1,6 @@
-
 import { Button } from "@/components/ui/button";
 import { useState, useEffect, useRef } from "react";
-import { ChevronDown, Code, Palette, PenTool } from "lucide-react";
+import { ChevronDown, Code, Palette, PenTool, ArrowRight } from "lucide-react";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -65,66 +64,82 @@ const Hero = () => {
   };
 
   return (
-    <section 
-      id="home" 
-      className="min-h-screen flex items-center pt-16 relative overflow-hidden"
-    >
-      {/* Dark mode background with particles effect */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 opacity-50"></div>
-      
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
-          <div 
-            className={`lg:w-1/2 transition-all duration-1000 transform ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}
-          >
-            <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 text-white leading-tight">
-              Professional <span className="heading-gradient">Web Solutions</span> by SM Supports
+    <section id="home" className="relative min-h-screen pt-32 pb-20 overflow-hidden bg-gradient-to-b from-background via-background/95 to-background/90">
+      {/* Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob" />
+        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000" />
+        <div className="absolute bottom-1/4 left-1/2 w-96 h-96 bg-pink-500/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000" />
+      </div>
+
+      <div className="container relative mx-auto px-4">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+          {/* Text Content */}
+          <div className="flex-1 text-center lg:text-left max-w-2xl mx-auto lg:mx-0 space-y-6">
+            <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+              Transforming Ideas into
+              <span className="block text-primary">Digital Excellence</span>
             </h1>
-            <p className="text-gray-300 text-lg md:text-xl mb-4 max-w-lg">
-              Delivering exceptional <span className="text-portfolio-primary font-medium">{typedText}<span className="animate-pulse">|</span></span>
+            
+            <p className={`text-lg text-muted-foreground transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+              Specializing in {typedText}
+              <span className="animate-blink">|</span>
             </p>
-            <p className="text-gray-300 text-lg md:text-xl mb-8 max-w-lg">
-              with a focus on responsive, functional, and user-friendly web experiences.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+
+            <div className={`flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
               <Button 
-                className="glass-button rounded-full px-8 py-6 text-base font-medium text-white border-white/30 hover:bg-white/20 touch-feedback mobile-touch-target"
-                onClick={scrollToProjects}
+                className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 rounded-xl flex items-center gap-2 group transition-all duration-300 hover:shadow-lg hover:shadow-primary/20"
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                View My Work
+                Get Started
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button 
-                className="glass-button rounded-full px-8 py-6 text-base font-medium text-white border-white/30 hover:bg-white/20 touch-feedback mobile-touch-target"
-                onClick={scrollToContact}
+                variant="outline"
+                className="border-border hover:bg-secondary px-8 py-6 rounded-xl transition-all duration-300"
+                onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                Contact Me
+                View Projects
               </Button>
             </div>
+
+            <div className={`hidden lg:flex items-center gap-8 text-muted-foreground transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+              <div className="flex items-center gap-2">
+                <Code className="w-5 h-5 text-primary" />
+                <span>Clean Code</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Palette className="w-5 h-5 text-primary" />
+                <span>Modern Design</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <PenTool className="w-5 h-5 text-primary" />
+                <span>Creative Solutions</span>
+              </div>
+            </div>
           </div>
-          <div 
-            className={`lg:w-2/5 relative transition-all duration-1000 transform ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}
-            style={{ transitionDelay: "0.3s" }}
-            ref={logoRef}
-          >
-            <div className="aspect-square glass-card rounded-full flex items-center justify-center hover:shadow-xl transition-all hover:scale-105 dark-glow">
-              <img 
-                src="/lovable-uploads/e36f8ce3-362f-422b-b487-bde1f6e31353.png"
-                alt="SM Supports Logo" 
-                className="w-4/5 h-4/5 object-contain"
-              />
+
+          {/* Hero Image */}
+          <div className="flex-1 relative">
+            <div 
+              ref={logoRef}
+              className={`relative z-10 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            >
+              <div className="relative w-full max-w-lg mx-auto">
+                <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-3xl blur-2xl" />
+                <img
+                  src="/uploads/e36f8ce3-362f-422b-b487-bde1f6e31353.png"
+                  alt="Hero Image"
+                  className="relative z-10 w-full h-auto rounded-3xl shadow-xl"
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      
-      {/* Scroll down indicator */}
-      <div 
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer touch-feedback mobile-touch-target"
-        onClick={scrollToProjects}
-      >
-        <div className="flex flex-col items-center">
-          <span className="text-sm text-gray-300 mb-2">Scroll Down</span>
-          <ChevronDown className="text-portfolio-primary h-6 w-6" />
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <ChevronDown className="w-6 h-6 text-muted-foreground" />
         </div>
       </div>
     </section>
