@@ -32,7 +32,7 @@ const fullstackProjects = [
 const FullStackProjects = () => {
   return (
     <ProjectLayout title="Full-Stack Development Projects" category="Full Stack Development">
-      <p className="text-gray-600 mb-8 max-w-2xl">
+      <p className="text-gray-200 mb-8 max-w-2xl">
         My full-stack projects demonstrate end-to-end development expertise, combining 
         responsive front-end interfaces with robust back-end systems. I focus on creating 
         secure, scalable applications with optimized performance.
@@ -40,9 +40,9 @@ const FullStackProjects = () => {
       
       <div className="grid gap-8 mb-16">
         {fullstackProjects.map(project => (
-          <Card key={project.id} className="overflow-hidden">
+          <Card key={project.id} className="glass-card overflow-hidden rounded-2xl">
             <div className="grid md:grid-cols-2 gap-6 p-6">
-              <div className="aspect-video rounded-md overflow-hidden">
+              <div className="aspect-video rounded-xl overflow-hidden">
                 <img 
                   src={project.imageUrl} 
                   alt={project.title} 
@@ -51,11 +51,11 @@ const FullStackProjects = () => {
               </div>
               <div className="flex flex-col justify-center">
                 <div className="mb-2 flex justify-between items-center">
-                  <h3 className="text-xl font-bold">{project.title}</h3>
-                  <span className="text-sm text-gray-500">{project.year}</span>
+                  <h3 className="text-xl font-bold text-white">{project.title}</h3>
+                  <span className="text-sm text-gray-300">{project.year}</span>
                 </div>
-                <p className="text-gray-600 mb-4">{project.description}</p>
-                <p className="text-sm text-portfolio-purple">
+                <p className="text-gray-200 mb-4">{project.description}</p>
+                <p className="text-sm text-portfolio-primary">
                   <span className="font-medium">Technologies:</span> {project.technologies}
                 </p>
               </div>

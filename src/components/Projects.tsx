@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import ProjectCard from "./ProjectCard";
@@ -62,9 +63,9 @@ const Projects = () => {
     <section id="projects" className="section">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <p className="text-portfolio-purple uppercase tracking-wider mb-2">My Recent Work</p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Featured Projects</h2>
-          <p className="text-gray-600 max-w-xl mx-auto">
+          <p className="text-portfolio-primary uppercase tracking-wider mb-2 font-medium">My Recent Work</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Featured Projects</h2>
+          <p className="text-gray-200 max-w-xl mx-auto">
             Explore my recent projects spanning children's book illustrations, 
             graphic design, web development, and more.
           </p>
@@ -76,10 +77,10 @@ const Projects = () => {
             <Button
               key={category}
               variant={activeFilter === category ? "default" : "outline"}
-              className={`rounded-full ${
+              className={`glass-button rounded-full px-6 py-3 font-medium text-white border-white/30 ${
                 activeFilter === category 
-                  ? "bg-portfolio-purple hover:bg-portfolio-dark-purple" 
-                  : "border-gray-200 hover:border-portfolio-purple hover:text-portfolio-purple"
+                  ? "bg-portfolio-primary/30 border-portfolio-primary/50" 
+                  : "hover:bg-white/20"
               }`}
               onClick={() => setActiveFilter(category)}
             >
@@ -89,7 +90,7 @@ const Projects = () => {
         </div>
         
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map(project => (
             <Link to={project.link} key={project.id}>
               <ProjectCard
