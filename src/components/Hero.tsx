@@ -8,24 +8,20 @@ const Hero = () => {
   const [typedText, setTypedText] = useState("");
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const logoRef = useRef<HTMLDivElement>(null);
-  // Updated services list based on Fiverr profile
   const texts = ["Web Development", "WordPress Design", "Bug Fixing", "Custom Solutions"];
   const fullText = texts[currentTextIndex];
   const [charIndex, setCharIndex] = useState(0);
 
-  // Animation for fade-in
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
-  // Scroll effect for the logo
   useEffect(() => {
     const handleScroll = () => {
       if (logoRef.current) {
         const scrollY = window.scrollY;
-        // Create a floating effect based on scroll position
-        const translateY = Math.sin(scrollY * 0.01) * 20; // Adjust the multipliers to control movement
-        const rotate = Math.sin(scrollY * 0.005) * 5; // Slight rotation effect
+        const translateY = Math.sin(scrollY * 0.01) * 20;
+        const rotate = Math.sin(scrollY * 0.005) * 5;
         
         logoRef.current.style.transform = `translateY(${translateY}px) rotate(${rotate}deg)`;
       }
@@ -37,7 +33,6 @@ const Hero = () => {
     };
   }, []);
 
-  // Typing animation effect
   useEffect(() => {
     if (charIndex < fullText.length) {
       const timeoutId = setTimeout(() => {
@@ -46,7 +41,6 @@ const Hero = () => {
       }, 100);
       return () => clearTimeout(timeoutId);
     } else {
-      // After typing is complete, wait and move to next text
       const timeoutId = setTimeout(() => {
         setTypedText("");
         setCharIndex(0);
@@ -56,7 +50,6 @@ const Hero = () => {
     }
   }, [charIndex, currentTextIndex, fullText]);
 
-  // Smooth scroll to projects section
   const scrollToProjects = () => {
     const projectsSection = document.getElementById("projects");
     if (projectsSection) {
@@ -64,41 +57,45 @@ const Hero = () => {
     }
   };
 
+  const scrollToContact = () => {
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section 
       id="home" 
-      className="min-h-screen flex items-center pt-16 bg-gradient-to-b from-white to-gray-50 relative"
+      className="min-h-screen flex items-center pt-16 relative overflow-hidden"
     >
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+      {/* Dark mode background with particles effect */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 opacity-50"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
           <div 
             className={`lg:w-1/2 transition-all duration-1000 transform ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 text-white leading-tight">
               Professional <span className="heading-gradient">Web Solutions</span> by SM Supports
             </h1>
-            <p className="text-gray-600 text-lg mb-4 max-w-lg">
-              Delivering exceptional <span className="text-portfolio-purple font-medium">{typedText}<span className="animate-pulse">|</span></span>
+            <p className="text-gray-300 text-lg md:text-xl mb-4 max-w-lg">
+              Delivering exceptional <span className="text-portfolio-primary font-medium">{typedText}<span className="animate-pulse">|</span></span>
             </p>
-            <p className="text-gray-600 text-lg mb-8 max-w-lg">
+            <p className="text-gray-300 text-lg md:text-xl mb-8 max-w-lg">
               with a focus on responsive, functional, and user-friendly web experiences.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
               <Button 
-                className="button-gradient rounded-full px-8 py-6 text-base transition-transform hover:scale-105 shadow-md hover:shadow-lg"
+                className="glass-button rounded-full px-8 py-6 text-base font-medium text-white border-white/30 hover:bg-white/20 touch-feedback mobile-touch-target"
                 onClick={scrollToProjects}
               >
                 View My Work
               </Button>
               <Button 
-                variant="outline" 
-                className="rounded-full px-8 py-6 text-base border-portfolio-purple text-portfolio-purple hover:text-portfolio-purple hover:bg-portfolio-light-purple/10 transition-all hover:scale-105"
-                onClick={() => {
-                  const contactSection = document.getElementById("contact");
-                  if (contactSection) {
-                    contactSection.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
+                className="glass-button rounded-full px-8 py-6 text-base font-medium text-white border-white/30 hover:bg-white/20 touch-feedback mobile-touch-target"
+                onClick={scrollToContact}
               >
                 Contact Me
               </Button>
@@ -109,7 +106,7 @@ const Hero = () => {
             style={{ transitionDelay: "0.3s" }}
             ref={logoRef}
           >
-            <div className="aspect-square bg-gradient-to-br from-portfolio-primary/20 to-portfolio-cream/30 rounded-full flex items-center justify-center hover:shadow-xl transition-all hover:scale-105">
+            <div className="aspect-square glass-card rounded-full flex items-center justify-center hover:shadow-xl transition-all hover:scale-105 dark-glow">
               <img 
                 src="/lovable-uploads/e36f8ce3-362f-422b-b487-bde1f6e31353.png"
                 alt="SM Supports Logo" 
@@ -122,12 +119,12 @@ const Hero = () => {
       
       {/* Scroll down indicator */}
       <div 
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer"
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer touch-feedback mobile-touch-target"
         onClick={scrollToProjects}
       >
         <div className="flex flex-col items-center">
-          <span className="text-sm text-gray-500 mb-2">Scroll Down</span>
-          <ChevronDown className="text-portfolio-purple h-6 w-6" />
+          <span className="text-sm text-gray-300 mb-2">Scroll Down</span>
+          <ChevronDown className="text-portfolio-primary h-6 w-6" />
         </div>
       </div>
     </section>

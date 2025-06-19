@@ -84,20 +84,23 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
     min-height: 100vh;
+    overflow-x: hidden;
   }
 
-  .dark body {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  .light body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   }
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 }
 
 @layer components {
+  /* Navigation styles */
   .nav-link {
     @apply relative hover:text-portfolio-primary transition-colors duration-200;
   }
@@ -110,6 +113,7 @@
     @apply w-full;
   }
 
+  /* Text gradients */
   .heading-gradient {
     @apply bg-gradient-to-r from-portfolio-primary to-portfolio-dark-primary bg-clip-text text-transparent;
   }
@@ -120,57 +124,71 @@
   
   .section {
     @apply py-12 sm:py-16 lg:py-20;
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
   }
 
-  /* Enhanced Glassmorphism Effects */
+  /* Enhanced Dark Mode Glassmorphism Effects */
   .glass-card {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
     transition: all 0.3s ease;
   }
 
-  .dark .glass-card {
-    background: rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  .light .glass-card {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   }
 
   .glass-card:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px 0 rgba(31, 38, 135, 0.4);
-  }
-
-  .dark .glass-card:hover {
     background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
     box-shadow: 0 15px 35px 0 rgba(0, 0, 0, 0.6);
   }
 
+  .light .glass-card:hover {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 15px 35px 0 rgba(31, 38, 135, 0.4);
+  }
+
   .glass-button {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    min-height: 44px; /* Minimum touch target for mobile */
+    min-width: 44px;
   }
 
-  .dark .glass-button {
-    background: rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+  .light .glass-button {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
   }
 
-  .glass-button:hover {
-    background: rgba(255, 255, 255, 0.25);
+  .glass-button:hover, .glass-button:focus {
+    background: rgba(255, 255, 255, 0.15);
     transform: translateY(-2px);
+    box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.4);
+  }
+
+  .light .glass-button:hover, .light .glass-button:focus {
+    background: rgba(255, 255, 255, 0.25);
     box-shadow: 0 10px 25px 0 rgba(31, 38, 135, 0.3);
   }
 
-  .dark .glass-button:hover {
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.4);
+  /* Mobile-specific button styles */
+  @media (max-width: 768px) {
+    .glass-button {
+      min-height: 48px;
+      min-width: 48px;
+      padding: 12px 20px;
+      font-size: 16px; /* Prevents zoom on iOS */
+    }
   }
 
   .glass-button::before {
@@ -189,55 +207,133 @@
   }
 
   .glass-input {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
+    color: white;
+    min-height: 44px; /* Mobile touch target */
   }
 
-  .dark .glass-input {
-    background: rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  .light .glass-input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #333;
   }
 
   .glass-input:focus {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
     border-color: rgba(64, 224, 208, 0.5);
     box-shadow: 0 0 20px rgba(64, 224, 208, 0.3);
+    outline: none;
   }
 
-  .dark .glass-input:focus {
-    background: rgba(255, 255, 255, 0.1);
+  .light .glass-input:focus {
+    background: rgba(255, 255, 255, 0.2);
   }
 
-  .social-icon {
-    @apply w-12 h-12 rounded-full flex items-center justify-center text-gray-700 dark:text-white transition-all duration-300;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+  .glass-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
   }
 
-  .dark .social-icon {
-    background: rgba(0, 0, 0, 0.2);
+  .light .glass-input::placeholder {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  /* Mobile navigation improvements */
+  .mobile-nav {
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  .social-icon:hover {
-    @apply transform scale-110;
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 25px rgba(31, 38, 135, 0.3);
+  .light .mobile-nav {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.1);
   }
 
-  .dark .social-icon:hover {
+  /* Social icons */
+  .social-icon {
+    @apply w-12 h-12 rounded-full flex items-center justify-center text-white transition-all duration-300;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-height: 48px; /* Mobile touch target */
+    min-width: 48px;
+  }
+
+  .light .social-icon {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #333;
+  }
+
+  .social-icon:hover, .social-icon:focus {
+    @apply transform scale-110;
     background: rgba(255, 255, 255, 0.1);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
   }
 
+  .light .social-icon:hover, .light .social-icon:focus {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 25px rgba(31, 38, 135, 0.3);
+  }
+
   /* Mobile-specific improvements */
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
     .container {
       @apply px-4;
     }
+
+    /* Thumb-friendly spacing */
+    .mobile-spacing {
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    /* Swipe indicators */
+    .swipe-indicator {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 2px;
+    }
+
+    /* Touch feedback */
+    .touch-feedback:active {
+      transform: scale(0.95);
+      transition: transform 0.1s ease;
+    }
+
+    /* Larger touch targets for mobile */
+    .mobile-touch-target {
+      min-height: 48px;
+      min-width: 48px;
+      padding: 12px;
+    }
+  }
+
+  /* Gesture support */
+  .swipeable {
+    touch-action: pan-x;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* Smooth scrolling container */
+  .smooth-scroll {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Improved focus states for accessibility */
+  .focus-visible:focus-visible {
+    outline: 2px solid #40E0D0;
+    outline-offset: 2px;
   }
 }
 
@@ -247,4 +343,24 @@
     max-width: 100vw;
     overflow-x: hidden;
   }
+
+  /* Hide scrollbars but keep functionality */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Dark mode specific animations */
+@keyframes darkModeGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(64, 224, 208, 0.3); }
+  50% { box-shadow: 0 0 30px rgba(64, 224, 208, 0.5); }
+}
+
+.dark-glow {
+  animation: darkModeGlow 3s ease-in-out infinite;
 }
