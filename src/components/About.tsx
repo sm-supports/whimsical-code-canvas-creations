@@ -30,18 +30,15 @@ const About = () => {
       className="relative py-24 bg-gradient-to-b from-background via-background/95 to-background/90"
     >
       {/* Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 right-1/3 w-96 h-96 bg-primary/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob" />
-        <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-purple-500/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000" />
-      </div>
+      {/* (Removed all background circles) */}
 
       <div className="container relative z-10 mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-center gap-12">
           {/* Image Section */}
           <div className="lg:w-1/2">
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-purple-500/20 rounded-3xl blur-2xl transform rotate-3" />
-              <div className="relative bg-background/50 backdrop-blur-sm border border-border/50 rounded-3xl overflow-hidden shadow-xl">
+              <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-purple-500/20 rounded-3xl transform rotate-3" />
+              <div className="relative bg-background/50 border border-border/50 rounded-3xl overflow-hidden">
                 <img
                   src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?q=80&w=1170&auto=format&fit=crop"
                   alt="SM Supports - Web Development Services"
@@ -50,8 +47,8 @@ const About = () => {
               </div>
               <div className="absolute -bottom-6 -right-6 w-36 h-36">
                 <div className="relative w-full h-full">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-primary to-purple-500 rounded-full blur-xl opacity-50" />
-                  <div className="relative w-full h-full bg-background/50 backdrop-blur-sm border border-border/50 rounded-full flex items-center justify-center">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-primary to-purple-500 rounded-full" />
+                  <div className="relative w-full h-full bg-background/50 border border-border/50 rounded-full flex items-center justify-center">
                     <div className="text-center">
                       <div className="font-bold text-2xl text-foreground">5+</div>
                       <div className="text-sm text-muted-foreground">
@@ -90,10 +87,10 @@ const About = () => {
               {services.map((service, index) => (
                 <Card
                   key={index}
-                  className="group p-6 backdrop-blur-sm bg-background/50 border-border/50 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
+                  className="group p-6 bg-background/50 border-border/50"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="rounded-xl bg-primary/10 p-3 text-primary group-hover:scale-110 transition-transform duration-300">
+                    <div className="rounded-xl bg-primary/10 p-3 text-primary">
                       {service.icon}
                     </div>
                     <div>
@@ -110,7 +107,7 @@ const About = () => {
             </div>
 
             <Button
-              className="group bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 rounded-xl flex items-center gap-2 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20"
+              className="bg-primary text-primary-foreground px-8 py-6 rounded-xl flex items-center gap-2"
               onClick={() =>
                 window.open(
                   "https://www.fiverr.com/users/sajjatmohammed/",
@@ -119,7 +116,7 @@ const About = () => {
               }
             >
               View My Fiverr Profile
-              <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              <ArrowUpRight className="w-5 h-5" />
             </Button>
           </div>
         </div>

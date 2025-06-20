@@ -32,7 +32,7 @@ const Footer = () => {
     {
       name: "WhatsApp",
       icon: <MessageCircle className="h-5 w-5" />,
-      url: "https://wa.me/15551234567",
+      url: "https://wa.me/+8801301360818",
       color: "hover:text-green-500"
     },
     {
@@ -48,11 +48,11 @@ const Footer = () => {
   ];
   
   return (
-    <footer className="relative border-t border-border bg-white/80 dark:bg-black/20 backdrop-blur-lg">
+    <footer className="relative border-t border-border bg-white dark:bg-black/20">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
-            <h3 className="text-2xl font-bold mb-4 text-foreground">Portfolio</h3>
+            <h3 className="text-2xl font-bold mb-4 text-foreground">SM Supports</h3>
             <p className="text-muted-foreground">
               Creating beautiful illustrations, designs, and web experiences.
             </p>
@@ -67,7 +67,7 @@ const Footer = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex items-center justify-center p-2 rounded-lg bg-background/50 border border-border ${social.color} transition-all duration-300 hover:scale-105 hover:shadow-md`}
+                  className={`flex items-center justify-center p-2 rounded-lg bg-background/50 border border-border`}
                   aria-label={social.name}
                 >
                   {social.icon}
@@ -89,14 +89,14 @@ const Footer = () => {
         
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-muted-foreground text-sm">
-            &copy; {currentYear} Portfolio. All rights reserved.
+            &copy; {currentYear} SM Supports. All rights reserved.
           </p>
           
           <nav className="flex flex-wrap gap-6 text-sm">
-            <a href="#home" className="text-muted-foreground hover:text-foreground transition-colors">Home</a>
-            <a href="#projects" className="text-muted-foreground hover:text-foreground transition-colors">Projects</a>
-            <a href="#about" className="text-muted-foreground hover:text-foreground transition-colors">About</a>
-            <a href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</a>
+            <a href="#home" className="text-muted-foreground">Home</a>
+            <a href="#projects" className="text-muted-foreground">Projects</a>
+            <a href="#about" className="text-muted-foreground">About</a>
+            <a href="#contact" className="text-muted-foreground">Contact</a>
           </nav>
         </div>
       </div>

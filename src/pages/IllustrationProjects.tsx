@@ -1,4 +1,3 @@
-
 import ProjectLayout from "@/components/ProjectLayout";
 import { Card } from "@/components/ui/card";
 
@@ -29,32 +28,51 @@ const illustrationProjects = [
 const IllustrationProjects = () => {
   return (
     <ProjectLayout title="Illustration Projects" category="Illustration">
-      <p className="text-gray-200 mb-8 max-w-2xl">
-        My illustration work focuses on creating vibrant, engaging visuals that spark imagination and 
-        bring stories to life, especially for young audiences.
-      </p>
-      
-      <div className="grid gap-8 mb-16">
-        {illustrationProjects.map(project => (
-          <Card key={project.id} className="glass-card overflow-hidden rounded-2xl">
-            <div className="grid md:grid-cols-2 gap-6 p-6">
-              <div className="aspect-video rounded-xl overflow-hidden">
-                <img 
-                  src={project.imageUrl} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="flex flex-col justify-center">
-                <div className="mb-2 flex justify-between items-center">
-                  <h3 className="text-xl font-bold text-white">{project.title}</h3>
-                  <span className="text-sm text-gray-300">{project.year}</span>
+      <div className="relative">
+        {/* Decorative elements removed */}
+
+        <div className="glass-card p-8 mb-12 rounded-2xl">
+          <h2 className="text-2xl font-bold mb-4 text-primary">About My Illustrations</h2>
+          <p className="text-foreground/90 mb-4 max-w-3xl text-lg leading-relaxed">
+            My illustration work focuses on creating vibrant, engaging visuals that spark imagination and 
+            bring stories to life, especially for young audiences.
+          </p>
+          <div className="flex flex-wrap gap-3 mt-6">
+            <span className="px-3 py-1 text-primary rounded-full text-sm font-medium">Children's Books</span>
+            <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">Character Design</span>
+            <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">Digital Art</span>
+            <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">Storytelling</span>
+          </div>
+        </div>
+
+        <h2 className="text-3xl font-bold mb-8 text-foreground">Featured Projects</h2>
+
+        <div className="grid gap-10 mb-16">
+          {illustrationProjects.map(project => (
+            <Card key={project.id} className="glass-card overflow-hidden rounded-2xl border-0">
+              <div className="grid md:grid-cols-2 gap-8 p-0">
+                <div className="aspect-video overflow-hidden">
+                  <img 
+                    src={project.imageUrl} 
+                    alt={project.title} 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                <p className="text-gray-200">{project.description}</p>
+                <div className="flex flex-col justify-center p-8">
+                  <div className="mb-4 flex justify-between items-center">
+                    <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-500">
+                      {project.title}
+                    </h3>
+                    <span className="text-sm bg-foreground/10 text-foreground/80 px-3 py-1 rounded-full font-medium">
+                      {project.year}
+                    </span>
+                  </div>
+                  <p className="text-foreground/80 mb-6 text-lg leading-relaxed">{project.description}</p>
+                </div>
               </div>
-            </div>
-          </Card>
-        ))}
+            </Card>
+          ))}
+        </div>
       </div>
     </ProjectLayout>
   );

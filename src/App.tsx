@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -15,6 +14,21 @@ import FullStackProjects from "./pages/FullStackProjects";
 
 const queryClient = new QueryClient();
 
+const AppContent = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<Index />} />
+      <Route path="/projects/illustration" element={<IllustrationProjects />} />
+      <Route path="/projects/web-development" element={<WebDevelopmentProjects />} />
+      <Route path="/projects/graphic-design" element={<GraphicDesignProjects />} />
+      <Route path="/projects/react-development" element={<ReactDevelopmentProjects />} />
+      <Route path="/projects/full-stack" element={<FullStackProjects />} />
+      {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  );
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
@@ -22,16 +36,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/projects/illustration" element={<IllustrationProjects />} />
-            <Route path="/projects/web-development" element={<WebDevelopmentProjects />} />
-            <Route path="/projects/graphic-design" element={<GraphicDesignProjects />} />
-            <Route path="/projects/react-development" element={<ReactDevelopmentProjects />} />
-            <Route path="/projects/full-stack" element={<FullStackProjects />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <AppContent />
         </BrowserRouter>
       </TooltipProvider>
     </ThemeProvider>

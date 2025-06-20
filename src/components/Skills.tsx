@@ -33,13 +33,7 @@ const Skills = () => {
 
   return (
     <section id="skills" className="relative py-24 bg-gradient-to-b from-background via-background/95 to-background/90">
-      {/* Background decorations */}
-      <div className="absolute inset-0 bg-grid-black/[0.02] dark:bg-grid-white/[0.02]" />
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob" />
-        <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-purple-500/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000" />
-        <div className="absolute -bottom-32 left-1/2 w-72 h-72 bg-pink-500/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000" />
-      </div>
+      {/* Background decorations removed */}
 
       <div className="container relative z-10 mx-auto px-4">
         <div className="text-center mb-16">
@@ -52,16 +46,12 @@ const Skills = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {Object.entries(skills).map(([category, { skills: categorySkills, icon, description }], index) => (
-            <Card 
+          {Object.entries(skills).map(([category, { skills: categorySkills, icon, description }], index) => (            <Card 
               key={category}
-              className="group relative overflow-hidden backdrop-blur-sm bg-background/50 dark:bg-card/50 border-border/50 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-500"
-              style={{
-                animationDelay: `${index * 100}ms`,
-              }}
+              className="group relative overflow-hidden bg-background/50 dark:bg-card/50 border-border/50"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0" />
+              <div className="absolute inset-0 opacity-0">
                 <div className="absolute -inset-[1000%] bg-[linear-gradient(to_right,transparent_0%,rgba(255,255,255,0.05)_50%,transparent_100%)] animate-shimmer" />
               </div>
               <CardContent className="relative p-8">
@@ -72,10 +62,10 @@ const Skills = () => {
                       {icon}
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors duration-300">
+                  <h3 className="text-xl font-bold mb-3 text-foreground">
                     {category}
                   </h3>
-                  <p className="text-muted-foreground mb-6 leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
+                  <p className="text-muted-foreground mb-6 leading-relaxed">
                     {description}
                   </p>
                 </div>
@@ -85,10 +75,7 @@ const Skills = () => {
                     <Badge 
                       key={skill} 
                       variant="secondary"
-                      className="bg-secondary/50 hover:bg-primary hover:text-primary-foreground text-secondary-foreground transition-all duration-300"
-                      style={{
-                        transitionDelay: `${skillIndex * 50}ms`,
-                      }}
+                      className="bg-secondary/50 text-secondary-foreground"
                     >
                       {skill}
                     </Badge>

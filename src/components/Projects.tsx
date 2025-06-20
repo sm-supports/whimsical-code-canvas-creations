@@ -81,20 +81,8 @@ const Projects = () => {
 		>
 			{/* Background Elements - Optimized for performance */}
 			<div className="absolute inset-0">
-				<div 
-					className="absolute top-1/3 right-1/4 w-96 h-96 bg-primary/10 rounded-full mix-blend-multiply filter blur-2xl opacity-70 will-change-transform"
-					style={{
-						transform: 'translate3d(0, 0, 0)', // Force hardware acceleration
-						backfaceVisibility: 'hidden'
-					}}
-				/>
-				<div 
-					className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full mix-blend-multiply filter blur-2xl opacity-70 will-change-transform"
-					style={{
-						transform: 'translate3d(0, 0, 0)', // Force hardware acceleration
-						backfaceVisibility: 'hidden'
-					}}
-				/>
+				<div className="absolute top-1/3 right-1/4 w-96 h-96 bg-primary/10 rounded-full opacity-70" />
+				<div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full opacity-70" />
 				<div className="absolute inset-0 bg-grid-black/[0.02] dark:bg-grid-white/[0.02]" />
 			</div>
 
@@ -117,15 +105,9 @@ const Projects = () => {
 					{categories.map((category) => (
 						<Button
 							key={category}
-							variant={
-								selectedCategory === category ? "default" : "outline"
-							}
+							variant={selectedCategory === category ? "default" : "outline"}
 							onClick={() => setSelectedCategory(category)}
-							className={`rounded-xl px-6 py-2 transition-all duration-500 ${
-								selectedCategory === category
-									? "bg-primary text-primary-foreground shadow-lg shadow-primary/20 scale-105"
-									: "border-border/50 hover:bg-background/80 hover:border-primary/50"
-							}`}
+							className={`rounded-xl px-6 py-2 ${selectedCategory === category ? "bg-primary text-primary-foreground" : "border-border/50"}`}
 						>
 							{category}
 						</Button>

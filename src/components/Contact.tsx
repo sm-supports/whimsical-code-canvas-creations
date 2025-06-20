@@ -48,16 +48,9 @@ const Contact = () => {
     }
   ];
 
-  return (    <section className="relative py-20 bg-gradient-to-b from-background via-background/95 to-background/90">
+  return (    <section id="contact" className="relative py-20 bg-gradient-to-b from-background via-background/95 to-background/90">
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-grid-black/[0.02] dark:bg-grid-white/[0.02]" />
-      
-      {/* Blob animations */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary/10 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob" />
-        <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-secondary/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000" />
-        <div className="absolute bottom-1/4 left-1/2 w-72 h-72 bg-primary/10 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000" />
-      </div>
 
       <div className="container relative z-10 mx-auto px-4">
         <div className="text-center mb-16">
@@ -98,7 +91,7 @@ const Contact = () => {
                 </div>
                 <Button 
                   type="submit" 
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-6 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 hover:translate-y-[-2px] hover:shadow-lg"
+                  className="w-full bg-primary text-primary-foreground font-medium py-6 rounded-xl flex items-center justify-center gap-2"
                 >
                   Send Message
                   <ArrowRight className="w-5 h-5" />
@@ -112,7 +105,7 @@ const Contact = () => {
             {contactInfo.map((info, index) => (
               <Card 
                 key={index} 
-                className="backdrop-blur-md bg-white/80 dark:bg-card/50 shadow-md dark:shadow-none border border-border/50 hover:shadow-lg hover:bg-white/90 dark:hover:bg-card/70 transition-all duration-300"
+                className="backdrop-blur-md bg-white/80 dark:bg-card/50 shadow-md dark:shadow-none border border-border/50"
               >
                 <CardContent className="p-6 flex items-start gap-4">
                   <div className="rounded-full bg-primary/10 p-3 text-primary">
@@ -124,7 +117,7 @@ const Contact = () => {
                       href={info.link}
                       target={info.external ? "_blank" : "_self"}
                       rel={info.external ? "noopener noreferrer" : ""}
-                      className="text-muted-foreground hover:text-primary transition-colors"
+                      className="text-muted-foreground"
                     >
                       {info.content}
                     </a>
