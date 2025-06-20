@@ -79,10 +79,22 @@ const Projects = () => {
 			id="projects"
 			className="relative py-24 bg-gradient-to-b from-background via-background/95 to-background/90"
 		>
-			{/* Background Elements */}
+			{/* Background Elements - Optimized for performance */}
 			<div className="absolute inset-0">
-				<div className="absolute top-1/3 right-1/4 w-96 h-96 bg-primary/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob" />
-				<div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000" />
+				<div 
+					className="absolute top-1/3 right-1/4 w-96 h-96 bg-primary/10 rounded-full mix-blend-multiply filter blur-2xl opacity-70 will-change-transform"
+					style={{
+						transform: 'translate3d(0, 0, 0)', // Force hardware acceleration
+						backfaceVisibility: 'hidden'
+					}}
+				/>
+				<div 
+					className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full mix-blend-multiply filter blur-2xl opacity-70 will-change-transform"
+					style={{
+						transform: 'translate3d(0, 0, 0)', // Force hardware acceleration
+						backfaceVisibility: 'hidden'
+					}}
+				/>
 				<div className="absolute inset-0 bg-grid-black/[0.02] dark:bg-grid-white/[0.02]" />
 			</div>
 
@@ -123,43 +135,13 @@ const Projects = () => {
 				{/* Projects Grid */}
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 					{filteredProjects.map((project) => (
-						<Link
+						<ProjectCard
 							key={project.id}
-							to={project.link}
-							className="group relative block overflow-hidden rounded-2xl bg-background/50 backdrop-blur-sm border border-border/50 shadow-lg transition-all duration-500 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1"
-						>
-							{/* Image Container */}
-							<div className="relative aspect-[4/3] overflow-hidden">
-								<div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-								<img
-									src={project.imageUrl}
-									alt={project.title}
-									className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-								/>
-							</div>
-
-							{/* Content */}
-							<div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
-								<div className="relative">
-									<div className="absolute inset-0 bg-background/50 backdrop-blur-sm rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-									<div className="relative">
-										<p className="text-primary font-medium mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-											{project.category}
-										</p>
-										<h3 className="text-xl font-semibold text-foreground mb-4">
-											{project.title}
-										</h3>
-										<Button
-											variant="link"
-											className="text-primary p-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-200"
-										>
-											View Project
-											<ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-										</Button>
-									</div>
-								</div>
-							</div>
-						</Link>
+							title={project.title}
+							category={project.category}
+							imageUrl={project.imageUrl}
+							link={project.link}
+						/>
 					))}
 				</div>
 			</div>

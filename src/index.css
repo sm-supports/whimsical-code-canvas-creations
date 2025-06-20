@@ -54,6 +54,11 @@ body {
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
   min-height: 100vh;
   overflow-x: hidden;
+  /* Performance optimizations */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000;
+  will-change: transform;
 }
 
 .light body {
@@ -63,6 +68,33 @@ body {
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optimize scrolling performance */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* For Safari and Chrome */
+@supports (-webkit-overflow-scrolling: touch) {
+  html, body {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Optimize rendering during scroll */
+* {
+  /* Prevent paint during scroll for better performance */
+  @media (pointer: fine) {
+    &:not(:hover) {
+      transition-duration: 0.001ms !important;
+      animation-duration: 0.001ms !important;
+    }
+  }
 }
 
 /* Navigation styles */
@@ -124,10 +156,20 @@ html {
 
 .animate-blob {
   animation: blob 10s infinite;
+  will-change: transform;
+  /* Pause animation during scroll for better performance */
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
 }
 
 .animate-shimmer {
   animation: shimmer 2s infinite;
+  will-change: transform;
+  /* Pause animation during scroll for better performance */
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
 }
 
 .animation-delay-2000 {
@@ -140,10 +182,12 @@ html {
 
 /* Glassmorphic styles */
 .glass-effect {
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(8px); /* Reduced blur for better performance */
+  -webkit-backdrop-filter: blur(8px); /* For Safari */
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease; /* Specific transitions instead of 'all' */
+  will-change: background, border-color; /* Hint for optimization */
 }
 
 .glass-effect:hover {
@@ -159,6 +203,14 @@ html {
 .dark .glass-effect:hover {
   background: rgba(0, 0, 0, 0.3);
   border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Disable blur effects during scroll for better performance */
+@media (prefers-reduced-motion: reduce) {
+  .glass-effect {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
 }
 
 /* Custom scrollbar */
