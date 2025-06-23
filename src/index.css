@@ -106,10 +106,7 @@
   }
 }
 
-/* Remove transforms from section for scroll performance */
-section {
-  /* No transform or will-change here */
-}
+
 
 /* Base styles */
 body {
@@ -289,5 +286,13 @@ html {
 @supports (-webkit-touch-callout: none) {
   .min-h-screen {
     min-height: -webkit-fill-available;
+  }
+}
+
+@media (max-width: 767px) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
   }
 }

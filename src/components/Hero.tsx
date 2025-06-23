@@ -1,10 +1,13 @@
 import { Button } from "@/components/ui/button";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { ChevronDown, Code, Palette, PenTool, ArrowRight } from "lucide-react";
 
 const Hero = () => {
+  const isMobile = useIsMobile();
   const [isVisible, setIsVisible] = useState(false);
-  const [typedText, setTypedText] = useState("");  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [typedText, setTypedText] = useState("");
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const texts = ["Web Development", "WordPress Design", "Bug Fixing", "Custom Solutions"];
   const fullText = texts[currentTextIndex];
   const [charIndex, setCharIndex] = useState(0);
@@ -13,8 +16,11 @@ const Hero = () => {
     setIsVisible(true);
   }, []);
 
-
   useEffect(() => {
+    if (isMobile) {
+      setTypedText(fullText);
+      return;
+    }
     if (charIndex < fullText.length) {
       const timeoutId = setTimeout(() => {
         setTypedText(prev => prev + fullText[charIndex]);
@@ -29,7 +35,7 @@ const Hero = () => {
       }, 2000);
       return () => clearTimeout(timeoutId);
     }
-  }, [charIndex, currentTextIndex, fullText]);
+  }, [charIndex, currentTextIndex, fullText, isMobile]);
 
   const scrollToProjects = () => {
     const projectsSection = document.getElementById("projects");
@@ -102,11 +108,15 @@ const Hero = () => {
             </div>
           </div>          {/* Hero Image */}
           <div className="flex-1">
-            <div className="w-full max-w-lg mx-auto">
+            <div className="w-full max-w-lg mx-auto aspect-[1/1]">
               <img
                 src="/uploads/e36f8ce3-362f-422b-b487-bde1f6e31353.png"
                 alt="Hero Image"
                 className="w-full h-auto rounded-3xl"
+                width="800"
+                height="800"
+                decoding="async"
+                fetchPriority="high"
               />
             </div>
           </div>

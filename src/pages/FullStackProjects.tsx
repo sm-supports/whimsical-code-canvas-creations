@@ -60,6 +60,10 @@ const FullStackProjects = () => {
                     src={project.imageUrl} 
                     alt={project.title} 
                     className="w-full h-full object-cover"
+                    width="1280"
+                    height="720"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div className="flex flex-col justify-center p-8">
