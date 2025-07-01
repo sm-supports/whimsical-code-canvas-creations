@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { ChevronDown, Code, Palette, PenTool, ArrowRight } from "lucide-react";
+import { ChevronDown, Code, Palette, PenTool, ArrowRight, Smartphone, Globe } from "lucide-react";
 
 const Hero = () => {
   const isMobile = useIsMobile();
@@ -52,46 +52,68 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen pt-32 pb-20 overflow-hidden bg-gradient-to-b from-background via-background/95 to-background/90">
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute" style={{ top: 'var(--hero-circle-1-top)', left: 'var(--hero-circle-1-left)', right: 'var(--hero-circle-1-right)', width: '18rem', height: '18rem', borderRadius: '9999px', background: 'var(--hero-circle-1)' }} />
-        <div className="absolute" style={{ bottom: 'var(--hero-circle-2-bottom)', left: 'var(--hero-circle-2-left)', right: 'var(--hero-circle-2-right)', width: '18rem', height: '18rem', borderRadius: '9999px', background: 'var(--hero-circle-2)' }} />
-        <div className="absolute" style={{ top: 'var(--hero-circle-3-top)', left: 'var(--hero-circle-3-left)', width: '10rem', height: '10rem', borderRadius: '9999px', background: 'var(--hero-circle-3)', transform: 'translate(-50%, -50%)' }} />
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'none' }} />
+    <section id="home" className="relative min-h-screen pt-28 sm:pt-36 pb-20 sm:pb-24 overflow-hidden bg-gradient-to-b from-background via-background/95 to-background/90">
+      {/* Background Elements - Simplified for mobile */}
+      <div className="absolute inset-0 pointer-events-none select-none">
+        <div className="absolute top-4 right-4 w-24 h-24 sm:w-48 sm:h-48 lg:w-72 lg:h-72 rounded-full bg-primary/5" />
+        <div className="absolute bottom-4 left-4 w-16 h-16 sm:w-32 sm:h-32 lg:w-48 lg:h-48 rounded-full bg-primary/10" />
+        <div className="hidden sm:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 sm:w-20 sm:h-20 lg:w-40 lg:h-40 rounded-full bg-primary/5" />
       </div>
 
-      <div className="container relative mx-auto px-4">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+      <div className="container relative mx-auto px-4 sm:px-6">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
           {/* Text Content */}
-          <div className="flex-1 text-center lg:text-left max-w-2xl mx-auto lg:mx-0 space-y-6">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
-              Transforming Ideas into
-              <span className="block text-primary">Digital Excellence</span>
-            </h1>
-            
-            <p className="text-lg text-muted-foreground">
-              Specializing in {typedText}
-              <span className="animate-blink">|</span>
-            </p>
+          <div className="flex-1 text-center lg:text-left max-w-2xl mx-auto lg:mx-0 space-y-6 sm:space-y-8">
+            <div className="space-y-4 sm:space-y-6">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                <span className="bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
+                  Transforming Ideas into
+                </span>
+                <span className="block mt-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+                  Digital Excellence
+                </span>
+              </h1>
+              
+              <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
+                Specializing in{" "}
+                <span className="text-primary font-semibold">
+                  {typedText}
+                  <span className="animate-blink">|</span>
+                </span>
+              </p>
+            </div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
+            {/* Mobile Features */}
+            <div className="lg:hidden grid grid-cols-2 gap-4 mb-6">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground bg-card/50 rounded-lg p-3">
+                <Smartphone className="w-4 h-4 text-primary" />
+                <span>Mobile First</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground bg-card/50 rounded-lg p-3">
+                <Globe className="w-4 h-4 text-primary" />
+                <span>Responsive</span>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start w-full">
               <Button 
-                className="bg-primary text-primary-foreground px-8 py-6 rounded-xl flex items-center gap-2"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                className="w-full sm:w-auto bg-primary text-primary-foreground px-8 py-5 sm:py-6 rounded-2xl flex items-center justify-center gap-2 text-lg sm:text-xl font-semibold hover:bg-primary/90 transition-all duration-200 active:scale-95"
+                onClick={scrollToContact}
               >
                 Get Started
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button 
                 variant="outline"
-                className="border-border px-8 py-6 rounded-xl"
-                onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+                className="w-full sm:w-auto border-border px-8 py-5 sm:py-6 rounded-2xl text-lg sm:text-xl font-semibold hover:bg-primary/5 transition-all duration-200 active:scale-95"
+                onClick={scrollToProjects}
               >
                 View Projects
               </Button>
             </div>
 
+            {/* Desktop Features */}
             <div className="hidden lg:flex items-center gap-8 text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Code className="w-5 h-5 text-primary" />
@@ -106,24 +128,35 @@ const Hero = () => {
                 <span>Creative Solutions</span>
               </div>
             </div>
-          </div>          {/* Hero Image */}
-          <div className="flex-1">
-            <div className="w-full max-w-lg mx-auto aspect-[1/1]">
-              <img
-                src="/uploads/e36f8ce3-362f-422b-b487-bde1f6e31353.png"
-                alt="Hero Image"
-                className="w-full h-auto rounded-3xl"
-                width="800"
-                height="800"
-                decoding="async"
-                fetchPriority="high"
-              />
+          </div>
+
+          {/* Hero Image */}
+          <div className="flex-1 w-full max-w-sm sm:max-w-md lg:max-w-lg mx-auto">
+            <div className="relative">
+              <div className="w-full aspect-square sm:aspect-[4/3] lg:aspect-square">
+                <img
+                  src="/uploads/e36f8ce3-362f-422b-b487-bde1f6e31353.png"
+                  alt="Hero Image"
+                  className="w-full h-full object-contain rounded-2xl sm:rounded-3xl shadow-2xl shadow-primary/10"
+                  width="800"
+                  height="800"
+                  decoding="async"
+                />
+              </div>
+              
+              {/* Mobile floating elements */}
+              <div className="lg:hidden absolute -top-2 -right-2 w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+                <Code className="w-6 h-6 text-primary" />
+              </div>
+              <div className="lg:hidden absolute -bottom-2 -left-2 w-12 h-12 bg-primary/5 rounded-full flex items-center justify-center">
+                <Palette className="w-4 h-4 text-primary" />
+              </div>
             </div>
           </div>
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+        <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
           <ChevronDown className="w-6 h-6 text-muted-foreground" />
         </div>
       </div>

@@ -1,6 +1,6 @@
-import type { Config } from "tailwindcss";
+import { type Config } from "tailwindcss";
 
-export default {
+const config = {
 	darkMode: ["class"],
 	content: [
 		"./pages/**/*.{ts,tsx}",
@@ -24,6 +24,30 @@ export default {
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+				brand: {
+					50: "#f0f7ff",
+					100: "#e0eefe",
+					200: "#b9ddfd",
+					300: "#7cc2fc",
+					400: "#36a6f8",
+					500: "#0c87eb",
+					600: "#0068c9",
+					700: "#0054a3",
+					800: "#004786",
+					900: "#003c70",
+				},
+				accent: {
+					50: "#fff1f3",
+					100: "#ffe4e8",
+					200: "#fecdd6",
+					300: "#fda4b4",
+					400: "#fb7185",
+					500: "#f43f5e",
+					600: "#e11d48",
+					700: "#be123c",
+					800: "#9f1239",
+					900: "#881337",
+				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))'
@@ -39,10 +63,6 @@ export default {
 				muted: {
 					DEFAULT: 'hsl(var(--muted))',
 					foreground: 'hsl(var(--muted-foreground))'
-				},
-				accent: {
-					DEFAULT: 'hsl(var(--accent))',
-					foreground: 'hsl(var(--accent-foreground))'
 				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
@@ -74,8 +94,24 @@ export default {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
-			}
+			},
+			keyframes: {
+				"accordion-down": {
+					from: { height: "0" },
+					to: { height: "var(--radix-accordion-content-height)" },
+				},
+				"accordion-up": {
+					from: { height: "var(--radix-accordion-content-height)" },
+					to: { height: "0" },
+				},
+			},
+			animation: {
+				"accordion-down": "accordion-down 0.2s ease-out",
+				"accordion-up": "accordion-up 0.2s ease-out",
+			},
 		}
 	},
-	plugins: [],
+	plugins: [require("tailwindcss-animate")],
 } satisfies Config;
+
+export default config;
