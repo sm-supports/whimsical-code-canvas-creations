@@ -32,7 +32,7 @@ const Skills = () => {
   };
 
   return (
-    <section id="skills" className="relative py-24 bg-gradient-to-b from-background via-background/95 to-background/90">
+    <section id="skills" className="relative py-12 bg-gradient-to-b from-background via-background/95 to-background/90">
       {/* Background decorations removed */}
 
       <div className="container relative z-10 mx-auto px-4">
@@ -45,7 +45,7 @@ const Skills = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {Object.entries(skills).map(([category, { skills: categorySkills, icon, description }], index) => (            <Card 
               key={category}
               className="group relative overflow-hidden bg-background/50 dark:bg-card/50 border-border/50"

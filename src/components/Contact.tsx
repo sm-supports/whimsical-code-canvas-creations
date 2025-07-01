@@ -1,27 +1,21 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, MapPin, MessageCircle, ArrowRight } from "lucide-react";
 import { useState } from "react";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [submitted, setSubmitted] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    setSubmitted(true);
+    // Here you would handle form submission (e.g., send to API)
   };
 
   const contactInfo = [
@@ -48,7 +42,7 @@ const Contact = () => {
     }
   ];
 
-  return (    <section id="contact" className="relative py-20 bg-gradient-to-b from-background via-background/95 to-background/90">
+  return (    <section id="contact" className="relative py-10 bg-gradient-to-b from-background via-background/95 to-background/90">
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-grid-black/[0.02] dark:bg-grid-white/[0.02]" />
 
@@ -59,44 +53,42 @@ const Contact = () => {
           <p className="text-muted-foreground max-w-2xl mx-auto">Have a project in mind? Let's bring your vision to life.</p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-6 items-start max-w-7xl mx-auto">
           {/* Contact Form */}
           <Card className="backdrop-blur-md bg-white/80 dark:bg-card/50 shadow-lg dark:shadow-none border border-border/50">
             <CardContent className="p-8">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-4">
+              {submitted ? (
+                <div className="text-center text-green-600 font-semibold text-lg">Thank you for reaching out!</div>
+              ) : (
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <Input
-                    type="text"
                     name="name"
                     placeholder="Your Name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    className="bg-white/80 dark:bg-background/50"
+                    value={form.name}
+                    onChange={handleChange}
+                    required
                   />
                   <Input
-                    type="email"
                     name="email"
+                    type="email"
                     placeholder="Your Email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className="bg-white/80 dark:bg-background/50"
+                    value={form.email}
+                    onChange={handleChange}
+                    required
                   />
-                  <Textarea
+                  <textarea
                     name="message"
                     placeholder="Your Message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    className="bg-white/80 dark:bg-background/50 min-h-[150px]"
+                    value={form.message}
+                    onChange={handleChange}
+                    required
+                    className="w-full min-h-[120px] rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                   />
-                </div>
-                <Button 
-                  type="submit" 
-                  className="w-full bg-primary text-primary-foreground font-medium py-6 rounded-xl flex items-center justify-center gap-2"
-                >
-                  Send Message
-                  <ArrowRight className="w-5 h-5" />
-                </Button>
-              </form>
+                  <Button type="submit" className="w-full flex items-center gap-2">
+                    Send Message <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </form>
+              )}
             </CardContent>
           </Card>
 

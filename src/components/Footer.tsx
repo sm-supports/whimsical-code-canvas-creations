@@ -1,5 +1,5 @@
 import { ThemeToggle } from "./ThemeToggle";
-import { Facebook, Instagram, Github, Linkedin, MessageCircle } from "lucide-react";
+import { Facebook, Instagram, Github, Linkedin, MessageCircle, Mail, Phone, MapPin } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -46,58 +46,138 @@ const Footer = () => {
       color: "hover:text-pink-600"
     }
   ];
+
+  const quickLinks = [
+    { name: "Home", href: "#home" },
+    { name: "Projects", href: "#projects" },
+    { name: "About", href: "#about" },
+    { name: "Skills", href: "#skills" },
+    { name: "Contact", href: "#contact" }
+  ];
+
+  const services = [
+    { name: "Web Development", href: "/web-development" },
+    { name: "React Development", href: "/react-development" },
+    { name: "UI/UX Design", href: "#services" },
+    { name: "Illustration", href: "#services" }
+  ];
   
   return (
-    <footer className="relative border-t border-border bg-white dark:bg-black/20">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          <div>
-            <h3 className="text-2xl font-bold mb-4 text-foreground">SM Supports</h3>
-            <p className="text-muted-foreground">
-              Creating beautiful illustrations, designs, and web experiences.
+    <footer className="relative bg-gradient-to-br from-background via-background to-muted/20 border-t-2 border-primary/20">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-5" />
+      
+      <div className="relative container mx-auto px-4 py-8 sm:py-10">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-4 sm:mb-6">
+          {/* Company Info */}
+          <div className="sm:col-span-2 lg:col-span-1">
+            <div className="mb-4 sm:mb-6">
+              <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-foreground bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+                SM Supports
+              </h3>
+              <div className="w-12 sm:w-16 h-1 bg-gradient-to-r from-primary to-primary/50 rounded-full mb-3 sm:mb-4" />
+            </div>
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-4 sm:mb-6">
+              Creating beautiful illustrations, designs, and web experiences that inspire and engage users.
             </p>
+            
+            {/* Contact Info */}
+            <div className="space-y-2 sm:space-y-3">
+              <div className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm text-muted-foreground">
+                <Mail className="h-3 w-3 sm:h-4 sm:w-4 text-primary flex-shrink-0" />
+                <span className="break-all">contact@smsupports.com</span>
+              </div>
+              <div className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm text-muted-foreground">
+                <Phone className="h-3 w-3 sm:h-4 sm:w-4 text-primary flex-shrink-0" />
+                <span>+880 1301-360818</span>
+              </div>
+              <div className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm text-muted-foreground">
+                <MapPin className="h-3 w-3 sm:h-4 sm:w-4 text-primary flex-shrink-0" />
+                <span>Dhaka, Bangladesh</span>
+              </div>
+            </div>
           </div>
           
+          {/* Quick Links */}
           <div>
-            <h3 className="text-xl font-bold mb-4 text-foreground">Connect With Us</h3>
-            <div className="grid grid-cols-3 gap-4">
+            <h4 className="text-base sm:text-lg font-semibold mb-4 sm:mb-6 text-foreground">Quick Links</h4>
+            <ul className="space-y-2 sm:space-y-3">
+              {quickLinks.map((link) => (
+                <li key={link.name}>
+                  <a 
+                    href={link.href}
+                    className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-200 block py-1"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          {/* Services */}
+          <div>
+            <h4 className="text-base sm:text-lg font-semibold mb-4 sm:mb-6 text-foreground">Services</h4>
+            <ul className="space-y-2 sm:space-y-3">
+              {services.map((service) => (
+                <li key={service.name}>
+                  <a 
+                    href={service.href}
+                    className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-200 block py-1"
+                  >
+                    {service.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          {/* Social & Theme */}
+          <div>
+            <h4 className="text-base sm:text-lg font-semibold mb-4 sm:mb-6 text-foreground">Connect With Us</h4>
+            
+            {/* Social Links */}
+            <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-4 sm:mb-6">
               {socialLinks.map((social, index) => (
                 <a
                   key={index}
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex items-center justify-center p-2 rounded-lg bg-background/50 border border-border`}
+                  className={`flex items-center justify-center p-2 sm:p-3 rounded-lg bg-card border border-border hover:border-primary/30 hover:bg-primary/5 transition-all duration-200 ${social.color}`}
                   aria-label={social.name}
                 >
                   {social.icon}
                 </a>
               ))}
             </div>
-          </div>
-          
-          <div>
-            <h3 className="text-xl font-bold mb-4 text-foreground">Theme</h3>
-            <div className="flex items-center space-x-4">
-              <span className="text-sm text-muted-foreground">Toggle theme:</span>
+            
+            {/* Theme Toggle */}
+            <div className="flex items-center gap-2 sm:gap-3">
+              <span className="text-xs sm:text-sm text-muted-foreground">Theme:</span>
               <ThemeToggle />
             </div>
           </div>
         </div>
         
-        <hr className="my-8 border-border" />
+        {/* Divider */}
+        <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent mb-4 sm:mb-6" />
         
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-muted-foreground text-sm">
-            &copy; {currentYear} SM Supports. All rights reserved.
+        {/* Bottom Section */}
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
+          <p className="text-xs sm:text-sm text-muted-foreground">
+            &copy; {currentYear} <span className="text-primary font-medium">SM Supports</span>. All rights reserved.
           </p>
           
-          <nav className="flex flex-wrap gap-6 text-sm">
-            <a href="#home" className="text-muted-foreground">Home</a>
-            <a href="#projects" className="text-muted-foreground">Projects</a>
-            <a href="#about" className="text-muted-foreground">About</a>
-            <a href="#contact" className="text-muted-foreground">Contact</a>
-          </nav>
+          <div className="flex items-center gap-4 sm:gap-6 text-xs sm:text-sm">
+            <a href="#privacy" className="text-muted-foreground hover:text-primary transition-colors">
+              Privacy Policy
+            </a>
+            <a href="#terms" className="text-muted-foreground hover:text-primary transition-colors">
+              Terms of Service
+            </a>
+          </div>
         </div>
       </div>
     </footer>

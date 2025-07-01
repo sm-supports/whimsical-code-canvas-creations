@@ -27,13 +27,13 @@ const About = () => {
   return (
     <section
       id="about"
-      className="relative py-24 bg-gradient-to-b from-background via-background/95 to-background/90"
+      className="relative py-12 bg-gradient-to-b from-background via-background/95 to-background/90"
     >
       {/* Background Elements */}
       {/* (Removed all background circles) */}
 
       <div className="container relative z-10 mx-auto px-4">
-        <div className="flex flex-col lg:flex-row items-center gap-12">
+        <div className="flex flex-col lg:flex-row items-center gap-6">
           {/* Image Section */}
           <div className="lg:w-1/2">
             <div className="relative">
@@ -83,7 +83,7 @@ const About = () => {
               also user-friendly and visually appealing.
             </p>
 
-            <div className="grid gap-6 mb-8">
+            <div className="grid gap-4 mb-6">
               {services.map((service, index) => (
                 <Card
                   key={index}

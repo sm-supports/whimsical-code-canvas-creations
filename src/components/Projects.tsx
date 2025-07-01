@@ -9,50 +9,68 @@ const projectsData = [
 	{
 		id: 1,
 		title: "Children's Book Illustration",
-		category: "Illustration",
+		description: "Whimsical illustrations for a children's book, bringing stories to life with vibrant colors and playful characters.",
+		year: "2023",
+		technologies: ["Procreate", "Photoshop"],
 		imageUrl:
 			"https://images.unsplash.com/photo-1531685250784-7569952593d2?q=80&w=1074&auto=format&fit=crop",
-		link: "/projects/illustration",
+		liveUrl: undefined,
+		githubUrl: undefined,
 	},
 	{
 		id: 2,
 		title: "E-Commerce Website",
-		category: "Web Development",
+		description: "A modern e-commerce platform with product filtering, cart, and secure checkout.",
+		year: "2024",
+		technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Stripe"],
 		imageUrl:
 			"https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1172&auto=format&fit=crop",
-		link: "/projects/web-development",
+		liveUrl: "https://example.com",
+		githubUrl: "https://github.com/example/project",
 	},
 	{
 		id: 3,
 		title: "Brand Identity Design",
-		category: "Graphic Design",
+		description: "Developed a cohesive brand identity for a startup, including logo, color palette, and typography.",
+		year: "2022",
+		technologies: ["Illustrator", "Figma"],
 		imageUrl:
 			"https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=1064&auto=format&fit=crop",
-		link: "/projects/graphic-design",
+		liveUrl: undefined,
+		githubUrl: undefined,
 	},
 	{
 		id: 4,
 		title: "Task Management App",
-		category: "React Development",
+		description: "A productivity app for managing daily tasks with drag-and-drop and reminders.",
+		year: "2023",
+		technologies: ["React", "Redux", "Firebase"],
 		imageUrl:
 			"https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=1170&auto=format&fit=crop",
-		link: "/projects/react-development",
+		liveUrl: undefined,
+		githubUrl: "https://github.com/example/task-app",
 	},
 	{
 		id: 5,
 		title: "Interactive Dashboard",
-		category: "Full Stack Development",
+		description: "A data visualization dashboard with real-time updates and interactive charts.",
+		year: "2024",
+		technologies: ["React", "D3.js", "Node.js"],
 		imageUrl:
 			"https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1170&auto=format&fit=crop",
-		link: "/projects/full-stack",
+		liveUrl: undefined,
+		githubUrl: "https://github.com/example/dashboard",
 	},
 	{
 		id: 6,
 		title: "Story Book Cover Design",
-		category: "Illustration",
+		description: "Designed a captivating cover for a children's story book, blending illustration and typography.",
+		year: "2022",
+		technologies: ["Photoshop", "Illustrator"],
 		imageUrl:
 			"https://images.unsplash.com/photo-1589998059171-988d887df646?q=80&w=1176&auto=format&fit=crop",
-		link: "/projects/illustration",
+		liveUrl: undefined,
+		githubUrl: undefined,
 	},
 ];
 
@@ -70,24 +88,29 @@ const Projects = () => {
 	const filteredProjects =
 		selectedCategory === "All"
 			? projectsData
-			: projectsData.filter(
-					(project) => project.category === selectedCategory
-			  );
+			: projectsData.filter((project) => {
+					if (selectedCategory === "Illustration") return project.technologies.includes("Procreate") || project.technologies.includes("Photoshop");
+					if (selectedCategory === "Web Development") return project.technologies.includes("Next.js") || project.technologies.includes("Tailwind CSS");
+					if (selectedCategory === "Graphic Design") return project.technologies.includes("Illustrator") && !project.technologies.includes("React");
+					if (selectedCategory === "React Development") return project.technologies.includes("React") && !project.technologies.includes("Node.js");
+					if (selectedCategory === "Full Stack Development") return project.technologies.includes("Node.js");
+					return false;
+			  });
 
 	return (
 		<section
 			id="projects"
-			className="relative py-24 bg-gradient-to-b from-background via-background/95 to-background/90"
+			className="relative py-12 pb-16 bg-gradient-to-b from-background via-background/95 to-background/90 overflow-hidden"
 		>
 			{/* Background Elements - Optimized for performance */}
-			<div className="absolute inset-0">
+			<div className="absolute inset-0 z-0 pointer-events-none">
 				<div className="absolute top-1/3 right-1/4 w-96 h-96 bg-primary/10 rounded-full opacity-70" />
 				<div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full opacity-70" />
 				<div className="absolute inset-0 bg-grid-black/[0.02] dark:bg-grid-white/[0.02]" />
 			</div>
 
 			<div className="container relative z-10 mx-auto px-4">
-				<div className="text-center mb-16">
+				<div className="text-center mb-8">
 					<p className="text-primary font-semibold uppercase tracking-wider mb-2">
 						My Work
 					</p>
@@ -101,7 +124,7 @@ const Projects = () => {
 				</div>
 
 				{/* Category Filter */}
-				<div className="flex flex-wrap justify-center gap-3 mb-16">
+				<div className="flex flex-wrap justify-center gap-2 mb-8">
 					{categories.map((category) => (
 						<Button
 							key={category}
@@ -115,14 +138,17 @@ const Projects = () => {
 				</div>
 
 				{/* Projects Grid */}
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 					{filteredProjects.map((project) => (
 						<ProjectCard
 							key={project.id}
 							title={project.title}
-							category={project.category}
+							description={project.description}
+							year={project.year}
+							technologies={project.technologies}
 							imageUrl={project.imageUrl}
-							link={project.link}
+							liveUrl={project.liveUrl}
+							githubUrl={project.githubUrl}
 						/>
 					))}
 				</div>
