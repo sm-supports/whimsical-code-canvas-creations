@@ -57,8 +57,8 @@ const Footer = () => {
   ];
 
   const services = [
-    { name: "Web Development", href: "/web-development" },
-    { name: "React Development", href: "/react-development" },
+    { name: "Web Development", href: "/projects/web-development" },
+    { name: "React Development", href: "/projects/react-development" },
     { name: "UI/UX Design", href: "/#services" },
     { name: "Illustration", href: "/#services" }
   ];
