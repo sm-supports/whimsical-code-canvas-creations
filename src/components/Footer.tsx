@@ -1,5 +1,6 @@
 import { ThemeToggle } from "./ThemeToggle";
 import { Facebook, Instagram, Github, Linkedin, MessageCircle, Mail, Phone, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -48,19 +49,31 @@ const Footer = () => {
   ];
 
   const quickLinks = [
-    { name: "Home", href: "#home" },
-    { name: "Projects", href: "#projects" },
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Contact", href: "#contact" }
+    { name: "Home", href: "/" },
+    { name: "Projects", href: "/#projects" },
+    { name: "About", href: "/#about" },
+    { name: "Skills", href: "/#skills" },
+    { name: "Contact", href: "/#contact" }
   ];
 
   const services = [
     { name: "Web Development", href: "/web-development" },
     { name: "React Development", href: "/react-development" },
-    { name: "UI/UX Design", href: "#services" },
-    { name: "Illustration", href: "#services" }
+    { name: "UI/UX Design", href: "/#services" },
+    { name: "Illustration", href: "/#services" }
   ];
+
+  // Function to handle smooth scrolling for hash links
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('/#')) {
+      e.preventDefault();
+      const targetId = href.substring(2); // Remove '/#'
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
   
   return (
     <footer className="relative bg-gradient-to-br from-background via-background to-muted/20 border-t-2 border-primary/20">
@@ -105,12 +118,22 @@ const Footer = () => {
             <ul className="space-y-2 sm:space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <a 
-                    href={link.href}
-                    className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-200 block py-1"
-                  >
-                    {link.name}
-                  </a>
+                  {link.href.startsWith('/#') ? (
+                    <a 
+                      href={link.href}
+                      onClick={(e) => handleSmoothScroll(e, link.href)}
+                      className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-200 block py-1 cursor-pointer"
+                    >
+                      {link.name}
+                    </a>
+                  ) : (
+                    <Link 
+                      to={link.href}
+                      className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-200 block py-1"
+                    >
+                      {link.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -122,12 +145,22 @@ const Footer = () => {
             <ul className="space-y-2 sm:space-y-3">
               {services.map((service) => (
                 <li key={service.name}>
-                  <a 
-                    href={service.href}
-                    className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-200 block py-1"
-                  >
-                    {service.name}
-                  </a>
+                  {service.href.startsWith('/#') ? (
+                    <a 
+                      href={service.href}
+                      onClick={(e) => handleSmoothScroll(e, service.href)}
+                      className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-200 block py-1 cursor-pointer"
+                    >
+                      {service.name}
+                    </a>
+                  ) : (
+                    <Link 
+                      to={service.href}
+                      className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-200 block py-1"
+                    >
+                      {service.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
