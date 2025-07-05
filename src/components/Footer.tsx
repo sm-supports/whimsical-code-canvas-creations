@@ -59,8 +59,8 @@ const Footer = () => {
   const services = [
     { name: "Web Development", href: "/projects/web-development" },
     { name: "React Development", href: "/projects/react-development" },
-    { name: "UI/UX Design", href: "/#services" },
-    { name: "Illustration", href: "/#services" }
+    { name: "UI/UX Design", href: "/#skills" },
+    { name: "Illustration", href: "/#about" }
   ];
 
   // Function to handle smooth scrolling for hash links
