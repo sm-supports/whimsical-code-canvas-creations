@@ -2,6 +2,18 @@ import { ThemeToggle } from "./ThemeToggle";
 import { Facebook, Instagram, Github, Linkedin, MessageCircle, Mail, Phone, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 
+// Function to handle smooth scrolling for hash links
+const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  if (href.startsWith('/#')) {
+    e.preventDefault();
+    const targetId = href.substring(2); // Remove '/#'
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+};
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   
@@ -116,9 +128,10 @@ const Footer = () => {
                       {link.name}
                     </Link>
                   ) : (
-                    <a
+                    <a 
                       href={link.href}
-                      className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-200 block py-1 cursor-pointer hover:bg-primary/5 rounded px-2 py-1"
+                      onClick={(e) => handleSmoothScroll(e, link.href)}
+                      className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-200 block py-1 cursor-pointer"
                     >
                       {link.name}
                     </a>
@@ -134,12 +147,22 @@ const Footer = () => {
             <ul className="space-y-2 sm:space-y-3">
               {services.map((service) => (
                 <li key={service.name}>
-                  <a
-                    href={service.href}
-                    className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-200 block py-1 cursor-pointer hover:bg-primary/5 rounded px-2 py-1"
-                  >
-                    {service.name}
-                  </a>
+                  {service.href.startsWith('/#') ? (
+                    <a 
+                      href={service.href}
+                      onClick={(e) => handleSmoothScroll(e, service.href)}
+                      className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-200 block py-1 cursor-pointer"
+                    >
+                      {service.name}
+                    </a>
+                  ) : (
+                    <Link 
+                      to={service.href}
+                      className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-200 block py-1"
+                    >
+                      {service.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
