@@ -268,6 +268,11 @@ html {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
   }
+  
+  /* Disable infinite scroll for users who prefer reduced motion */
+  .animate-infinite-scroll {
+    animation: none;
+  }
 }
 
 /* Custom scrollbar */
@@ -302,10 +307,52 @@ html {
 }
 
 @media (max-width: 767px) {
-  *, *::before, *::after {
-    animation: none !important;
-    transition: none !important;
-    scroll-behavior: auto !important;
+  /* Only reduce animation duration, don't disable completely */
+  * {
+    animation-duration: 0.3s !important;
+    transition-duration: 0.3s !important;
+  }
+  
+  /* Keep infinite scroll animation working */
+  .animate-infinite-scroll {
+    animation: infinite-scroll 40s linear infinite !important;
+    animation-duration: 40s !important;
+  }
+  
+  /* Keep Hero animations working properly */
+  .animate-float-slow {
+    animation: float-slow 6s ease-in-out infinite !important;
+    animation-duration: 6s !important;
+  }
+  
+  .animate-float-medium {
+    animation: float-medium 4s ease-in-out infinite !important;
+    animation-duration: 4s !important;
+  }
+  
+  .animate-float-fast {
+    animation: float-fast 3s ease-in-out infinite !important;
+    animation-duration: 3s !important;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite !important;
+    animation-duration: 4s !important;
+  }
+  
+  .animate-pulse-medium {
+    animation: pulse-medium 3s ease-in-out infinite !important;
+    animation-duration: 3s !important;
+  }
+  
+  .animate-scroll-indicator {
+    animation: scroll-indicator 2s ease-in-out infinite !important;
+    animation-duration: 2s !important;
+  }
+  
+  .animate-blink {
+    animation: blink 1s infinite !important;
+    animation-duration: 1s !important;
   }
 }
 
@@ -388,10 +435,38 @@ html {
 
 /* Mobile performance optimizations */
 @media (max-width: 767px) {
-  /* Reduce animations on mobile for better performance */
-  * {
-    animation-duration: 0.2s !important;
-    transition-duration: 0.2s !important;
+  /* Optimize 3D effects for mobile */
+  .perspective-1000 {
+    perspective: 500px;
+  }
+  
+  .rotate-y-6 {
+    transform: rotateY(3deg);
+  }
+  
+  .rotate-y-12 {
+    transform: rotateY(6deg);
+  }
+  
+  .group:hover .rotate-y-12 {
+    transform: rotateY(6deg);
+  }
+  
+  /* Optimize 3D effects for mobile */
+  .perspective-1000 {
+    perspective: 500px;
+  }
+  
+  .rotate-y-6 {
+    transform: rotateY(3deg);
+  }
+  
+  .rotate-y-12 {
+    transform: rotateY(6deg);
+  }
+  
+  .group:hover .rotate-y-12 {
+    transform: rotateY(6deg);
   }
   
   /* Optimize images for mobile */
@@ -436,6 +511,16 @@ html {
   animation: slideInFromTop 0.3s ease-out;
 }
 
+/* Mobile drawer styles */
+.mobile-drawer {
+  transform: translateX(-100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-drawer[data-open="true"] {
+  transform: translateX(0);
+}
+
 @keyframes slideInFromTop {
   from {
     opacity: 0;
@@ -457,18 +542,18 @@ html {
 /* Better mobile typography */
 @media (max-width: 767px) {
   h1 {
-    font-size: 2rem;
-    line-height: 1.2;
+    font-size: 2.5rem;
+    line-height: 1.1;
   }
   
   h2 {
-    font-size: 1.5rem;
-    line-height: 1.3;
+    font-size: 1.75rem;
+    line-height: 1.2;
   }
   
   h3 {
-    font-size: 1.25rem;
-    line-height: 1.4;
+    font-size: 1.5rem;
+    line-height: 1.3;
   }
   
   p {
@@ -545,8 +630,104 @@ html {
 .animate-infinite-scroll {
   animation: infinite-scroll 60s linear infinite;
   will-change: transform;
+  -webkit-animation: infinite-scroll 60s linear infinite;
 }
 
 .animate-infinite-scroll:hover {
   animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+
+
+
+/* 3D Hero Animations */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(12deg); }
+  50% { transform: translateY(-20px) rotate(12deg); }
+}
+
+@keyframes float-medium {
+  0%, 100% { transform: translateY(0px) rotate(-12deg); }
+  50% { transform: translateY(-15px) rotate(-12deg); }
+}
+
+@keyframes float-fast {
+  0%, 100% { transform: translateY(0px) rotate(45deg); }
+  50% { transform: translateY(-10px) rotate(45deg); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+}
+
+@keyframes pulse-medium {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.03); }
+}
+
+@keyframes scroll-indicator {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(8px); opacity: 1; }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: float-medium 4s ease-in-out infinite;
+}
+
+.animate-float-fast {
+  animation: float-fast 3s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+.animate-pulse-medium {
+  animation: pulse-medium 3s ease-in-out infinite;
+}
+
+.animate-scroll-indicator {
+  animation: scroll-indicator 2s ease-in-out infinite;
+}
+
+/* 3D Transform Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.rotate-y-6 {
+  transform: rotateY(6deg);
+}
+
+.rotate-y-12 {
+  transform: rotateY(12deg);
+}
+
+.group:hover .rotate-y-12 {
+  transform: rotateY(12deg);
+}
+
+/* Gradient Radial */
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+/* Mobile scroll container optimizations */
+@media (max-width: 767px) {
+  .mobile-scroll-container {
+    -webkit-overflow-scrolling: touch;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
 }

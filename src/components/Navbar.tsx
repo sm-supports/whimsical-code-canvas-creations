@@ -4,7 +4,7 @@ import { Menu, X, Code } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 
 const navItems = [
-  { name: 'Home', href: '/', sectionId: '' },
+  { name: 'Home', href: '/', sectionId: 'home' },
   { name: 'Projects', href: '/#projects', sectionId: 'projects' },
   { name: 'About', href: '/#about', sectionId: 'about' },
   { name: 'Skills', href: '/#skills', sectionId: 'skills' },
@@ -33,11 +33,11 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu when clicking outside
+  // Close mobile menu when clicking outside or pressing Escape
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Element;
-      if (mobileMenuOpen && !target.closest('.mobile-menu') && !target.closest('.mobile-menu-button')) {
+      if (mobileMenuOpen && !target.closest('.mobile-drawer') && !target.closest('.mobile-menu-button')) {
         setMobileMenuOpen(false);
       }
       // Close projects dropdown when clicking outside
@@ -45,12 +45,97 @@ const Navbar = () => {
         setProjectsDropdownOpen(false);
       }
     };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
   }, [mobileMenuOpen, projectsDropdownOpen]);
 
-  const handleNavigation = () => {
+  const handleNavigation = (href: string) => {
     setMobileMenuOpen(false);
+    
+    // Handle hash links
+    if (href.includes('#')) {
+      const [path, hash] = href.split('#');
+      if (path === '/' || path === '') {
+        // If we're already on the home page, just scroll to the section
+        const section = document.getElementById(hash);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        // Navigate to home page and then scroll to section
+        navigate(href);
+      }
+    } else {
+      // Regular navigation
+      navigate(href);
+    }
+  };
+
+  const handleHashLink = (href: string) => {
+    setMobileMenuOpen(false);
+    
+    console.log('handleHashLink called with:', href);
+    
+    // Handle the case where there's no hash (like Home link)
+    if (!href.includes('#')) {
+      console.log('No hash found, handling as regular link');
+      if (href === '/') {
+        // Scroll to top of page
+        console.log('Scrolling to top of page');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        // Navigate to the page
+        console.log('Navigating to:', href);
+        navigate(href);
+      }
+      return;
+    }
+    
+    const parts = href.split('#');
+    console.log('Split parts:', parts);
+    
+    if (parts.length < 2) {
+      console.warn('Invalid hash link format:', href);
+      return;
+    }
+    
+    const [path, hash] = parts;
+    console.log('Path:', path, 'Hash:', hash);
+    
+    if (!hash) {
+      console.warn('No hash found in link:', href);
+      return;
+    }
+    
+    if (path === '/' || path === '') {
+      // If we're already on the home page, just scroll to the section
+      const section = document.getElementById(hash);
+      console.log('Looking for section with id:', hash, 'Found:', !!section);
+      if (section) {
+        // Add a small delay to ensure the menu closes before scrolling
+        setTimeout(() => {
+          section.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      } else {
+        console.warn(`Section with id '${hash}' not found`);
+      }
+    } else {
+      // Navigate to home page and then scroll to section
+      console.log('Navigating to home page with hash:', href);
+      navigate(href);
+    }
   };
 
   return (
@@ -58,14 +143,15 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
         {/* Hamburger (mobile only) */}
         <button
-          className="lg:hidden p-2 mr-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+          className="lg:hidden p-2 mr-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary mobile-menu-button"
           onClick={() => setMobileMenuOpen(true)}
           aria-label="Open Navigation Menu"
+          aria-expanded={mobileMenuOpen}
         >
           <Menu className="h-7 w-7 text-foreground" />
         </button>
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-3" onClick={handleNavigation}>
+        <Link to="/" className="flex items-center gap-3" onClick={() => setMobileMenuOpen(false)}>
           <img
             src="/uploads/e36f8ce3-362f-422b-b487-bde1f6e31353.png"
             alt="SM Supports Logo"
@@ -88,9 +174,13 @@ const Navbar = () => {
                   {projectsDropdownOpen && (
                     <div className="absolute top-full left-0 mt-1 w-48 bg-background border border-border/30 rounded-lg shadow-lg py-2 z-50 projects-dropdown">
                       <a
-                        href={item.href}
+                        href="/#projects"
                         className="block px-4 py-2 text-sm text-foreground/80 hover:text-primary hover:bg-primary/5 transition-colors"
-                        onClick={() => setProjectsDropdownOpen(false)}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setProjectsDropdownOpen(false);
+                          handleHashLink('/#projects');
+                        }}
                       >
                         All Projects
                       </a>
@@ -111,7 +201,10 @@ const Navbar = () => {
                 <a
                   href={item.href}
                   className="relative px-4 py-3 text-foreground/80 hover:text-primary transition-colors font-medium rounded-lg hover:bg-primary/5 after:absolute after:left-4 after:-bottom-1 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-200 hover:after:w-2/3"
-                  onClick={handleNavigation}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleHashLink(item.href);
+                  }}
                 >
                   {item.name}
                 </a>
@@ -136,13 +229,14 @@ const Navbar = () => {
           />
           {/* Drawer */}
           <aside
-            className="fixed left-0 top-0 h-full w-4/5 max-w-xs bg-background shadow-lg z-50 flex flex-col animate-slide-in"
+            className="fixed left-0 top-0 h-full w-4/5 max-w-xs bg-background shadow-lg z-50 flex flex-col mobile-drawer"
             role="dialog"
             aria-modal="true"
+            data-open="true"
           >
             {/* Drawer Header */}
             <div className="flex items-center justify-between px-4 py-4 border-b border-border/20">
-              <Link to="/" className="flex items-center gap-2" onClick={handleNavigation}>
+              <Link to="/" className="flex items-center gap-2" onClick={() => setMobileMenuOpen(false)}>
                 <img
                   src="/uploads/e36f8ce3-362f-422b-b487-bde1f6e31353.png"
                   alt="SM Supports Logo"
@@ -162,10 +256,10 @@ const Navbar = () => {
             <nav className="flex-1 flex flex-col gap-1 px-2 py-4" aria-label="Mobile Navigation">
               {navItems.map(item => (
                 <div key={item.name}>
-                  <Link
-                    to={item.href}
-                    className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-accent/40 focus:bg-accent/40 transition-colors rounded-none border-l-4 border-transparent hover:border-primary focus:border-primary"
-                    onClick={handleNavigation}
+                  <button
+                    className="w-full flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-accent/40 focus:bg-accent/40 transition-colors rounded-none border-l-4 border-transparent hover:border-primary focus:border-primary text-left"
+                    onClick={() => handleHashLink(item.href)}
+                    aria-label={`Navigate to ${item.name} section`}
                   >
                     {/* Simple icons for each nav item */}
                     {item.name === 'Home' && <Menu className="h-5 w-5 text-muted-foreground" />}
@@ -174,7 +268,7 @@ const Navbar = () => {
                     {item.name === 'Skills' && <span className="h-5 w-5 text-muted-foreground">🛠️</span>}
                     {item.name === 'Contact' && <span className="h-5 w-5 text-muted-foreground">✉️</span>}
                     <span>{item.name}</span>
-                  </Link>
+                  </button>
                   {item.name === 'Projects' && (
                     <div className="ml-4 border-l border-border/30">
                       {projectSubItems.map(subItem => (
@@ -182,7 +276,7 @@ const Navbar = () => {
                           key={subItem.name}
                           to={subItem.href}
                           className="flex items-center gap-3 px-4 py-2 text-sm font-medium text-foreground/70 hover:text-primary hover:bg-accent/40 transition-colors"
-                          onClick={handleNavigation}
+                          onClick={() => setMobileMenuOpen(false)}
                         >
                           <span className="w-2 h-2 bg-primary/50 rounded-full ml-2"></span>
                           <span>{subItem.name}</span>

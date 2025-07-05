@@ -37,19 +37,22 @@ const About = () => {
       title: "React Web Development",
       price: "From $80",
       description: "Modern React applications with TypeScript, Vite, and Tailwind CSS",
-      features: ["React 18", "TypeScript", "Vite Build", "Tailwind CSS", "Responsive Design"]
+      features: ["React 18", "TypeScript", "Vite Build", "Tailwind CSS", "Responsive Design"],
+      fiverrLink: "https://www.fiverr.com/sajjatmohammed?public_mode=true"
     },
     {
       title: "React Native Mobile Apps",
       price: "From $120",
       description: "Cross-platform mobile applications for iOS and Android",
-      features: ["React Native", "TypeScript", "Native Modules", "App Store Ready", "Performance Optimized"]
+      features: ["React Native", "TypeScript", "Native Modules", "App Store Ready", "Performance Optimized"],
+      fiverrLink: "https://www.fiverr.com/sajjatmohammed?public_mode=true"
     },
     {
       title: "Full-Stack Development",
       price: "From $150",
       description: "Complete web applications with frontend and PostgreSQL backend",
-      features: ["React Frontend", "PostgreSQL Database", "REST APIs", "TypeScript", "Deployment"]
+      features: ["React Frontend", "PostgreSQL Database", "REST APIs", "TypeScript", "Deployment"],
+      fiverrLink: "https://www.fiverr.com/sajjatmohammed?public_mode=true"
     }
   ];
 
@@ -165,10 +168,10 @@ const About = () => {
           
           {/* Moving Reviews Section */}
           <div className="relative overflow-hidden">
-            <div className="flex animate-infinite-scroll" style={{ width: 'fit-content' }}>
+            <div className="flex animate-infinite-scroll mobile-scroll-container" style={{ width: 'fit-content', minWidth: 'max-content' }}>
               {/* First set of reviews */}
-              <div className="flex items-start gap-8 px-8 flex-shrink-0">
-                <div className="w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0">
+              <div className="flex items-start gap-6 px-6 flex-shrink-0">
+                <div className="w-80 sm:w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0 min-h-[280px] flex flex-col">
                   <div className="flex items-center gap-4 mb-4">
                     <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=60&h=60&fit=crop&crop=face" alt="Sarah Johnson" className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20 flex-shrink-0" />
                     <div className="flex-1 min-w-0">
@@ -181,12 +184,12 @@ const About = () => {
                       </div>
                     </div>
                   </div>
-                  <blockquote className="text-sm text-muted-foreground leading-relaxed">
+                  <blockquote className="text-sm text-muted-foreground leading-relaxed flex-1">
                     "Working with this developer was an absolute pleasure. They delivered our React mobile app on time with perfect functionality. The TypeScript implementation was clean and maintainable. Communication was excellent throughout the project, and they went above and beyond to ensure we were satisfied with the final product."
                   </blockquote>
                 </div>
                 
-                <div className="w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0">
+                <div className="w-80 sm:w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0 min-h-[280px] flex flex-col">
                   <div className="flex items-center gap-4 mb-4">
                     <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face" alt="Michael Chen" className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20 flex-shrink-0" />
                     <div className="flex-1 min-w-0">
@@ -199,12 +202,12 @@ const About = () => {
                       </div>
                     </div>
                   </div>
-                  <blockquote className="text-sm text-muted-foreground leading-relaxed">
+                  <blockquote className="text-sm text-muted-foreground leading-relaxed flex-1">
                     "Outstanding work on our e-commerce platform. The TypeScript implementation was flawless, and the React components were beautifully structured. The developer's attention to detail and understanding of modern web development best practices made our project a huge success. Highly recommend for any React development needs."
                   </blockquote>
                 </div>
                 
-                <div className="w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0">
+                <div className="w-80 sm:w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0 min-h-[280px] flex flex-col">
                   <div className="flex items-center gap-4 mb-4">
                     <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=60&h=60&fit=crop&crop=face" alt="Emily Rodriguez" className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20 flex-shrink-0" />
                     <div className="flex-1 min-w-0">
@@ -217,12 +220,12 @@ const About = () => {
                       </div>
                     </div>
                   </div>
-                  <blockquote className="text-sm text-muted-foreground leading-relaxed">
+                  <blockquote className="text-sm text-muted-foreground leading-relaxed flex-1">
                     "Professional, responsive, and delivered exactly what we needed. The developer's expertise in React Native helped us launch our mobile app successfully. They were always available for questions and provided excellent technical guidance. The code quality and documentation were top-notch."
                   </blockquote>
                 </div>
                 
-                <div className="w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0">
+                <div className="w-80 sm:w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0 min-h-[280px] flex flex-col">
                   <div className="flex items-center gap-4 mb-4">
                     <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=60&h=60&fit=crop&crop=face" alt="David Thompson" className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20 flex-shrink-0" />
                     <div className="flex-1 min-w-0">
@@ -235,12 +238,12 @@ const About = () => {
                       </div>
                     </div>
                   </div>
-                  <blockquote className="text-sm text-muted-foreground leading-relaxed">
+                  <blockquote className="text-sm text-muted-foreground leading-relaxed flex-1">
                     "Amazing React Native developer who transformed our vision into reality. Our app is now live on both iOS and Android stores, and users absolutely love it. The performance optimization and clean architecture made all the difference. This developer truly understands mobile development best practices."
                   </blockquote>
                 </div>
                 
-                <div className="w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0">
+                <div className="w-80 sm:w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0 min-h-[280px] flex flex-col">
                   <div className="flex items-center gap-4 mb-4">
                     <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&h=60&fit=crop&crop=face" alt="Lisa Wang" className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20 flex-shrink-0" />
                     <div className="flex-1 min-w-0">
@@ -253,15 +256,15 @@ const About = () => {
                       </div>
                     </div>
                   </div>
-                  <blockquote className="text-sm text-muted-foreground leading-relaxed">
+                  <blockquote className="text-sm text-muted-foreground leading-relaxed flex-1">
                     "Perfect full-stack solution with PostgreSQL backend and React frontend. The developer exceeded all expectations with their comprehensive understanding of modern web technologies. The database design was robust, and the API integration was seamless. Our project was delivered on time and under budget."
                   </blockquote>
                 </div>
               </div>
               
               {/* Duplicate set for seamless loop */}
-              <div className="flex items-start gap-8 px-8 flex-shrink-0">
-                <div className="w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0">
+              <div className="flex items-start gap-6 px-6 flex-shrink-0">
+                <div className="w-80 sm:w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0 min-h-[280px] flex flex-col">
                   <div className="flex items-center gap-4 mb-4">
                     <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=60&h=60&fit=crop&crop=face" alt="Sarah Johnson" className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20 flex-shrink-0" />
                     <div className="flex-1 min-w-0">
@@ -274,12 +277,12 @@ const About = () => {
                       </div>
                     </div>
                   </div>
-                  <blockquote className="text-sm text-muted-foreground leading-relaxed">
+                  <blockquote className="text-sm text-muted-foreground leading-relaxed flex-1">
                     "Working with this developer was an absolute pleasure. They delivered our React mobile app on time with perfect functionality. The TypeScript implementation was clean and maintainable. Communication was excellent throughout the project, and they went above and beyond to ensure we were satisfied with the final product."
                   </blockquote>
                 </div>
                 
-                <div className="w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0">
+                <div className="w-80 sm:w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0 min-h-[280px] flex flex-col">
                   <div className="flex items-center gap-4 mb-4">
                     <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face" alt="Michael Chen" className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20 flex-shrink-0" />
                     <div className="flex-1 min-w-0">
@@ -292,12 +295,12 @@ const About = () => {
                       </div>
                     </div>
                   </div>
-                  <blockquote className="text-sm text-muted-foreground leading-relaxed">
+                  <blockquote className="text-sm text-muted-foreground leading-relaxed flex-1">
                     "Outstanding work on our e-commerce platform. The TypeScript implementation was flawless, and the React components were beautifully structured. The developer's attention to detail and understanding of modern web development best practices made our project a huge success. Highly recommend for any React development needs."
                   </blockquote>
                 </div>
                 
-                <div className="w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0">
+                <div className="w-80 sm:w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0 min-h-[280px] flex flex-col">
                   <div className="flex items-center gap-4 mb-4">
                     <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=60&h=60&fit=crop&crop=face" alt="Emily Rodriguez" className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20 flex-shrink-0" />
                     <div className="flex-1 min-w-0">
@@ -310,12 +313,12 @@ const About = () => {
                       </div>
                     </div>
                   </div>
-                  <blockquote className="text-sm text-muted-foreground leading-relaxed">
+                  <blockquote className="text-sm text-muted-foreground leading-relaxed flex-1">
                     "Professional, responsive, and delivered exactly what we needed. The developer's expertise in React Native helped us launch our mobile app successfully. They were always available for questions and provided excellent technical guidance. The code quality and documentation were top-notch."
                   </blockquote>
                 </div>
                 
-                <div className="w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0">
+                <div className="w-80 sm:w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0 min-h-[280px] flex flex-col">
                   <div className="flex items-center gap-4 mb-4">
                     <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=60&h=60&fit=crop&crop=face" alt="David Thompson" className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20 flex-shrink-0" />
                     <div className="flex-1 min-w-0">
@@ -328,12 +331,12 @@ const About = () => {
                       </div>
                     </div>
                   </div>
-                  <blockquote className="text-sm text-muted-foreground leading-relaxed">
+                  <blockquote className="text-sm text-muted-foreground leading-relaxed flex-1">
                     "Amazing React Native developer who transformed our vision into reality. Our app is now live on both iOS and Android stores, and users absolutely love it. The performance optimization and clean architecture made all the difference. This developer truly understands mobile development best practices."
                   </blockquote>
                 </div>
                 
-                <div className="w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0">
+                <div className="w-80 sm:w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0 min-h-[280px] flex flex-col">
                   <div className="flex items-center gap-4 mb-4">
                     <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&h=60&fit=crop&crop=face" alt="Lisa Wang" className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20 flex-shrink-0" />
                     <div className="flex-1 min-w-0">
@@ -346,7 +349,7 @@ const About = () => {
                       </div>
                     </div>
                   </div>
-                  <blockquote className="text-sm text-muted-foreground leading-relaxed">
+                  <blockquote className="text-sm text-muted-foreground leading-relaxed flex-1">
                     "Perfect full-stack solution with PostgreSQL backend and React frontend. The developer exceeded all expectations with their comprehensive understanding of modern web technologies. The database design was robust, and the API integration was seamless. Our project was delivered on time and under budget."
                   </blockquote>
                 </div>
@@ -366,10 +369,14 @@ const About = () => {
           
           <div className="grid md:grid-cols-3 gap-6">
             {fiverrServices.map((service, index) => (
-              <Card key={index} className="p-6 bg-background/50 border border-border/30 hover:border-primary/30 transition-all duration-300 hover:shadow-lg">
+              <Card 
+                key={index} 
+                className="p-6 bg-background/50 border border-border/30 hover:border-primary/30 transition-all duration-300 hover:shadow-lg cursor-pointer group hover:scale-105 transform"
+                onClick={() => window.open(service.fiverrLink, "_blank")}
+              >
                 <div className="mb-4">
                   <div className="flex items-center justify-between mb-2">
-                    <h4 className="font-semibold text-lg text-foreground">{service.title}</h4>
+                    <h4 className="font-semibold text-lg text-foreground group-hover:text-primary transition-colors">{service.title}</h4>
                     <span className="text-primary font-bold">{service.price}</span>
                   </div>
                   <p className="text-muted-foreground text-sm">{service.description}</p>
@@ -381,6 +388,12 @@ const About = () => {
                       <span className="text-sm text-muted-foreground">{feature}</span>
                     </div>
                   ))}
+                </div>
+                <div className="mt-4 pt-4 border-t border-border/30">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-muted-foreground">Click to view on Fiverr</span>
+                    <ExternalLink className="w-4 h-4 text-primary group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </div>
               </Card>
             ))}

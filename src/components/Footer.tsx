@@ -1,8 +1,11 @@
 import { ThemeToggle } from "./ThemeToggle";
 import { Facebook, Instagram, Github, Linkedin, MessageCircle, Mail, Phone, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  
+
   
   const socialLinks = [
     {
@@ -48,18 +51,18 @@ const Footer = () => {
   ];
 
   const quickLinks = [
-    { name: "Home", href: "#home" },
-    { name: "Projects", href: "#projects" },
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Contact", href: "#contact" }
+    { name: "Home", href: "/" },
+    { name: "Projects", href: "/#projects" },
+    { name: "About", href: "/#about" },
+    { name: "Skills", href: "/#skills" },
+    { name: "Contact", href: "/#contact" }
   ];
 
   const services = [
-    { name: "Web Development", href: "/web-development" },
-    { name: "React Development", href: "/react-development" },
-    { name: "UI/UX Design", href: "#services" },
-    { name: "Illustration", href: "#services" }
+    { name: "Web Development", href: "/projects/web-development" },
+    { name: "React Development", href: "/projects/react-development" },
+    { name: "UI/UX Design", href: "/#projects" },
+    { name: "Illustration", href: "/#projects" }
   ];
   
   return (
@@ -105,12 +108,21 @@ const Footer = () => {
             <ul className="space-y-2 sm:space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <a 
-                    href={link.href}
-                    className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-200 block py-1"
-                  >
-                    {link.name}
-                  </a>
+                  {link.href === '/' ? (
+                    <Link 
+                      to={link.href}
+                      className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-200 block py-1"
+                    >
+                      {link.name}
+                    </Link>
+                  ) : (
+                    <a
+                      href={link.href}
+                      className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-200 block py-1 cursor-pointer hover:bg-primary/5 rounded px-2 py-1"
+                    >
+                      {link.name}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
@@ -122,9 +134,9 @@ const Footer = () => {
             <ul className="space-y-2 sm:space-y-3">
               {services.map((service) => (
                 <li key={service.name}>
-                  <a 
+                  <a
                     href={service.href}
-                    className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-200 block py-1"
+                    className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-200 block py-1 cursor-pointer hover:bg-primary/5 rounded px-2 py-1"
                   >
                     {service.name}
                   </a>
