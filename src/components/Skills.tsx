@@ -4,30 +4,30 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const Skills = () => {
   const skills = {
-    "Web Development": {
-      skills: ["HTML/CSS", "JavaScript", "Responsive Design", "UI/UX"],
+    "React Development": {
+      skills: ["React 18", "TypeScript", "Vite", "Tailwind CSS", "Component Architecture"],
       icon: <Globe className="h-6 w-6" />,
-      description: "Building responsive, accessible, and performant websites with modern technologies."
+      description: "Building modern, scalable web applications with React, TypeScript, and Vite for optimal performance."
     },
-    "WordPress": {
-      skills: ["Custom Themes", "Plugin Development", "Optimization", "Security"],
-      icon: <Code className="h-6 w-6" />,
-      description: "Creating custom WordPress solutions, themes, and plugins for businesses."
-    },
-    "Mobile Development": {
-      skills: ["React Native", "Progressive Web Apps", "Mobile-First Design", "Touch Interfaces"],
+    "React Native": {
+      skills: ["React Native", "TypeScript", "Native Modules", "Mobile UI/UX", "App Store Deployment"],
       icon: <Smartphone className="h-6 w-6" />,
-      description: "Developing mobile-first applications with touch-friendly interfaces."
+      description: "Creating cross-platform mobile applications with React Native for iOS and Android platforms."
     },
-    "Backend Development": {
-      skills: ["Node.js", "PHP", "MySQL", "REST APIs"],
+    "Full-Stack Development": {
+      skills: ["PostgreSQL", "REST APIs", "Node.js", "TypeScript", "Database Design"],
       icon: <Server className="h-6 w-6" />,
-      description: "Building robust server-side applications and APIs."
+      description: "End-to-end web solutions with modern frontend and robust PostgreSQL backend."
     },
-    "Design": {
-      skills: ["Figma", "Adobe Creative Suite", "UI/UX Design", "Prototyping"],
+    "Modern Tools": {
+      skills: ["Vite", "TypeScript", "Tailwind CSS", "Git", "Docker"],
+      icon: <Code className="h-6 w-6" />,
+      description: "Using cutting-edge development tools and technologies for optimal performance and developer experience."
+    },
+    "UI/UX Design": {
+      skills: ["Responsive Design", "Tailwind CSS", "Component Design", "User Experience"],
       icon: <Palette className="h-6 w-6" />,
-      description: "Crafting beautiful user interfaces and user experiences."
+      description: "Creating beautiful, responsive user interfaces with modern CSS frameworks and design principles."
     }
   };
 
@@ -40,8 +40,8 @@ const Skills = () => {
           <p className="text-primary font-semibold uppercase tracking-wider mb-2">What I Do</p>
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">My Expertise</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            I offer a wide range of creative and technical services, bringing together
-            artistic vision and technical know-how to deliver exceptional results.
+            Specialized in modern React development with TypeScript, React Native, and full-stack solutions
+            using PostgreSQL and cutting-edge tools for optimal performance and developer experience.
           </p>
         </div>
         

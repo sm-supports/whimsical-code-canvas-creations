@@ -8,7 +8,7 @@ const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [typedText, setTypedText] = useState("");
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
-  const texts = ["Web Development", "WordPress Design", "Bug Fixing", "Custom Solutions"];
+  const texts = ["React Development", "React Native", "TypeScript", "Full-Stack Solutions"];
   const fullText = texts[currentTextIndex];
   const [charIndex, setCharIndex] = useState(0);
 
@@ -55,9 +55,9 @@ const Hero = () => {
     <section id="home" className="relative min-h-screen pt-28 sm:pt-36 pb-20 sm:pb-24 overflow-hidden bg-gradient-to-b from-background via-background/95 to-background/90">
       {/* Background Elements - Simplified for mobile */}
       <div className="absolute inset-0 pointer-events-none select-none">
-        <div className="absolute top-4 right-4 w-24 h-24 sm:w-48 sm:h-48 lg:w-72 lg:h-72 rounded-full bg-primary/5" />
-        <div className="absolute bottom-4 left-4 w-16 h-16 sm:w-32 sm:h-32 lg:w-48 lg:h-48 rounded-full bg-primary/10" />
-        <div className="hidden sm:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 sm:w-20 sm:h-20 lg:w-40 lg:h-40 rounded-full bg-primary/5" />
+        <div className="absolute top-8 right-8 w-24 h-24 sm:w-48 sm:h-48 lg:w-72 lg:h-72 rounded-full bg-primary/5 opacity-50 -rotate-12" />
+        <div className="absolute bottom-8 left-8 w-16 h-16 sm:w-32 sm:h-32 lg:w-48 lg:h-48 rounded-full bg-primary/10 opacity-50 rotate-12" />
+        <div className="hidden sm:block absolute top-1/4 left-1/4 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 sm:w-20 sm:h-20 lg:w-40 lg:h-40 rounded-full bg-primary/5 opacity-50" />
       </div>
 
       <div className="container relative mx-auto px-4 sm:px-6">
@@ -87,11 +87,11 @@ const Hero = () => {
             <div className="lg:hidden grid grid-cols-2 gap-4 mb-6">
               <div className="flex items-center gap-2 text-sm text-muted-foreground bg-card/50 rounded-lg p-3">
                 <Smartphone className="w-4 h-4 text-primary" />
-                <span>Mobile First</span>
+                <span>React Native</span>
               </div>
               <div className="flex items-center gap-2 text-sm text-muted-foreground bg-card/50 rounded-lg p-3">
                 <Globe className="w-4 h-4 text-primary" />
-                <span>Responsive</span>
+                <span>TypeScript</span>
               </div>
             </div>
 
@@ -117,15 +117,15 @@ const Hero = () => {
             <div className="hidden lg:flex items-center gap-8 text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Code className="w-5 h-5 text-primary" />
-                <span>Clean Code</span>
+                <span>React & TypeScript</span>
               </div>
               <div className="flex items-center gap-2">
                 <Palette className="w-5 h-5 text-primary" />
-                <span>Modern Design</span>
+                <span>Tailwind CSS</span>
               </div>
               <div className="flex items-center gap-2">
                 <PenTool className="w-5 h-5 text-primary" />
-                <span>Creative Solutions</span>
+                <span>PostgreSQL</span>
               </div>
             </div>
           </div>
@@ -133,8 +133,7 @@ const Hero = () => {
           {/* Hero Image */}
           <div className="flex-1 w-full max-w-sm sm:max-w-md lg:max-w-lg mx-auto">
             <div className="relative">
-              <div className="w-full aspect-square sm:aspect-[4/3] lg:aspect-square">
-                <img
+              <img
                   src="/uploads/e36f8ce3-362f-422b-b487-bde1f6e31353.png"
                   alt="Hero Image"
                   className="w-full h-full object-contain rounded-2xl sm:rounded-3xl shadow-2xl shadow-primary/10"
@@ -142,7 +141,6 @@ const Hero = () => {
                   height="800"
                   decoding="async"
                 />
-              </div>
               
               {/* Mobile floating elements */}
               <div className="lg:hidden absolute -top-2 -right-2 w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
