@@ -99,6 +99,7 @@ npm run lint         # Run ESLint
 - Check out the [main README](../README.md) for more details
 - Review [Contributing Guidelines](../CONTRIBUTING.md) if you want to contribute
 - Explore the codebase in `src/components/` to understand the structure
+- Contact maintainers for detailed technical documentation
 
 ## 🆘 Need Help?
 

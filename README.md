@@ -144,10 +144,11 @@ We welcome contributions! Please see our [Contributing Guidelines](./CONTRIBUTIN
 - **[Quick Start Guide](./docs/public/QUICK_START.md)**: Get up and running quickly
 - **[Contributing Guidelines](./CONTRIBUTING.md)**: How to contribute to the project
 
-### Internal Documentation (For Contributors)
-- **[Developer Guide](./docs/internal/DEVELOPER_GUIDE.md)**: Comprehensive development documentation
-- **[API Documentation](./docs/internal/API_DOCUMENTATION.md)**: Component APIs and utilities
-- **[Wiki](./docs/internal/WIKI.md)**: Common questions and troubleshooting
+### Internal Documentation (Private)
+Detailed technical documentation is available to contributors and maintainers. Contact the project maintainers for access to:
+- Developer Guide
+- API Documentation  
+- Wiki and troubleshooting guides
 
 ## 🆘 Support
 
