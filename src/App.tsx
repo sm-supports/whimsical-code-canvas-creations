@@ -13,7 +13,7 @@ const queryClient = new QueryClient();
 
 const AppContent = () => {
   return (
-    <Suspense fallback={<Loading size="lg" />}>
+    <Suspense fallback={<Loading size="lg" className="fixed inset-0 z-50 bg-background" />}>
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/projects/web-development" element={<WebDevelopmentProjects />} />

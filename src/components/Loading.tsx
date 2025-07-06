@@ -7,9 +7,9 @@ interface LoadingProps {
 
 const Loading: React.FC<LoadingProps> = ({ size = 'md', className = '' }) => {
   const sizeClasses = {
-    sm: 'w-8 h-8',
-    md: 'w-12 h-12',
-    lg: 'w-16 h-16'
+    sm: 'w-32 h-32',
+    md: 'w-48 h-48',
+    lg: 'w-64 h-64'
   };
 
   const [gifLoaded, setGifLoaded] = React.useState(false);
@@ -26,8 +26,8 @@ const Loading: React.FC<LoadingProps> = ({ size = 'md', className = '' }) => {
   };
 
   return (
-    <div className={`flex items-center justify-center min-h-[200px] ${className}`}>
-      <div className={`${sizeClasses[size]}`}>
+    <div className={`flex items-center justify-center min-h-screen w-full ${className}`}>
+      <div className={`${sizeClasses[size]} flex items-center justify-center`}>
         {!gifError ? (
           <img 
             src="/loading.gif" 
