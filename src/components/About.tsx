@@ -48,11 +48,11 @@ const About = () => {
       fiverrLink: "https://www.fiverr.com/sajjatmohammed?public_mode=true"
     },
     {
-      title: "Full-Stack Development",
-      price: "From $150",
-      description: "Complete web applications with frontend and PostgreSQL backend",
-      features: ["React Frontend", "PostgreSQL Database", "REST APIs", "TypeScript", "Deployment"],
-      fiverrLink: "https://www.fiverr.com/sajjatmohammed?public_mode=true"
+      title: "Wix website with unlimited design revisions",
+      price: "From $80",
+      description: "Fully Customized Single-Page Wix Studio Website with Responsive Design and Interactive Features",
+      features: ["Wix", "Wordpress", "Shopify", "Webflow", "Deployment"],
+      fiverrLink: "https://www.fiverr.com/s/8zE679p"
     }
   ];
 

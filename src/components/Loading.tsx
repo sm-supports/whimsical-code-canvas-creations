@@ -1,0 +1,48 @@
+import React from 'react';
+
+interface LoadingProps {
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+}
+
+const Loading: React.FC<LoadingProps> = ({ size = 'md', className = '' }) => {
+  const sizeClasses = {
+    sm: 'w-8 h-8',
+    md: 'w-12 h-12',
+    lg: 'w-16 h-16'
+  };
+
+  const [gifLoaded, setGifLoaded] = React.useState(false);
+  const [gifError, setGifError] = React.useState(false);
+
+  const handleGifLoad = () => {
+    setGifLoaded(true);
+    setGifError(false);
+  };
+
+  const handleGifError = () => {
+    setGifError(true);
+    setGifLoaded(false);
+  };
+
+  return (
+    <div className={`flex items-center justify-center min-h-[200px] ${className}`}>
+      <div className={`${sizeClasses[size]}`}>
+        {!gifError ? (
+          <img 
+            src="/loading.gif" 
+            alt="Loading..." 
+            className="w-full h-full object-contain"
+            onLoad={handleGifLoad}
+            onError={handleGifError}
+          />
+        ) : (
+          // Fallback spinner when GIF fails to load
+          <div className={`${sizeClasses[size]} border-4 border-gray-300 border-t-blue-600 rounded-full animate-spin`}></div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default Loading; 

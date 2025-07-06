@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import React, { Suspense } from "react";
+import Loading from "@/components/Loading";
 
 const Index = React.lazy(() => import("./pages/Index"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
@@ -12,7 +13,7 @@ const queryClient = new QueryClient();
 
 const AppContent = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loading size="lg" />}>
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/projects/web-development" element={<WebDevelopmentProjects />} />

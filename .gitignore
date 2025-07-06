@@ -26,3 +26,6 @@ dist-ssr
 # Documentation access control
 # Internal documentation - keep private
 docs/internal/
+
+# Local documentation backup
+.local-docs/
