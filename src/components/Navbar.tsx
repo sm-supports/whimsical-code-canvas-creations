@@ -1,299 +1,343 @@
-import { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Code } from 'lucide-react';
-import { ThemeToggle } from './ThemeToggle';
+import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "./ThemeToggle";
+import { useState, useEffect } from "react";
+import { Menu, X, ChevronDown } from "lucide-react";
 
-const navItems = [
-  { name: 'Home', href: '/', sectionId: 'home' },
-  { name: 'Projects', href: '/#projects', sectionId: 'projects' },
-  { name: 'About', href: '/#about', sectionId: 'about' },
-  { name: 'Skills', href: '/#skills', sectionId: 'skills' },
-  { name: 'Contact', href: '/#contact', sectionId: 'contact' },
-];
+/**
+ * Navigation Item Interface
+ * 
+ * Defines the structure for navigation menu items, including
+ * dropdown functionality for project categories.
+ */
+interface NavItem {
+  label: string;
+  href?: string;
+  sectionId?: string;
+  children?: NavItem[];
+}
 
-const projectSubItems = [
-  { name: 'React Development', href: '/projects/react-development' },
-  { name: 'Web Development', href: '/projects/web-development' },
-];
-
+/**
+ * Navbar Component - Main Navigation
+ * 
+ * This component provides the main navigation for the portfolio website.
+ * It includes responsive design, smooth scrolling to sections, dropdown
+ * menus for project categories, and theme toggle functionality.
+ * 
+ * @component
+ * @example
+ * ```tsx
+ * <Navbar />
+ * ```
+ * 
+ * @features
+ * - Responsive mobile menu with hamburger toggle
+ * - Smooth scroll navigation to page sections
+ * - Dropdown menus for project categories
+ * - Theme toggle integration
+ * - Sticky positioning with backdrop blur
+ * - Accessibility features (ARIA labels, keyboard navigation)
+ * 
+ * @state
+ * - isMenuOpen: Mobile menu visibility state
+ * - activeDropdown: Currently open dropdown menu
+ * - isScrolled: Scroll position for sticky behavior
+ */
 const Navbar = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [projectsDropdownOpen, setProjectsDropdownOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const location = useLocation();
-  const navigate = useNavigate();
-  const isHomePage = location.pathname === '/';
+  // Navigation state management
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  // Handle scroll effect
+  /**
+   * Navigation items configuration
+   * 
+   * Defines the main navigation structure with sections and
+   * dropdown menus for project categories.
+   */
+  const navItems: NavItem[] = [
+    { label: "Home", sectionId: "home" },
+    { label: "About", sectionId: "about" },
+    { label: "Skills", sectionId: "skills" },
+    { 
+      label: "Projects", 
+      children: [
+        { label: "All Projects", sectionId: "projects" },
+        { label: "Web Development", href: "/web-development" },
+        { label: "React Development", href: "/react-development" }
+      ]
+    },
+    { label: "Contact", sectionId: "contact" }
+  ];
+
+  /**
+   * Scroll event handler for sticky navbar
+   * 
+   * Monitors scroll position to add/remove sticky styling
+   * and backdrop blur effects for better visual hierarchy.
+   */
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 20);
     };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu when clicking outside or pressing Escape
+  /**
+   * Smooth scroll to section
+   * 
+   * Handles navigation to page sections using smooth scrolling.
+   * Includes error handling for missing elements and debugging
+   * for development purposes.
+   * 
+   * @param sectionId - The ID of the section to scroll to
+   */
+  const scrollToSection = (sectionId: string) => {
+    console.log(`Attempting to scroll to section: ${sectionId}`);
+    
+    if (!sectionId) {
+      console.warn('Section ID is undefined or empty');
+      return;
+    }
+
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      console.log(`Successfully scrolled to section: ${sectionId}`);
+    } else {
+      console.warn(`Section with id '${sectionId}' not found`);
+    }
+  };
+
+  /**
+   * Handle navigation item click
+   * 
+   * Processes navigation clicks, handling both direct links
+   * and section scrolling. Closes mobile menu after navigation.
+   * 
+   * @param item - The navigation item that was clicked
+   */
+  const handleNavClick = (item: NavItem) => {
+    if (item.href) {
+      // Handle external links or page navigation
+      window.location.href = item.href;
+    } else if (item.sectionId) {
+      // Handle smooth scroll to section
+      scrollToSection(item.sectionId);
+    }
+    
+    // Close mobile menu after navigation
+    setIsMenuOpen(false);
+    setActiveDropdown(null);
+  };
+
+  /**
+   * Toggle dropdown menu
+   * 
+   * Handles opening and closing of dropdown menus for
+   * project categories. Ensures only one dropdown is open at a time.
+   * 
+   * @param label - The label of the dropdown to toggle
+   */
+  const toggleDropdown = (label: string) => {
+    setActiveDropdown(activeDropdown === label ? null : label);
+  };
+
+  /**
+   * Close all menus
+   * 
+   * Utility function to close both mobile menu and dropdowns,
+   * typically used when clicking outside or on escape key.
+   */
+  const closeAllMenus = () => {
+    setIsMenuOpen(false);
+    setActiveDropdown(null);
+  };
+
+  /**
+   * Handle escape key press
+   * 
+   * Closes all menus when escape key is pressed for
+   * better keyboard navigation and accessibility.
+   */
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as Element;
-      if (mobileMenuOpen && !target.closest('.mobile-drawer') && !target.closest('.mobile-menu-button')) {
-        setMobileMenuOpen(false);
-      }
-      // Close projects dropdown when clicking outside
-      if (projectsDropdownOpen && !target.closest('.projects-dropdown')) {
-        setProjectsDropdownOpen(false);
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closeAllMenus();
       }
     };
 
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && mobileMenuOpen) {
-        setMobileMenuOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('keydown', handleKeyDown);
-    
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [mobileMenuOpen, projectsDropdownOpen]);
-
-  const handleNavigation = (href: string) => {
-    setMobileMenuOpen(false);
-    
-    // Handle hash links
-    if (href.includes('#')) {
-      const [path, hash] = href.split('#');
-      if (path === '/' || path === '') {
-        // If we're already on the home page, just scroll to the section
-        const section = document.getElementById(hash);
-        if (section) {
-          section.scrollIntoView({ behavior: 'smooth' });
-        }
-      } else {
-        // Navigate to home page and then scroll to section
-        navigate(href);
-      }
-    } else {
-      // Regular navigation
-      navigate(href);
-    }
-  };
-
-  const handleHashLink = (href: string) => {
-    setMobileMenuOpen(false);
-    
-    console.log('handleHashLink called with:', href);
-    
-    // Handle the case where there's no hash (like Home link)
-    if (!href.includes('#')) {
-      console.log('No hash found, handling as regular link');
-      if (href === '/') {
-        // Scroll to top of page
-        console.log('Scrolling to top of page');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        // Navigate to the page
-        console.log('Navigating to:', href);
-        navigate(href);
-      }
-      return;
-    }
-    
-    const parts = href.split('#');
-    console.log('Split parts:', parts);
-    
-    if (parts.length < 2) {
-      console.warn('Invalid hash link format:', href);
-      return;
-    }
-    
-    const [path, hash] = parts;
-    console.log('Path:', path, 'Hash:', hash);
-    
-    if (!hash) {
-      console.warn('No hash found in link:', href);
-      return;
-    }
-    
-    if (path === '/' || path === '') {
-      // If we're already on the home page, just scroll to the section
-      const section = document.getElementById(hash);
-      console.log('Looking for section with id:', hash, 'Found:', !!section);
-      if (section) {
-        // Add a small delay to ensure the menu closes before scrolling
-        setTimeout(() => {
-          section.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      } else {
-        console.warn(`Section with id '${hash}' not found`);
-      }
-    } else {
-      // Navigate to home page and then scroll to section
-      console.log('Navigating to home page with hash:', href);
-      navigate(href);
-    }
-  };
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-background border-b border-border/30`}>
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
-        {/* Hamburger (mobile only) */}
-        <button
-          className="lg:hidden p-2 mr-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary mobile-menu-button"
-          onClick={() => setMobileMenuOpen(true)}
-          aria-label="Open Navigation Menu"
-          aria-expanded={mobileMenuOpen}
-        >
-          <Menu className="h-7 w-7 text-foreground" />
-        </button>
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-3" onClick={() => setMobileMenuOpen(false)}>
-          <img
-            src="/uploads/e36f8ce3-362f-422b-b487-bde1f6e31353.png"
-            alt="SM Supports Logo"
-            className="w-10 h-10 sm:w-12 sm:h-12 object-contain rounded-xl"
-          />
-          <span className="text-lg sm:text-xl font-bold tracking-tight text-foreground">SM Supports</span>
-        </Link>
-        {/* Desktop Nav */}
-        <div className="hidden lg:flex items-center gap-1">
-          {navItems.map(item => (
-            <div key={item.name} className="relative">
-              {item.name === 'Projects' ? (
-                <div className="relative">
-                  <button
-                    onClick={() => setProjectsDropdownOpen(!projectsDropdownOpen)}
-                    className="relative px-4 py-3 text-foreground/80 hover:text-primary transition-colors font-medium rounded-lg hover:bg-primary/5 after:absolute after:left-4 after:-bottom-1 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-200 hover:after:w-2/3"
-                  >
-                    {item.name}
-                  </button>
-                  {projectsDropdownOpen && (
-                    <div className="absolute top-full left-0 mt-1 w-48 bg-background border border-border/30 rounded-lg shadow-lg py-2 z-50 projects-dropdown">
-                      <a
-                        href="/#projects"
-                        className="block px-4 py-2 text-sm text-foreground/80 hover:text-primary hover:bg-primary/5 transition-colors"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setProjectsDropdownOpen(false);
-                          handleHashLink('/#projects');
-                        }}
-                      >
-                        All Projects
-                      </a>
-                      {projectSubItems.map(subItem => (
-                        <Link
-                          key={subItem.name}
-                          to={subItem.href}
-                          className="block px-4 py-2 text-sm text-foreground/80 hover:text-primary hover:bg-primary/5 transition-colors"
-                          onClick={() => setProjectsDropdownOpen(false)}
-                        >
-                          {subItem.name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <a
-                  href={item.href}
-                  className="relative px-4 py-3 text-foreground/80 hover:text-primary transition-colors font-medium rounded-lg hover:bg-primary/5 after:absolute after:left-4 after:-bottom-1 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-200 hover:after:w-2/3"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleHashLink(item.href);
-                  }}
-                >
-                  {item.name}
-                </a>
-              )}
-            </div>
-          ))}
-        </div>
-        {/* Theme toggle (mobile only) */}
-        <div className="lg:hidden ml-auto">
-          <ThemeToggle />
-        </div>
-      </div>
+    <nav 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-background/80 backdrop-blur-md border-b border-border/50 shadow-lg' 
+          : 'bg-transparent'
+      }`}
+    >
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between h-16 sm:h-20">
+          {/* Logo/Brand */}
+          <div className="flex items-center">
+            <a 
+              href="#home" 
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('home');
+              }}
+              className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent hover:from-primary/80 hover:to-purple-600/80 transition-all duration-300"
+            >
+              SM Supports
+            </a>
+          </div>
 
-      {/* Mobile Drawer Overlay */}
-      {mobileMenuOpen && (
-        <>
-          {/* Overlay */}
-          <div
-            className="fixed inset-0 z-40 bg-black/30"
-            onClick={() => setMobileMenuOpen(false)}
-            aria-hidden="true"
-          />
-          {/* Drawer */}
-          <aside
-            className="fixed left-0 top-0 h-full w-4/5 max-w-xs bg-background shadow-lg z-50 flex flex-col mobile-drawer"
-            role="dialog"
-            aria-modal="true"
-            data-open="true"
-          >
-            {/* Drawer Header */}
-            <div className="flex items-center justify-between px-4 py-4 border-b border-border/20">
-              <Link to="/" className="flex items-center gap-2" onClick={() => setMobileMenuOpen(false)}>
-                <img
-                  src="/uploads/e36f8ce3-362f-422b-b487-bde1f6e31353.png"
-                  alt="SM Supports Logo"
-                  className="w-8 h-8 object-contain rounded"
-                />
-                <span className="text-lg font-bold tracking-tight text-foreground">SM Supports</span>
-              </Link>
-              <button
-                className="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-                onClick={() => setMobileMenuOpen(false)}
-                aria-label="Close Menu"
-              >
-                <X className="h-6 w-6 text-foreground" />
-              </button>
-            </div>
-            {/* Nav Items */}
-            <nav className="flex-1 flex flex-col gap-1 px-2 py-4" aria-label="Mobile Navigation">
-              {navItems.map(item => (
-                <div key={item.name}>
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center space-x-8">
+            {navItems.map((item) => (
+              <div key={item.label} className="relative">
+                {item.children ? (
+                  /* Dropdown Menu for Projects */
+                  <div className="relative">
+                    <button
+                      onClick={() => toggleDropdown(item.label)}
+                      className="flex items-center gap-1 text-foreground/80 hover:text-foreground transition-colors duration-300 font-medium"
+                      aria-expanded={activeDropdown === item.label}
+                      aria-haspopup="true"
+                    >
+                      {item.label}
+                      <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${
+                        activeDropdown === item.label ? 'rotate-180' : ''
+                      }`} />
+                    </button>
+                    
+                    {/* Dropdown Content */}
+                    {activeDropdown === item.label && (
+                      <div className="absolute top-full left-0 mt-2 w-48 bg-background/95 backdrop-blur-md border border-border/50 rounded-lg shadow-xl py-2 z-50">
+                        {item.children.map((child) => (
+                          <button
+                            key={child.label}
+                            onClick={() => handleNavClick(child)}
+                            className="w-full text-left px-4 py-2 text-sm text-foreground/80 hover:text-foreground hover:bg-muted/50 transition-colors duration-200"
+                          >
+                            {child.label}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  /* Direct Navigation Link */
                   <button
-                    className="w-full flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-accent/40 focus:bg-accent/40 transition-colors rounded-none border-l-4 border-transparent hover:border-primary focus:border-primary text-left"
-                    onClick={() => handleHashLink(item.href)}
-                    aria-label={`Navigate to ${item.name} section`}
+                    onClick={() => handleNavClick(item)}
+                    className="text-foreground/80 hover:text-foreground transition-colors duration-300 font-medium"
                   >
-                    {/* Simple icons for each nav item */}
-                    {item.name === 'Home' && <Menu className="h-5 w-5 text-muted-foreground" />}
-                    {item.name === 'Projects' && <Code className="h-5 w-5 text-muted-foreground" />}
-                    {item.name === 'About' && <span className="h-5 w-5 text-muted-foreground">👤</span>}
-                    {item.name === 'Skills' && <span className="h-5 w-5 text-muted-foreground">🛠️</span>}
-                    {item.name === 'Contact' && <span className="h-5 w-5 text-muted-foreground">✉️</span>}
-                    <span>{item.name}</span>
+                    {item.label}
                   </button>
-                  {item.name === 'Projects' && (
-                    <div className="ml-4 border-l border-border/30">
-                      {projectSubItems.map(subItem => (
-                        <Link
-                          key={subItem.name}
-                          to={subItem.href}
-                          className="flex items-center gap-3 px-4 py-2 text-sm font-medium text-foreground/70 hover:text-primary hover:bg-accent/40 transition-colors"
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          <span className="w-2 h-2 bg-primary/50 rounded-full ml-2"></span>
-                          <span>{subItem.name}</span>
-                        </Link>
-                      ))}
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop Actions */}
+          <div className="hidden lg:flex items-center gap-4">
+            <ThemeToggle />
+            <Button 
+              onClick={() => scrollToSection('contact')}
+              className="bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-white px-6 py-2 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-1"
+            >
+              Get Started
+            </Button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="lg:hidden flex items-center gap-4">
+            <ThemeToggle />
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="p-2 text-foreground/80 hover:text-foreground transition-colors duration-300"
+              aria-label="Toggle mobile menu"
+              aria-expanded={isMenuOpen}
+            >
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation Menu */}
+        {isMenuOpen && (
+          <div className="lg:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-md border-b border-border/50 shadow-xl">
+            <div className="px-4 py-6 space-y-4">
+              {navItems.map((item) => (
+                <div key={item.label}>
+                  {item.children ? (
+                    /* Mobile Dropdown */
+                    <div>
+                      <button
+                        onClick={() => toggleDropdown(item.label)}
+                        className="flex items-center justify-between w-full text-left py-2 text-foreground/80 hover:text-foreground transition-colors duration-300 font-medium"
+                        aria-expanded={activeDropdown === item.label}
+                      >
+                        {item.label}
+                        <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${
+                          activeDropdown === item.label ? 'rotate-180' : ''
+                        }`} />
+                      </button>
+                      
+                      {/* Mobile Dropdown Content */}
+                      {activeDropdown === item.label && (
+                        <div className="ml-4 mt-2 space-y-2">
+                          {item.children.map((child) => (
+                            <button
+                              key={child.label}
+                              onClick={() => handleNavClick(child)}
+                              className="block w-full text-left py-2 text-sm text-foreground/60 hover:text-foreground transition-colors duration-200"
+                            >
+                              {child.label}
+                            </button>
+                          ))}
+                        </div>
+                      )}
                     </div>
+                  ) : (
+                    /* Mobile Direct Link */
+                    <button
+                      onClick={() => handleNavClick(item)}
+                      className="block w-full text-left py-2 text-foreground/80 hover:text-foreground transition-colors duration-300 font-medium"
+                    >
+                      {item.label}
+                    </button>
                   )}
                 </div>
               ))}
-            </nav>
-            {/* Theme Toggle at Bottom */}
-            <div className="px-4 py-4 border-t border-border/20 flex items-center gap-3">
-              <span className="text-base text-muted-foreground">Theme:</span>
-              <ThemeToggle />
+              
+              {/* Mobile CTA Button */}
+              <div className="pt-4">
+                <Button 
+                  onClick={() => {
+                    scrollToSection('contact');
+                    setIsMenuOpen(false);
+                  }}
+                  className="w-full bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-white py-3 rounded-lg font-medium transition-all duration-300"
+                >
+                  Get Started
+                </Button>
+              </div>
             </div>
-          </aside>
-        </>
+          </div>
+        )}
+      </div>
+
+      {/* Backdrop for mobile menu */}
+      {isMenuOpen && (
+        <div 
+          className="lg:hidden fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
+          onClick={closeAllMenus}
+        />
       )}
     </nav>
   );

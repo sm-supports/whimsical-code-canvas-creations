@@ -4,11 +4,44 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Mail, MapPin, MessageCircle, ArrowRight, Send, Phone, Code, Palette, Sparkles } from "lucide-react";
 import { useState, useEffect } from "react";
 
+/**
+ * Contact Component - Contact Form Section
+ * 
+ * This component provides a modern contact form with 3D visual effects
+ * matching the Hero section's design language. It includes form validation,
+ * smooth animations, and responsive design for all screen sizes.
+ * 
+ * @component
+ * @example
+ * ```tsx
+ * <Contact />
+ * ```
+ * 
+ * @features
+ * - 3D floating elements and gradient orbs
+ * - Form validation and submission handling
+ * - Responsive design with mobile optimizations
+ * - Smooth scroll-triggered animations
+ * - Contact information cards with hover effects
+ * - Accessibility features (ARIA labels, keyboard navigation)
+ * 
+ * @state
+ * - form: Form data (name, email, message)
+ * - submitted: Form submission status
+ * - isVisible: Animation trigger state
+ */
 const Contact = () => {
+  // Form state management
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
+  /**
+   * Intersection Observer for scroll-triggered animations
+   * 
+   * Detects when the contact section comes into view and triggers
+   * the entrance animations for a smooth user experience.
+   */
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -16,7 +49,7 @@ const Contact = () => {
           setIsVisible(true);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 } // Trigger when 10% of element is visible
     );
 
     const element = document.getElementById('contact');
@@ -27,16 +60,40 @@ const Contact = () => {
     return () => observer.disconnect();
   }, []);
 
+  /**
+   * Handle form input changes
+   * 
+   * Updates the form state when users type in the input fields.
+   * Uses controlled components for predictable form behavior.
+   * 
+   * @param e - Change event from input or textarea
+   */
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  /**
+   * Handle form submission
+   * 
+   * Prevents default form submission and shows success state.
+   * In a real application, this would send data to an API endpoint.
+   * 
+   * @param e - Form submission event
+   */
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
-    // Here you would handle form submission (e.g., send to API)
+    // TODO: Implement actual form submission to API
+    // Example: await submitContactForm(form);
   };
 
+  /**
+   * Contact information data
+   * 
+   * Contains contact details with icons, links, and gradient colors
+   * for the visual cards. Each item has a unique gradient for
+   * visual distinction and brand consistency.
+   */
   const contactInfo = [
     {
       icon: <Mail className="h-5 w-5" />,
@@ -73,10 +130,10 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="relative py-20 sm:py-28 md:py-36 overflow-hidden bg-gradient-to-br from-background via-background to-muted/5">
+    <section id="contact" className="relative pt-8 sm:pt-12 md:pt-16 pb-20 sm:pb-28 md:pb-36 overflow-hidden bg-gradient-to-br from-background via-background to-muted/5">
       {/* 3D Background Elements - Matching Hero Style */}
       <div className="absolute inset-0 pointer-events-none select-none">
-        {/* Floating 3D Cubes */}
+        {/* Floating 3D Cubes - Creates depth and visual interest */}
         <div className="absolute top-16 sm:top-20 right-6 sm:right-10 w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 lg:w-32 lg:h-32 transform rotate-12 animate-float-slow">
           <div className="w-full h-full bg-gradient-to-br from-primary/20 to-primary/5 rounded-lg shadow-2xl backdrop-blur-sm border border-primary/10 transform rotate-45"></div>
         </div>
@@ -87,11 +144,11 @@ const Contact = () => {
           <div className="w-full h-full bg-gradient-to-br from-primary/10 to-primary/5 rounded-lg shadow-xl backdrop-blur-sm border border-primary/10"></div>
         </div>
         
-        {/* Gradient Orbs */}
+        {/* Gradient Orbs - Adds atmospheric depth and movement */}
         <div className="absolute top-1/4 right-1/4 w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 lg:w-64 lg:h-64 bg-gradient-radial from-primary/10 via-primary/5 to-transparent rounded-full blur-3xl animate-pulse-slow"></div>
         <div className="absolute bottom-1/4 left-1/4 w-20 h-20 sm:w-24 sm:h-24 md:w-40 md:h-40 lg:w-56 lg:h-56 bg-gradient-radial from-primary/8 via-primary/4 to-transparent rounded-full blur-3xl animate-pulse-medium"></div>
         
-        {/* Additional floating elements for contact */}
+        {/* Additional floating elements for contact section */}
         <div className="absolute top-1/2 left-1/6 w-8 h-8 sm:w-10 sm:h-10 md:w-16 md:h-16 lg:w-20 lg:h-20 transform -rotate-45 animate-float-slow">
           <div className="w-full h-full bg-gradient-to-br from-primary/15 to-primary/5 rounded-lg shadow-xl backdrop-blur-sm border border-primary/10"></div>
         </div>
@@ -101,7 +158,7 @@ const Contact = () => {
       </div>
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6">
-        {/* Header Section */}
+        {/* Header Section with animated entrance */}
         <div className={`text-center mb-16 sm:mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-primary/10 to-purple-500/10 border border-primary/20 rounded-full px-4 py-2 mb-6">
             <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
@@ -125,13 +182,13 @@ const Contact = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-start max-w-7xl mx-auto">
-          {/* Contact Form - 3D Card */}
+          {/* Contact Form - 3D Card with delayed animation */}
           <div className={`transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="relative group">
-              {/* 3D Container */}
+              {/* 3D Container with perspective transforms */}
               <div className="relative transform perspective-1000 group-hover:rotate-y-6 transition-transform duration-700">
                 <Card className="relative overflow-hidden backdrop-blur-xl bg-white/80 dark:bg-card/80 shadow-2xl border border-white/20 hover:shadow-primary/20 transition-all duration-500 hover:-translate-y-2">
-                  {/* 3D Card Glow Effect */}
+                  {/* 3D Card Glow Effect - Appears on hover */}
                   <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   
                   <CardContent className="p-8 lg:p-10">
@@ -142,6 +199,7 @@ const Contact = () => {
                       <p className="text-muted-foreground">Tell us about your project</p>
                     </div>
 
+                    {/* Success State - Shows after form submission */}
                     {submitted ? (
                       <div className="text-center py-8">
                         <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-2xl">
@@ -151,8 +209,10 @@ const Contact = () => {
                         <p className="text-muted-foreground">We'll get back to you soon.</p>
                       </div>
                     ) : (
+                      /* Contact Form - Controlled inputs with validation */
                       <form className="space-y-6" onSubmit={handleSubmit}>
                         <div className="space-y-4">
+                          {/* Name Input with hover effects */}
                           <div className="relative group">
                             <Input
                               name="name"
@@ -165,6 +225,7 @@ const Contact = () => {
                             <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-purple-500/5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                           </div>
                           
+                          {/* Email Input with validation */}
                           <div className="relative group">
                             <Input
                               name="email"
@@ -178,6 +239,7 @@ const Contact = () => {
                             <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-purple-500/5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                           </div>
                           
+                          {/* Message Textarea */}
                           <div className="relative group">
                             <textarea
                               name="message"
@@ -192,6 +254,7 @@ const Contact = () => {
                           </div>
                         </div>
                         
+                        {/* Submit Button with gradient and hover effects */}
                         <Button 
                           type="submit" 
                           className="w-full h-12 bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-1 group"
@@ -205,7 +268,7 @@ const Contact = () => {
                 </Card>
               </div>
               
-              {/* Floating 3D Elements */}
+              {/* Floating 3D Elements - Adds depth and interactivity */}
               <div className="absolute -top-2 sm:-top-4 -right-2 sm:-right-4 w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl shadow-2xl backdrop-blur-sm border border-primary/20 flex items-center justify-center transform rotate-12 animate-float-slow">
                 <Code className="w-4 h-4 sm:w-6 sm:h-6 text-primary" />
               </div>
@@ -215,19 +278,20 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Contact Info Cards - 3D Grid */}
+          {/* Contact Info Cards - 3D Grid with staggered animations */}
           <div className={`space-y-6 transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {contactInfo.map((info, index) => (
                 <div key={index} className="relative group">
-                  {/* 3D Container */}
+                  {/* 3D Container with perspective transforms */}
                   <div className="relative transform perspective-1000 group-hover:rotate-y-3 transition-transform duration-500">
                     <Card className="relative overflow-hidden backdrop-blur-xl bg-white/60 dark:bg-card/60 shadow-xl border border-white/20 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 hover:-translate-y-2 hover:scale-105">
-                      {/* Gradient overlay */}
+                      {/* Gradient overlay - Appears on hover */}
                       <div className={`absolute inset-0 bg-gradient-to-br ${info.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
                       
                       <CardContent className="p-6 relative">
                         <div className="flex items-start gap-4">
+                          {/* Icon with gradient background */}
                           <div className={`rounded-xl bg-gradient-to-br ${info.gradient} p-3 text-white shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110`}>
                             {info.icon}
                           </div>
@@ -249,7 +313,7 @@ const Contact = () => {
                     </Card>
                   </div>
                   
-                  {/* Floating element for each card */}
+                  {/* Floating element for each card - Adds visual interest */}
                   <div className={`absolute -top-1 -right-1 w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br ${info.gradient} opacity-20 rounded-lg shadow-lg backdrop-blur-sm border border-primary/20 flex items-center justify-center transform rotate-12 animate-float-fast`}>
                     <div className="w-2 h-2 bg-white rounded-full"></div>
                   </div>
@@ -257,7 +321,7 @@ const Contact = () => {
               ))}
             </div>
 
-            {/* Additional Info Card */}
+            {/* Additional Info Card - Project availability */}
             <div className="relative group">
               <div className="relative transform perspective-1000 group-hover:rotate-y-3 transition-transform duration-500">
                 <Card className="relative overflow-hidden backdrop-blur-xl bg-gradient-to-br from-primary/5 to-purple-500/5 border border-primary/20 hover:border-primary/40 transition-all duration-500 hover:-translate-y-2">

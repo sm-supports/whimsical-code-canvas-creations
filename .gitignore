@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Documentation access control
+# Uncomment the line below if you want to keep internal docs private
+# docs/internal/
