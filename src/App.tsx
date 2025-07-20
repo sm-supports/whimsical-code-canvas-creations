@@ -8,6 +8,8 @@ const Index = React.lazy(() => import("./pages/Index"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 const WebDevelopmentProjects = React.lazy(() => import("./pages/WebDevelopmentProjects"));
 const ReactDevelopmentProjects = React.lazy(() => import("./pages/ReactDevelopmentProjects"));
+const GraphicDesignProjects = React.lazy(() => import("./pages/GraphicDesignProjects"));
+const IllustrationProjects = React.lazy(() => import("./pages/IllustrationProjects"));
 
 const queryClient = new QueryClient();
 
@@ -18,6 +20,8 @@ const AppContent = () => {
         <Route path="/" element={<Index />} />
         <Route path="/projects/web-development" element={<WebDevelopmentProjects />} />
         <Route path="/projects/react-development" element={<ReactDevelopmentProjects />} />
+        <Route path="/projects/graphic-design" element={<GraphicDesignProjects />} />
+        <Route path="/projects/illustration" element={<IllustrationProjects />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>

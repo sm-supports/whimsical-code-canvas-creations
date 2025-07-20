@@ -4,6 +4,225 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 const About = () => {
+  const reviews = [
+  {
+    "username": "cole0530",
+    "country": "United States",
+    "rating": 5,
+    "review": "He worked very hard to ensure his illustrations were the best they can be for my book, very good job. Thanks, Mike",
+    "price": "$50-$100",
+    "dp": ""
+  },
+  {
+    "username": "maubayuelo",
+    "country": "Canada",
+    "rating": 4.7,
+    "review": "It helped me to get the project done fast.",
+    "price": "$100-$200",
+    "dp": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_small/v1/attachments/profile/photo/67747a83f6b34137937c49bd705b56da-1709931614125/efc259f3-51e1-4a18-812e-8a29adb02c37.jpg"
+  },
+  {
+    "username": "daniarashid2021",
+    "country": "Canada",
+    "rating": 4.7,
+    "review": "Good work. Will assign more work in future",
+    "price": "Up to $50",
+    "dp": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_smartwm/t_delivery_large/v1/attachments/delivery/asset/9905712dea26557917f9af96c70ee8dd-1686599517/cover%20image%20%28ebook%29.jpg"
+  },
+  {
+    "username": "aevinhoagland",
+    "country": "Belgium",
+    "rating": 5,
+    "review": "Very nice person who goes the extra mile! Highly recommend this seller. Fluent communication and excellent work.",
+    "price": "Up to $50",
+    "dp": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_smartwm/t_delivery_large/v1/attachments/delivery/asset/bc769cefeaa091ae206198aaa05be6eb-1686503802/tractor.png"
+  },
+  {
+    "username": "cole0530",
+    "country": "United States",
+    "rating": 5,
+    "review": "This was defintiely a process but this seller kept working and listening to changes that helped make my book the best it can be. I appreciate all of the patients and work without question. I recommend however you must be involved and you will be happy at the end. Again, thanks for everything.",
+    "price": "",
+    "dp": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_smartwm/t_delivery_large/v1/attachments/delivery/asset/a0a97c4261ff5e47f5056252a14e73c8-1684616889/Manuscript%20%28Ebook%29%20%284%29.pdf"
+  },
+  {
+    "username": "markwatson519",
+    "country": "United States",
+    "rating": 5,
+    "review": "Great Great thanks",
+    "price": "",
+    "dp": ""
+  },
+  {
+    "username": "travelossip",
+    "country": "Canada",
+    "rating": 5,
+    "review": "Perfect. Thank you",
+    "price": "",
+    "dp": ""
+  },
+  {
+    "username": "travelossip",
+    "country": "Canada",
+    "rating": 4.7,
+    "review": "Amazing work.",
+    "price": "",
+    "dp": ""
+  },
+  {
+    "username": "abovepromotions",
+    "country": "United States",
+    "rating": 5,
+    "review": "We've ordered numerous times from Sajjat and have not been disappointed yet.",
+    "price": "",
+    "dp": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_small/v1/profile/photos/575413/original/ap_photo.jpg"
+  },
+  {
+    "username": "phireworx",
+    "country": "United States",
+    "rating": 5,
+    "review": "Superb and Accurate!",
+    "price": "",
+    "dp": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_small/v1/profile/photos/35285697/original/1465417873250_facebook20160608-31963-vc9j3n.jpg"
+  },
+  {
+    "username": "abovepromotions",
+    "country": "United States",
+    "rating": 5,
+    "review": "Sajjat completed another assignment for us and we are pleased with the results.",
+    "price": "",
+    "dp": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_small/v1/profile/photos/575413/original/ap_photo.jpg"
+  },
+  {
+    "username": "abovepromotions",
+    "country": "United States",
+    "rating": 5,
+    "review": "We've used Sajjat numerous times to complete research projects for us. He always delivers on time and provides the information in a format most useful to us. We consider him a part of our team's go-to partner for research.",
+    "price": "",
+    "dp": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_small/v1/profile/photos/575413/original/ap_photo.jpg"
+  },
+  {
+    "username": "phireworx",
+    "country": "United States",
+    "rating": 5,
+    "review": "This guy is magical!",
+    "price": "",
+    "dp": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_small/v1/profile/photos/35285697/original/1465417873250_facebook20160608-31963-vc9j3n.jpg"
+  },
+  {
+    "username": "dujotabi",
+    "country": "Canada",
+    "rating": 5,
+    "review": "Excellent communication from the start of the project and delivered exactly the correct type of leads. It's hard to find an outstanding lead service, but this is one of them. Quick to respond and find pretty complicated/well-qualified leads. I would highly recommend working with them over the other lead generation offers here on Fiverr.",
+    "price": "",
+    "dp": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_smartwm/t_delivery_large/v1/attachments/delivery/asset/33d35fcf8b93996f30b4e1ac482026f1-1638511331/Screenshot%202021-12-03%20115755.jpg"
+  },
+  {
+    "username": "markjob747",
+    "country": "United States",
+    "rating": 5,
+    "review": "This was quick and accurate. Never expected such a quick turnaround. The domain wasn't widespread, and yet Sajjat did it accurately. He's very thorough with his requirements gathering and makes sure the requirements are met. I would definitely recommend him for any B2B Lead Generation work.",
+    "price": "",
+    "dp": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_small/v1/attachments/profile/photo/e3eca93aac762ed45f222ba9687dbbae-1630513545746/0270aba0-1a7b-4e42-9999-bbc6a83ffcd1.jpg"
+  },
+  {
+    "username": "sowrav777",
+    "country": "Bangladesh",
+    "rating": 5,
+    "review": "It took Sajjatmohammed and I a few back and first communications, but our communication improved and I was 100% satisfied with the work he provided. I will use him in the future... for data input and data scraping... things like that are added to an excel doc. Thank you",
+    "price": "",
+    "dp": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_small/v1/attachments/profile/photo/da1ad3e4345c7473573319ba89f4513b-1751071374383/ff3d9924-bd6d-41b2-adda-0b141bb6d2db.png"
+  },
+  {
+    "username": "edward_ortiz1",
+    "country": "United States",
+    "rating": 5,
+    "review": "The leads the seller provides did not have any invalid email addresses and were good target leads! I have been in the industry for some time now and I have struggled to get direct information for Directors, CEO's and Finance directors. Sajjat was very friendly and keen to assist me with speedy and quality...",
+    "price": "",
+    "dp": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_small/v1/attachments/profile/photo/19b6276f9bbc26785fdb5178a0ba958a-1629527197300/6661ad4c-acdb-4ff9-8523-8b8c4a13ec6d.jpg"
+  },
+  {
+    "username": "kituzu",
+    "country": "United States",
+    "rating": 5,
+    "review": "The job was understood immediately and the seller took to explain the entire process. I needed over 15,000 pages scraped. Communication was beyond quick and the job was done ahead of schedule. Thanks mate!",
+    "price": "",
+    "dp": ""
+  },
+  {
+    "username": "jose_w_nemeth",
+    "country": "United States",
+    "rating": 5,
+    "review": "Perfect seller! Communication is great. He took the time to discuss the project and have a good understanding of what was needed. I will use his service again.",
+    "price": "",
+    "dp": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_small/v1/attachments/profile/photo/cc9982012bbd016fba0839685704a194-1630399100706/1f3923cf-3189-4f83-a406-b2195a86c04e.jpeg"
+  },
+  {
+    "username": "fernanrf",
+    "country": "Canada",
+    "rating": 5,
+    "review": "I needed leads from yellowpages. He delivered in a few hours. I got emails, phone numbers, websites and many more. The turnaround was excellent. I checked a lot of data scrapers here, he has the best price, trust me! HIGHLY recommend this guy 👍",
+    "price": "",
+    "dp": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_smartwm/t_delivery_large/v1/attachments/delivery/asset/a4a07e33b5d44b5bb8ebb8367dd2c31f-1629737717/Screenshot%20%28157%29.png"
+  },
+  {
+    "username": "abovepromotions",
+    "country": "United States",
+    "rating": 5,
+    "review": "It's great being able to trust your research to Sajjat.",
+    "price": "",
+    "dp": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_small/v1/profile/photos/575413/original/ap_photo.jpg"
+  },
+  {
+    "username": "carlsingleton",
+    "country": "South Africa",
+    "rating": 4.3,
+    "review": "A few revisions required but done without question to expected level of service. Project delivered on time. Great communicator. Thank you",
+    "price": "",
+    "dp": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_small/v1/profile/photos/36093833/original/1466104162595_facebook20160616-12032-1ilp7vz.jpg"
+  },
+  {
+    "username": "abovepromotions",
+    "country": "United States",
+    "rating": 5,
+    "review": "Will definitely use Sajjat again for our other upcoming research projects.",
+    "price": "",
+    "dp": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_small/v1/profile/photos/575413/original/ap_photo.jpg"
+  },
+  {
+    "username": "abovepromotions",
+    "country": "United States",
+    "rating": 5,
+    "review": "The seller understood the request and completed the task on time.",
+    "price": "",
+    "dp": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_small/v1/profile/photos/575413/original/ap_photo.jpg"
+  },
+  {
+    "username": "guyh3004",
+    "country": "Israel",
+    "rating": 5,
+    "review": "Sajjat works very efficiently, Used his services for data scrapping and I received my delivery before the estimated hour, very articulate and has done a great job. Quick answers and great ROI, will use his services again and recommend to anyone :)",
+    "price": "",
+    "dp": ""
+  },
+  {
+    "username": "car33f",
+    "country": "United States",
+    "rating": 5,
+    "review": "The work was quick and without any error. I loved the way he communicates. Highly recommend this guy.",
+    "price": "",
+    "dp": ""
+  },
+  {
+    "username": "vincentrynolds",
+    "country": "United States",
+    "rating": 5,
+    "review": "Very responsive and the final work were fabulous. My experience was great.",
+    "price": "",
+    "dp": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_small/v1/attachments/profile/photo/af317dd819f3bdbe3ed3b01d3303a0bf-1624201367084/8a57c646-ced2-4757-9c30-b3eec983ab8a.jpeg"
+  }
+];
+
   const services = [
     {
       icon: <Globe className="h-5 w-5" />,
@@ -48,9 +267,9 @@ const About = () => {
       fiverrLink: "https://www.fiverr.com/sajjatmohammed?public_mode=true"
     },
     {
-      title: "Wix website with unlimited design revisions",
+      title: "Wordpress/Wix website",
       price: "From $80",
-      description: "Fully Customized Single-Page Wix Studio Website with Responsive Design and Interactive Features",
+      description: "Fully Customized Single-Page Wix Studio Website",
       features: ["Wix", "Wordpress", "Shopify", "Webflow", "Deployment"],
       fiverrLink: "https://www.fiverr.com/s/8zE679p"
     }
@@ -162,7 +381,7 @@ const About = () => {
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-foreground mb-4">What Clients Say</h3>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Real feedback from satisfied clients who trusted me with their React and full-stack development projects
+              Real feedback from satisfied clients who trusted me with their projects
             </p>
           </div>
           
@@ -171,188 +390,62 @@ const About = () => {
             <div className="flex animate-infinite-scroll mobile-scroll-container" style={{ width: 'fit-content', minWidth: 'max-content' }}>
               {/* First set of reviews */}
               <div className="flex items-start gap-6 px-6 flex-shrink-0">
-                <div className="w-80 sm:w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0 min-h-[280px] flex flex-col">
-                  <div className="flex items-center gap-4 mb-4">
-                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=60&h=60&fit=crop&crop=face" alt="Sarah Johnson" className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20 flex-shrink-0" />
-                    <div className="flex-1 min-w-0">
-                      <div className="font-semibold text-foreground">Sarah Johnson</div>
-                      <div className="text-sm text-muted-foreground">Product Manager, TechFlow</div>
-                      <div className="flex items-center gap-1 mt-1">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400 flex-shrink-0" />
-                        ))}
+                {reviews.map((review, index) => (
+                  <div key={index} className="w-80 sm:w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0 min-h-[280px] flex flex-col">
+                    <div className="flex items-center gap-4 mb-4">
+                      <img 
+                        src={review.dp || "/uploads/placeholder_dp.png"} 
+                        alt={review.username} 
+                        className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20 flex-shrink-0" 
+                      />
+                      <div className="flex-1 min-w-0">
+                        <div className="font-semibold text-foreground">{review.username}</div>
+                        <div className="text-sm text-muted-foreground">{review.country}</div>
+                        <div className="flex items-center gap-1 mt-1">
+                          {[...Array(5)].map((_, i) => (
+                            <Star 
+                              key={i} 
+                              className={`w-4 h-4 ${i < review.rating ? 'fill-yellow-400' : 'fill-gray-300'} text-yellow-400 flex-shrink-0`} 
+                            />
+                          ))}
+                        </div>
                       </div>
                     </div>
+                    <blockquote className="text-sm text-muted-foreground leading-relaxed flex-1">
+                      "{review.review}"
+                    </blockquote>
                   </div>
-                  <blockquote className="text-sm text-muted-foreground leading-relaxed flex-1">
-                    "Working with this developer was an absolute pleasure. They delivered our React mobile app on time with perfect functionality. The TypeScript implementation was clean and maintainable. Communication was excellent throughout the project, and they went above and beyond to ensure we were satisfied with the final product."
-                  </blockquote>
-                </div>
-                
-                <div className="w-80 sm:w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0 min-h-[280px] flex flex-col">
-                  <div className="flex items-center gap-4 mb-4">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face" alt="Michael Chen" className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20 flex-shrink-0" />
-                    <div className="flex-1 min-w-0">
-                      <div className="font-semibold text-foreground">Michael Chen</div>
-                      <div className="text-sm text-muted-foreground">CTO, EcommercePro</div>
-                      <div className="flex items-center gap-1 mt-1">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400 flex-shrink-0" />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  <blockquote className="text-sm text-muted-foreground leading-relaxed flex-1">
-                    "Outstanding work on our e-commerce platform. The TypeScript implementation was flawless, and the React components were beautifully structured. The developer's attention to detail and understanding of modern web development best practices made our project a huge success. Highly recommend for any React development needs."
-                  </blockquote>
-                </div>
-                
-                <div className="w-80 sm:w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0 min-h-[280px] flex flex-col">
-                  <div className="flex items-center gap-4 mb-4">
-                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=60&h=60&fit=crop&crop=face" alt="Emily Rodriguez" className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20 flex-shrink-0" />
-                    <div className="flex-1 min-w-0">
-                      <div className="font-semibold text-foreground">Emily Rodriguez</div>
-                      <div className="text-sm text-muted-foreground">Founder, StartupHub</div>
-                      <div className="flex items-center gap-1 mt-1">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400 flex-shrink-0" />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  <blockquote className="text-sm text-muted-foreground leading-relaxed flex-1">
-                    "Professional, responsive, and delivered exactly what we needed. The developer's expertise in React Native helped us launch our mobile app successfully. They were always available for questions and provided excellent technical guidance. The code quality and documentation were top-notch."
-                  </blockquote>
-                </div>
-                
-                <div className="w-80 sm:w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0 min-h-[280px] flex flex-col">
-                  <div className="flex items-center gap-4 mb-4">
-                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=60&h=60&fit=crop&crop=face" alt="David Thompson" className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20 flex-shrink-0" />
-                    <div className="flex-1 min-w-0">
-                      <div className="font-semibold text-foreground">David Thompson</div>
-                      <div className="text-sm text-muted-foreground">CEO, MobileFirst</div>
-                      <div className="flex items-center gap-1 mt-1">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400 flex-shrink-0" />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  <blockquote className="text-sm text-muted-foreground leading-relaxed flex-1">
-                    "Amazing React Native developer who transformed our vision into reality. Our app is now live on both iOS and Android stores, and users absolutely love it. The performance optimization and clean architecture made all the difference. This developer truly understands mobile development best practices."
-                  </blockquote>
-                </div>
-                
-                <div className="w-80 sm:w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0 min-h-[280px] flex flex-col">
-                  <div className="flex items-center gap-4 mb-4">
-                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&h=60&fit=crop&crop=face" alt="Lisa Wang" className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20 flex-shrink-0" />
-                    <div className="flex-1 min-w-0">
-                      <div className="font-semibold text-foreground">Lisa Wang</div>
-                      <div className="text-sm text-muted-foreground">Technical Lead, DataCorp</div>
-                      <div className="flex items-center gap-1 mt-1">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400 flex-shrink-0" />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  <blockquote className="text-sm text-muted-foreground leading-relaxed flex-1">
-                    "Perfect full-stack solution with PostgreSQL backend and React frontend. The developer exceeded all expectations with their comprehensive understanding of modern web technologies. The database design was robust, and the API integration was seamless. Our project was delivered on time and under budget."
-                  </blockquote>
-                </div>
+                ))}
               </div>
               
               {/* Duplicate set for seamless loop */}
               <div className="flex items-start gap-6 px-6 flex-shrink-0">
-                <div className="w-80 sm:w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0 min-h-[280px] flex flex-col">
-                  <div className="flex items-center gap-4 mb-4">
-                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=60&h=60&fit=crop&crop=face" alt="Sarah Johnson" className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20 flex-shrink-0" />
-                    <div className="flex-1 min-w-0">
-                      <div className="font-semibold text-foreground">Sarah Johnson</div>
-                      <div className="text-sm text-muted-foreground">Product Manager, TechFlow</div>
-                      <div className="flex items-center gap-1 mt-1">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400 flex-shrink-0" />
-                        ))}
+                {reviews.map((review, index) => (
+                  <div key={`duplicate-${index}`} className="w-80 sm:w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0 min-h-[280px] flex flex-col">
+                    <div className="flex items-center gap-4 mb-4">
+                      <img 
+                        src={review.dp || "/uploads/placeholder_dp.png"} 
+                        alt={review.username} 
+                        className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20 flex-shrink-0" 
+                      />
+                      <div className="flex-1 min-w-0">
+                        <div className="font-semibold text-foreground">{review.username}</div>
+                        <div className="text-sm text-muted-foreground">{review.country}</div>
+                        <div className="flex items-center gap-1 mt-1">
+                          {[...Array(5)].map((_, i) => (
+                            <Star 
+                              key={i} 
+                              className={`w-4 h-4 ${i < review.rating ? 'fill-yellow-400' : 'fill-gray-300'} text-yellow-400 flex-shrink-0`} 
+                            />
+                          ))}
+                        </div>
                       </div>
                     </div>
+                    <blockquote className="text-sm text-muted-foreground leading-relaxed flex-1">
+                      "{review.review}"
+                    </blockquote>
                   </div>
-                  <blockquote className="text-sm text-muted-foreground leading-relaxed flex-1">
-                    "Working with this developer was an absolute pleasure. They delivered our React mobile app on time with perfect functionality. The TypeScript implementation was clean and maintainable. Communication was excellent throughout the project, and they went above and beyond to ensure we were satisfied with the final product."
-                  </blockquote>
-                </div>
-                
-                <div className="w-80 sm:w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0 min-h-[280px] flex flex-col">
-                  <div className="flex items-center gap-4 mb-4">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face" alt="Michael Chen" className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20 flex-shrink-0" />
-                    <div className="flex-1 min-w-0">
-                      <div className="font-semibold text-foreground">Michael Chen</div>
-                      <div className="text-sm text-muted-foreground">CTO, EcommercePro</div>
-                      <div className="flex items-center gap-1 mt-1">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400 flex-shrink-0" />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  <blockquote className="text-sm text-muted-foreground leading-relaxed flex-1">
-                    "Outstanding work on our e-commerce platform. The TypeScript implementation was flawless, and the React components were beautifully structured. The developer's attention to detail and understanding of modern web development best practices made our project a huge success. Highly recommend for any React development needs."
-                  </blockquote>
-                </div>
-                
-                <div className="w-80 sm:w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0 min-h-[280px] flex flex-col">
-                  <div className="flex items-center gap-4 mb-4">
-                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=60&h=60&fit=crop&crop=face" alt="Emily Rodriguez" className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20 flex-shrink-0" />
-                    <div className="flex-1 min-w-0">
-                      <div className="font-semibold text-foreground">Emily Rodriguez</div>
-                      <div className="text-sm text-muted-foreground">Founder, StartupHub</div>
-                      <div className="flex items-center gap-1 mt-1">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400 flex-shrink-0" />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  <blockquote className="text-sm text-muted-foreground leading-relaxed flex-1">
-                    "Professional, responsive, and delivered exactly what we needed. The developer's expertise in React Native helped us launch our mobile app successfully. They were always available for questions and provided excellent technical guidance. The code quality and documentation were top-notch."
-                  </blockquote>
-                </div>
-                
-                <div className="w-80 sm:w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0 min-h-[280px] flex flex-col">
-                  <div className="flex items-center gap-4 mb-4">
-                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=60&h=60&fit=crop&crop=face" alt="David Thompson" className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20 flex-shrink-0" />
-                    <div className="flex-1 min-w-0">
-                      <div className="font-semibold text-foreground">David Thompson</div>
-                      <div className="text-sm text-muted-foreground">CEO, MobileFirst</div>
-                      <div className="flex items-center gap-1 mt-1">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400 flex-shrink-0" />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  <blockquote className="text-sm text-muted-foreground leading-relaxed flex-1">
-                    "Amazing React Native developer who transformed our vision into reality. Our app is now live on both iOS and Android stores, and users absolutely love it. The performance optimization and clean architecture made all the difference. This developer truly understands mobile development best practices."
-                  </blockquote>
-                </div>
-                
-                <div className="w-80 sm:w-96 bg-gradient-to-br from-background/80 to-background/40 border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm flex-shrink-0 min-h-[280px] flex flex-col">
-                  <div className="flex items-center gap-4 mb-4">
-                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&h=60&fit=crop&crop=face" alt="Lisa Wang" className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20 flex-shrink-0" />
-                    <div className="flex-1 min-w-0">
-                      <div className="font-semibold text-foreground">Lisa Wang</div>
-                      <div className="text-sm text-muted-foreground">Technical Lead, DataCorp</div>
-                      <div className="flex items-center gap-1 mt-1">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400 flex-shrink-0" />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  <blockquote className="text-sm text-muted-foreground leading-relaxed flex-1">
-                    "Perfect full-stack solution with PostgreSQL backend and React frontend. The developer exceeded all expectations with their comprehensive understanding of modern web technologies. The database design was robust, and the API integration was seamless. Our project was delivered on time and under budget."
-                  </blockquote>
-                </div>
+                ))}
               </div>
             </div>
           </div>

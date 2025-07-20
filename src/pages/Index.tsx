@@ -28,8 +28,12 @@ const Index = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.hash) {
-      scrollToHashSection(location.hash);
+    // Handle both direct hash and preserved hash from state
+    const hash = location.hash || (location.state as any)?.preserveHash;
+    if (hash) {
+      // Remove the preserveHash from state to avoid reapplying
+      window.history.replaceState({ ...window.history.state, preserveHash: undefined }, '');
+      scrollToHashSection(hash);
     }
   }, [location]);
 

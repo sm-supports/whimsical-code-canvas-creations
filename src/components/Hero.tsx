@@ -159,15 +159,14 @@ const Hero = () => {
             {/* Call-to-Action Buttons */}
             <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 justify-center lg:justify-start w-full">
               <Button 
-                className="group w-full sm:w-auto bg-gradient-to-r from-primary to-primary/90 text-primary-foreground px-6 sm:px-8 md:px-10 py-4 sm:py-5 md:py-6 rounded-2xl flex items-center justify-center gap-2 sm:gap-3 text-base sm:text-lg md:text-xl font-semibold hover:from-primary/90 hover:to-primary/80 transition-all duration-300 active:scale-95 shadow-2xl shadow-primary/25 hover:shadow-primary/40 transform hover:-translate-y-1"
+                className="group w-full sm:w-auto border-2 border-primary/20 bg-background/50 backdrop-blur-sm text-foreground px-6 sm:px-8 md:px-10 py-4 sm:py-5 md:py-6 rounded-2xl flex items-center justify-center gap-2 sm:gap-3 text-base sm:text-lg md:text-xl font-semibold hover:bg-primary/5 hover:border-primary/40 transition-all duration-300 active:scale-95 shadow-2xl hover:shadow-primary/20 transform hover:-translate-y-1"
                 onClick={scrollToContact}
               >
                 <span>Start Project</span>
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </Button>
               <Button 
-                variant="outline"
-                className="group w-full sm:w-auto border-2 border-primary/20 bg-background/50 backdrop-blur-sm px-6 sm:px-8 md:px-10 py-4 sm:py-5 md:py-6 rounded-2xl text-base sm:text-lg md:text-xl font-semibold hover:bg-primary/5 hover:border-primary/40 transition-all duration-300 active:scale-95 shadow-xl hover:shadow-primary/20 transform hover:-translate-y-1"
+                className="group w-full sm:w-auto bg-gradient-to-r from-primary to-primary/90 text-primary-foreground px-6 sm:px-8 md:px-10 py-4 sm:py-5 md:py-6 rounded-2xl text-base sm:text-lg md:text-xl font-semibold hover:from-primary/90 hover:to-primary/80 transition-all duration-300 active:scale-95 shadow-xl hover:shadow-primary/40 transform hover:-translate-y-1"
                 onClick={scrollToProjects}
               >
                 <span>View Work</span>

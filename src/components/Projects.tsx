@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import ProjectCard from "./ProjectCard";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import ProjectNavCard from "./ProjectNavCard";
+import { Code, Globe } from "lucide-react";
 
 // Project data
 const projectsData = [
@@ -154,19 +156,23 @@ const Projects = () => {
 				</div>
 
 				{/* Navigation to Project Pages */}
-				<div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
-					<Button asChild className="group bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105">
-						<Link to="/projects/react-development" className="flex items-center gap-2">
-							<span>View React Development Projects</span>
-							<ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-						</Link>
-					</Button>
-					<Button asChild variant="outline" className="group border-primary/30 hover:border-primary/50 px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105">
-						<Link to="/projects/web-development" className="flex items-center gap-2">
-							<span>View Web Development Projects</span>
-							<ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-						</Link>
-					</Button>
+				<div className="mt-12 flex flex-col sm:flex-row gap-8 justify-center items-center">
+					<ProjectNavCard
+						title="React Development Projects"
+						description="Modern React apps, component architecture, state management, and performance. Explore our React work."
+						icon={<Code className="w-8 h-8 sm:w-10 sm:h-10 text-primary-foreground" />}
+						to="/projects/react-development"
+						gradient="from-primary to-primary/90"
+						className="mx-auto"
+					/>
+					<ProjectNavCard
+						title="Web Development Projects"
+						description="Full-stack, Next.js, and web platforms. See my web development portfolio with beautiful, scalable solutions."
+						icon={<Globe className="w-8 h-8 sm:w-10 sm:h-10 text-primary-foreground" />}
+						to="/projects/web-development"
+						gradient="from-primary to-primary/90"
+						className="mx-auto"
+					/>
 				</div>
 			</div>
 		</section>
