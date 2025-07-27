@@ -75,16 +75,27 @@ const Contact = () => {
   /**
    * Handle form submission
    * 
-   * Prevents default form submission and shows success state.
-   * In a real application, this would send data to an API endpoint.
+   * Handles form submission to Netlify Forms.
+   * Shows success state after submission.
    * 
    * @param e - Form submission event
    */
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    // TODO: Implement actual form submission to API
-    // Example: await submitContactForm(form);
+    const formData = new FormData(e.target as HTMLFormElement);
+    
+    try {
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData as any).toString(),
+      });
+      setSubmitted(true);
+      setForm({ name: "", email: "", message: "" }); // Reset form
+    } catch (error) {
+      console.error("Form submission error:", error);
+      // You could add error state handling here if needed
+    }
   };
 
   /**
@@ -210,7 +221,14 @@ const Contact = () => {
                       </div>
                     ) : (
                       /* Contact Form - Controlled inputs with validation */
-                      <form className="space-y-6" onSubmit={handleSubmit}>
+                      <form 
+                        className="space-y-6" 
+                        onSubmit={handleSubmit}
+                        data-netlify="true"
+                        name="contact"
+                        method="POST"
+                      >
+                        <input type="hidden" name="form-name" value="contact" />
                         <div className="space-y-4">
                           {/* Name Input with hover effects */}
                           <div className="relative group">
