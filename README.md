@@ -171,4 +171,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Built with ❤️ by SM Supports**
 
-[Live Demo](https://your-domain.com) | [GitHub](https://github.com/sm-supports/whimsical-code-canvas-creations)
+[Live Demo](https://smsupports.com) | [GitHub](https://github.com/sm-supports/whimsical-code-canvas-creations)

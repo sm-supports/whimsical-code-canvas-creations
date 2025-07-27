@@ -17,13 +17,7 @@
 
 [build.processing.html]
   pretty_urls = true
-
-[forms]
-  [forms.contact]
-    name = "contact"
-    fields = { name = "string", email = "email", message = "text" }
-    success_url = "/"
-
+  
 [[redirects]]
   from = "/.netlify/functions/submission-created"
   to = "/.netlify/functions/submission-created"

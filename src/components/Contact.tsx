@@ -66,8 +66,8 @@ const Contact = () => {
     {
       icon: <Mail className="h-5 w-5" />,
       title: "Email",
-      content: "contact@smsupports.com",
-      link: "mailto:contact@smsupports.com",
+      content: "sajat@smsupports.com",
+      link: "mailto:sajat@smsupports.com",
       external: true,
       gradient: "from-blue-500 to-cyan-500"
     },
