@@ -1,4 +1,9 @@
 [[redirects]]
+  from = "/success"
+  to = "/"
+  status = 302
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
@@ -6,3 +11,21 @@
 [build]
   command = "npm run build"
   publish = "dist"
+
+[build.processing]
+  skip_processing = false
+
+[build.processing.html]
+  pretty_urls = true
+
+[forms]
+  [forms.contact]
+    name = "contact"
+    fields = { name = "string", email = "email", message = "text" }
+    success_url = "/"
+
+[[redirects]]
+  from = "/.netlify/functions/submission-created"
+  to = "/.netlify/functions/submission-created"
+  status = 200
+  force = true

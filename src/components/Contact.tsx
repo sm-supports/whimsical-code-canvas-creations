@@ -1,7 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { Mail, MapPin, MessageCircle, ArrowRight, Send, Phone, Code, Palette, Sparkles } from "lucide-react";
+import { Mail, MapPin, MessageCircle, Phone, Sparkles } from "lucide-react";
 import { useState, useEffect } from "react";
 
 /**
@@ -31,9 +29,6 @@ import { useState, useEffect } from "react";
  * - isVisible: Animation trigger state
  */
 const Contact = () => {
-  // Form state management
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   /**
@@ -59,44 +54,6 @@ const Contact = () => {
 
     return () => observer.disconnect();
   }, []);
-
-  /**
-   * Handle form input changes
-   * 
-   * Updates the form state when users type in the input fields.
-   * Uses controlled components for predictable form behavior.
-   * 
-   * @param e - Change event from input or textarea
-   */
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  /**
-   * Handle form submission
-   * 
-   * Handles form submission to Netlify Forms.
-   * Shows success state after submission.
-   * 
-   * @param e - Form submission event
-   */
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const formData = new FormData(e.target as HTMLFormElement);
-    
-    try {
-      await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData as any).toString(),
-      });
-      setSubmitted(true);
-      setForm({ name: "", email: "", message: "" }); // Reset form
-    } catch (error) {
-      console.error("Form submission error:", error);
-      // You could add error state handling here if needed
-    }
-  };
 
   /**
    * Contact information data
@@ -192,112 +149,9 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-start max-w-7xl mx-auto">
-          {/* Contact Form - 3D Card with delayed animation */}
-          <div className={`transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="relative group">
-              {/* 3D Container with perspective transforms */}
-              <div className="relative transform perspective-1000 group-hover:rotate-y-6 transition-transform duration-700">
-                <Card className="relative overflow-hidden backdrop-blur-xl bg-white/80 dark:bg-card/80 shadow-2xl border border-white/20 hover:shadow-primary/20 transition-all duration-500 hover:-translate-y-2">
-                  {/* 3D Card Glow Effect - Appears on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
-                  <CardContent className="p-8 lg:p-10">
-                    <div className="mb-8">
-                      <h3 className="text-2xl sm:text-3xl font-bold mb-2 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
-                        Send Message
-                      </h3>
-                      <p className="text-muted-foreground">Tell us about your project</p>
-                    </div>
-
-                    {/* Success State - Shows after form submission */}
-                    {submitted ? (
-                      <div className="text-center py-8">
-                        <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-2xl">
-                          <Send className="w-8 h-8 text-white" />
-                        </div>
-                        <h4 className="text-xl font-semibold text-green-600 mb-2">Message Sent!</h4>
-                        <p className="text-muted-foreground">We'll get back to you soon.</p>
-                      </div>
-                    ) : (
-                      /* Contact Form - Controlled inputs with validation */
-                      <form 
-                        className="space-y-6" 
-                        onSubmit={handleSubmit}
-                        data-netlify="true"
-                        name="contact"
-                        method="POST"
-                      >
-                        <input type="hidden" name="form-name" value="contact" />
-                        <div className="space-y-4">
-                          {/* Name Input with hover effects */}
-                          <div className="relative group">
-                            <Input
-                              name="name"
-                              placeholder="Your Name"
-                              value={form.name}
-                              onChange={handleChange}
-                              required
-                              className="h-12 bg-white/50 dark:bg-card/50 border-white/20 focus:border-primary/50 transition-all duration-300 group-hover:bg-white/70 dark:group-hover:bg-card/70"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-purple-500/5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                          </div>
-                          
-                          {/* Email Input with validation */}
-                          <div className="relative group">
-                            <Input
-                              name="email"
-                              type="email"
-                              placeholder="Your Email"
-                              value={form.email}
-                              onChange={handleChange}
-                              required
-                              className="h-12 bg-white/50 dark:bg-card/50 border-white/20 focus:border-primary/50 transition-all duration-300 group-hover:bg-white/70 dark:group-hover:bg-card/70"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-purple-500/5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                          </div>
-                          
-                          {/* Message Textarea */}
-                          <div className="relative group">
-                            <textarea
-                              name="message"
-                              placeholder="Tell us about your project..."
-                              value={form.message}
-                              onChange={handleChange}
-                              required
-                              rows={4}
-                              className="w-full h-32 bg-white/50 dark:bg-card/50 border border-white/20 rounded-md px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all duration-300 group-hover:bg-white/70 dark:group-hover:bg-card/70 resize-none"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-purple-500/5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                          </div>
-                        </div>
-                        
-                        {/* Submit Button with gradient and hover effects */}
-                        <Button 
-                          type="submit" 
-                          className="w-full h-12 bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-1 group"
-                        >
-                          <span>Send Message</span>
-                          <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                        </Button>
-                      </form>
-                    )}
-                  </CardContent>
-                </Card>
-              </div>
-              
-              {/* Floating 3D Elements - Adds depth and interactivity */}
-              <div className="absolute -top-2 sm:-top-4 -right-2 sm:-right-4 w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl shadow-2xl backdrop-blur-sm border border-primary/20 flex items-center justify-center transform rotate-12 animate-float-slow">
-                <Code className="w-4 h-4 sm:w-6 sm:h-6 text-primary" />
-              </div>
-              <div className="absolute -bottom-2 sm:-bottom-4 -left-2 sm:-left-4 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary/15 to-primary/5 rounded-2xl shadow-2xl backdrop-blur-sm border border-primary/20 flex items-center justify-center transform -rotate-12 animate-float-medium">
-                <Palette className="w-3 h-3 sm:w-4 sm:h-4 text-primary" />
-              </div>
-            </div>
-          </div>
-
+        <div className="max-w-5xl mx-auto">
           {/* Contact Info Cards - 3D Grid with staggered animations */}
-          <div className={`space-y-6 transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className={`space-y-6 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {contactInfo.map((info, index) => (
                 <div key={index} className="relative group">
